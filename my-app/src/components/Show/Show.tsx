@@ -1,8 +1,8 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
-import Backintime from "./BackInTime/Backintime";
-import Episodechooser from "./Episodechooser";
-import Forum from "./Forum/Forum";
+import Episodechooser from "../EpisodeChooser/Episodechooser";
+import Forum from "../Forum/Forum";
+import Backintime from "../BackInTime/Backintime";
 
 function Show() {
   return (

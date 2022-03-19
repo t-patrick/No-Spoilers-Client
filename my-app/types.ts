@@ -12,6 +12,7 @@
 /** Basic User type
  *  - combines DBUser and UserTVShow from db.
  */
+
 type User = {
   _id: number;
   email: string;
@@ -35,7 +36,7 @@ type DBUser = {
  * + userId refers to DBUser's _id
  */
 
-interface UserTVShow {
+type UserTVShow = {
   userId?: string;
   TMDB_show_id: number;
   name: string;
@@ -45,7 +46,7 @@ interface UserTVShow {
   episodeCodeUpTo: string;
   episodeCodeNext: string;
   episodesWatchedSoFar: number;
-}
+};
 
 /////////////////////// ADD SHOW
 
