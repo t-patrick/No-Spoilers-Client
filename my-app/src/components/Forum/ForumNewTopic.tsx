@@ -7,7 +7,7 @@ export default function ForumNewTopic() {
         <div>
           <div>Title</div>
           {/* type of textarea??? */}
-          <textarea /> 
+          <textarea />
         </div>
 
         <div>
@@ -19,7 +19,7 @@ export default function ForumNewTopic() {
         <div>
           <button type='submit'>Create Topic</button>
         </div>
-        
+
       </form>
 
     </div>
