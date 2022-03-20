@@ -7,8 +7,6 @@ import Backintime from "../BackInTime/Backintime";
 function Show() {
   return (
     <div>
-      <Navbar />
-
       <div>Some TV shows details ...</div>
 
       <Backintime />

@@ -7,8 +7,6 @@ function Home() {
   return (
     <StyledHome>
       <div>
-        <Navbar />
-
         <div>
           <input type="text" placeholder="Filter the lists below..."></input>
         </div>

@@ -1,32 +1,42 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import "./App.css";
 import Splash from "./components/Splash/Splash";
 import Show from "./components/Show/Show";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Search from "./components/search/Search";
+import GlobalStyles from "./theme/global-style";
+import Navbar from "./components/Navbar/Navbar";
+import { createStore } from "redux";
+import reducers from "./state/reducers";
+import { Provider } from "react-redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-/* 
-  Redux store create here.
-  Router:
-    1. Splash
-    2. Home
-    3. 
-*/
+/**
+ * 
+ */
+
+const store = createStore(reducers, composeWithDevTools());
 
 function App() {
+
   return (
-    <div className="App">
-      hello
-      <Router>
-        <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/show/:id" element={<Show />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/" element={<Splash />} />
-        </Routes>
-      </Router>
-    </div >
+    <Provider store={store}>
+      <Fragment>
+        <GlobalStyles />
+        <div className="App">
+          <Router>
+            <Navbar />
+            <Routes>
+              <Route path="/home" element={<Home />} />
+              <Route path="/show/:id" element={<Show />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/" element={<Splash />} />
+            </Routes>
+          </Router>
+        </div >
+      </Fragment>
+    </Provider>
   );
 }
 

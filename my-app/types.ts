@@ -13,12 +13,24 @@
  *  - combines DBUser and UserTVShow from db.
  */
 
+type UserState = {
+  isLoggedIn: boolean;
+  user: User | {};
+};
+
+type MainState = {
+  user: UserState;
+};
+
 type User = {
   _id: number;
   email: string;
   displayName: string;
+  avatar: string;
   userTVInfo: Array<UserTVShow>;
 };
+
+type BasicUserInfo = Omit<User, 'userTVInfo'>;
 
 /**
  * user creation / login
@@ -134,7 +146,7 @@ type Report = {
   reporterId: number;
   offendingUserId: number;
   offenceType: string;
-  topicOrReply: "Topic" | "Reply";
+  topicOrReply: 'Topic' | 'Reply';
   itemId: number;
   date: Date;
 };
