@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
 .App {
-  /* background-color: #050214; */
+  background-color: var(--bg-color);
+  /* font-family: 'Poppins', sans-serif; */
+  font-family: var(--main-font);
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@700&display=swap');

@@ -9,13 +9,15 @@ function Splash() {
   const [showLogin, setShowLogin] = useState(true);
   const [showRegister, setShowRegister] = useState(true);
 
+  const [loginOrRegister, setLoginOrRegister] = useState<'login' | 'register'>('login');
+
 
 
 
   return (
     <StyledSplash>
-      {/* <Login /> */}
-      <Register />
+      <Login setLoginOrRegister={setLoginOrRegister} />
+      <Register setLoginOrRegister={setLoginOrRegister} />
     </StyledSplash>
   )
 }

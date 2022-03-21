@@ -2,14 +2,15 @@ import React, { SyntheticEvent, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { loginUser } from '../../API/user-api';
-import { UserActionCreators } from '../../state/action-creators';
-import { checkEmail, checkPassword } from './formHelpers';
 import blackLogo from './images/black-logo.png';
 import { StyledLogin } from './Login.styled';
 import spidermanImage from './images/spiderman.png'
+import { LoginProps } from '../../proptypes';
+import { loginUser } from '../../API/user-api';
+import { UserActionCreators } from '../../state/action-creators';
+import { checkEmail, checkPassword } from './formHelpers';
 
-function Login() {
+function Login({ setLoginOrRegister }: LoginProps) {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -43,7 +44,6 @@ function Login() {
 
       <div className='form-container'>
         <form>
-
           <header>
             <div className='text-container'>
               <div className='welcome'>Welcome !</div>
@@ -59,12 +59,12 @@ function Login() {
           <section>
             <div className='user-name'>
               <div>User name</div>
-              <input type='text' value='' name='user-name' placeholder='Enter your user name' />
+              <input type='text' value={email} onChange={e => setEmail(e.target.value)} name='user-name' placeholder='Enter your user name' />
             </div>
 
             <div className='password'>
               <div>Password</div>
-              <input type='text' value='' name='password' placeholder='Enter your password' />
+              <input type='password' value={password} onChange={e => setPassword(e.target.value)} name='password' placeholder='Enter your password' />
             </div>
 
             <div>
@@ -73,9 +73,8 @@ function Login() {
           </section>
 
           <footer>
-            Dont have an Account? <button className='btn-register'>Register</button>
+            Do not have a No Spoilers Account?<button className='btn-register' onClick={() => setLoginOrRegister('register')}>Register</button>
           </footer>
-
         </form>
       </div>
     </StyledLogin>
