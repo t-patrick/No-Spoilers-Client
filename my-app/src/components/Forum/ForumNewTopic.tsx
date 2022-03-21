@@ -20,7 +20,6 @@ export default function ForumNewTopic() {
         </div>
 
       </form>
-
     </StyledForumNewTopic>
   )
 }
