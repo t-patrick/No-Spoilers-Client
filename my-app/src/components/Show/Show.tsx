@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../Navbar/Navbar";
 import Episodechooser from "../EpisodeChooser/Episodechooser";
 import Forum from "../Forum/Forum";
 import Backintime from "../BackInTime/Backintime";
