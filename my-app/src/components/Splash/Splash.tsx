@@ -14,8 +14,8 @@ function Splash() {
 
   return (
     <StyledSplash>
-      <Login />
-      {/* <Register /> */}
+      {/* <Login /> */}
+      <Register />
     </StyledSplash>
   )
 }

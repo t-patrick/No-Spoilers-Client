@@ -11,9 +11,9 @@ import spidermanImage from './images/spiderman.jpeg'
 
 
 const userr: DBUser = {
-  email: 'eeeaaaawda',
-  password: 'aeirughra',
-  displayName: 'Timo',
+  email: 'eeeaaaawefefwda',
+  password: 'aeirughwefwra',
+  displayName: 'Tiwefwefmo',
   avatar: 'ava',
 }
 
