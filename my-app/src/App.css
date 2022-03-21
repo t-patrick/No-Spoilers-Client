@@ -2,6 +2,5 @@
 
 .App {
   background-color: var(--bg-color);
-  /* font-family: 'Poppins', sans-serif; */
   font-family: var(--main-font);
 }

@@ -1,27 +1,26 @@
 import React from 'react'
+import StyledForumNewTopic from './forumNewTopic.styled'
 
 export default function ForumNewTopic() {
   return (
-    <div>
+    <StyledForumNewTopic>
       <form>
-        <div>
+        <div className='title'>
           <div>Title</div>
-          {/* type of textarea??? */}
-          <textarea />
+          <textarea /> 
         </div>
 
-        <div>
+        <div className='body'>
           <div>Body</div>
-          {/* type of textarea??? */}
           <textarea />
         </div>
 
-        <div>
+        <div className='btn'>
           <button type='submit'>Create Topic</button>
         </div>
 
       </form>
 
-    </div>
+    </StyledForumNewTopic>
   )
 }

@@ -5,6 +5,8 @@ import spidermanImage from './images/spiderman.png'
 
 
 function Login() {
+
+
   return (
     <StyledLogin>
         <div className='spiderman-container'>
@@ -28,12 +30,12 @@ function Login() {
             <section>
               <div className='user-name'>
                 <div>User name</div>
-                <input type='text' value='' name='user-name' placeholder='Enter your user name' />
+                <input type='text' name='user-name' placeholder='Enter your user name' />
               </div>
 
               <div className='password'>
                 <div>Password</div>
-                <input type='text' value='' name='password' placeholder='Enter your password' />
+                <input type='text' name='password' placeholder='Enter your password' />
               </div>
 
               <div>
