@@ -3,10 +3,14 @@ import StyledEpisodeChooser from "./episodechooser.styled";
 
 function Episodechooser() {
 
+  // Actual local state
   const [selectedTab, setSelectedTab] = useState<number>(0);
+
+  // Will be taken from props 'episodeCodeUpTo', from user store originally.
   const [episodeUpTo, setEpisodeUpTo] = useState<string>('S3E4');
 
-  const [seasons, setSeasons] = useState([365, 20, 20, 40]);
+
+  const [seasons, setSeasons] = useState([365, 20, 20, 40, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]);
 
   const getBackground = (tabNumber: number) => {
     if (tabNumber === selectedTab) {
@@ -16,7 +20,7 @@ function Episodechooser() {
     }
 
     return {
-      backgroundColor: 'grey'
+      backgroundColor: '#9ca3af'
     }
   }
 
@@ -31,7 +35,7 @@ function Episodechooser() {
     for (let i = 1; i <= seasons[selectedTab]; i++) {
       const hasWatched = (selectedTab + 1) < +results[1] || (selectedTab + 1) === +results[1] && i <= +results[2];
       const style = {
-        backgroundColor: hasWatched ? 'green' : 'grey'
+        backgroundColor: hasWatched ? '#16a34a' : '#52525b'
       }
       const num = i < 10 ? `0${i}` : i;
       eps.push((
@@ -42,7 +46,12 @@ function Episodechooser() {
     return eps;
   }
 
-  // Send userId, TvshowID and episode code string
+  /**
+   * 1. Create episode code.
+   * 2. Send API call
+   * 3. Receive response and dispatch user to store  
+   * 
+   */
   const updateCurrentEp = (episode: number) => {
     const newEpisodeCode = `S${selectedTab + 1}E${episode}`
 
@@ -58,7 +67,7 @@ function Episodechooser() {
             style={getBackground(index)}>Season {index + 1} </li>)}
       </ul>
       <div className="main">
-        <h1>Update current episode:</h1>
+        <h1>{"I've watched up to:"}</h1>
         <div className="episodes">
           {renderEps()}
         </div>

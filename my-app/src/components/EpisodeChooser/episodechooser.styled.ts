@@ -4,30 +4,51 @@ const StyledEpisodeChooser = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
+  max-width: 70%;
   height: 600px;
-  background-color: 'lightgrey';
+  background-color: '#6b7280';
   margin: 0 auto;
-  font-family: 'Arial';
   user-select: none;
+  font-family: 'Barlow', sans-serif;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
 
   ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
+    overflow-x: auto;
+    border-radius: 10px;
+    ::-webkit-scrollbar {
+      width: 20px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #d4d4d8;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #1f2937;
+      border-radius: 20px;
+      border: 6px solid transparent;
+      background-clip: content-box;
+    }
     li {
-      border-radius: 30px 25px 0px 0px;
+      border-radius: 18px 18px 0px 0px;
       position: relative;
       flex-grow: 1;
       width: auto;
-      padding: 20px;
+      padding: 10px 15px;
+      padding-bottom: 15px;
       margin: 0;
-      height: 20px;
       text-align: center;
       font-size: 20px;
-      color: black;
+      color: #374151;
+      min-width: 100px;
+      font-weight: 600;
     }
 
     li::after {
@@ -41,6 +62,7 @@ const StyledEpisodeChooser = styled.div`
     background-color: #d4d4d8;
     overflow-y: none;
     overflow-x: auto;
+    border-radius: 0 0 10px 10px;
     ::-webkit-scrollbar {
       width: 20px;
     }
@@ -65,20 +87,31 @@ const StyledEpisodeChooser = styled.div`
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 10px;
+    width: fit-content;
   }
   .episode {
     color: white;
-    padding: 30px;
+    padding: 22px;
     border-radius: 10px;
     min-width: fit-content;
-    max-width: 30%;
+    max-width: 30px;
     min-width: 30px;
     text-align: center;
+    box-shadow: 3px 2px 3px rgba(0, 0, 0, 0.3);
+    font-size: 22px;
+    letter-spacing: 1px;
+    transition: transform 0.5s;
+  }
+
+  .episode:hover {
+    transform: scale(1.05);
+    background-color: '#84cc16';
   }
 
   h1 {
-    margin: 20px auto 5px auto;
+    margin: 10px 20px;
     width: fit-content;
+    font-weight: 500;
   }
 `;
 
