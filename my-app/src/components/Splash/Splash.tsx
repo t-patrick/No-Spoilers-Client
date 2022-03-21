@@ -11,6 +11,8 @@ function Splash() {
   const [showRegister, setShowRegister] = useState(true);
 
 
+
+
   return (
     <div>
       <div className='spiderman-container'>

@@ -1,5 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const StyledHome = styled.div``;
+const StyledHome = styled.div`
+  color: blue;
+`;
 
 export default StyledHome;
