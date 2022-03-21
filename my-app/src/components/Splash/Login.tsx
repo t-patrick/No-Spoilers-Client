@@ -18,9 +18,8 @@ function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [displayName, setDisplayName] = useState('');
 
-  const fetchUser = async (userToSend: DBUser) => {
+  const fetchUser = async (userToSend: Omit<DBUser, 'displayName' | 'avatar'>) => {
     const user = await loginUser(userToSend);
     setUserAction(user);
     navigate('/home');
@@ -28,12 +27,10 @@ function Login() {
 
   const onSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    if (checkEmail(email) && checkPassword(password) && displayName) {
+    if (checkEmail(email) && checkPassword(password)) {
       fetchUser({
         email,
-        password,
-        displayName,
-        avatar: ''
+        password
       });
     }
   }
