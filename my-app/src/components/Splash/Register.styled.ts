@@ -1,15 +1,14 @@
 import styled from "styled-components";
 
-
-const StyledLogin = styled.div`
-
-  background-color: var(--bg-color);
+const StyledRegister = styled.div`
   display: flex;
   justify-content: space-evenly;
-  border: 2px solid red;
+  border: 2px solid purple;
 
   .spiderman-container img  {
     width: 600px;
+    margin: 2%;
+    padding-top: 5%;
   }
 
   .form-container {
@@ -39,7 +38,7 @@ const StyledLogin = styled.div`
     font-size: 32px;
   }
 
-  .sign-in-to {
+  .sign-up-to {
     font-weight: 400;
     margin-top: 50px;
     font-size: 30px;
@@ -48,7 +47,17 @@ const StyledLogin = styled.div`
 
   section {
     margin: 5% auto;
-    margin-top: 50px;
+    margin-top: 30px;
+  }
+
+  section .email {
+    padding-bottom: 5%;
+  }
+
+  section .email input {
+    margin-top: 2%;
+    width: 90%;
+    padding: 20px;
   }
 
   section .user-name {
@@ -60,17 +69,25 @@ const StyledLogin = styled.div`
     margin-top: 2%;
     width: 90%;
     padding: 20px;
-
   }
 
-  section .password  input{
+  section .password {
+    padding-bottom: 5%;
+  }
+  section .password input{
+    margin-top: 2%;
+    width: 90%;
+    padding: 20px;
+  }
+
+  section .confirm-password input {
     margin-top: 2%;
     width: 90%;
     padding: 20px;
   }
 
   section button {
-    margin-top: 10%;
+    margin-top: 7%;
     width: 100%;
     border: none;
     background-color: black;
@@ -78,7 +95,7 @@ const StyledLogin = styled.div`
     padding: 20px; 
   }
 
-  .btn-register {
+  .btn-login {
     border: none;
     background-color: white;
     font-weight: 900;
@@ -86,13 +103,7 @@ const StyledLogin = styled.div`
 
   footer {
     text-align: center;
-    margin-top: 30%;
+    margin-top: 7%;
   }
-
-`;
-
-
-
-
-
-export { StyledLogin};
+`
+export default StyledRegister;

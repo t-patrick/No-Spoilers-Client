@@ -13,7 +13,6 @@ function Login() {
 
         <div className='form-container'>
           <form>
-
             <header>
               <div className='text-container'>
                 <div className='welcome'>Welcome !</div>
@@ -45,7 +44,6 @@ function Login() {
             <footer>
               Do not have a No Spoilers Account?<button className='btn-register'>Register</button>
             </footer>
-
           </form>
         </div>
     </StyledLogin>

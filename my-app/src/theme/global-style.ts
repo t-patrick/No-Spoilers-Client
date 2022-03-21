@@ -12,7 +12,6 @@ import styled, { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
 
   html {
-    // --color-red: red;
     --bg-color: #050214;
   }
 `;
