@@ -8,11 +8,11 @@ function Show() {
     <div>
       <div>Some TV shows details ...</div>
 
-      <Backintime />
+      {/* <Backintime /> */}
 
       <Episodechooser />
 
-      <Forum />
+      {/* <Forum /> */}
     </div>
   );
 }

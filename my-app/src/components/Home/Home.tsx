@@ -7,19 +7,17 @@ function Home() {
   return (
     <StyledHome>
       <div>
-        <div>
-          <input type="text" placeholder="Filter the lists below..."></input>
-        </div>
+        <input type="text" placeholder="Filter the lists below..."></input>
+      </div>
 
-        <div>
-          <div>On the go</div>
-          <Reel />
-        </div>
+      <div>
+        <div>On the go</div>
+        <Reel />
+      </div>
 
-        <div>
-          <div>Completed</div>
-          <Reel />
-        </div>
+      <div>
+        <div>Completed</div>
+        <Reel />
       </div>
     </StyledHome>
   );
