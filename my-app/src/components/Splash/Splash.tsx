@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import Login from './Login'
 import Register from './Register';
-import spidermanImage from './images/spiderman.jpeg';
-
+import StyledSplash from './Splash.styled';
 
 
 function Splash() {
@@ -12,14 +11,10 @@ function Splash() {
 
 
   return (
-    <div>
-      <div className='spiderman-container'>
-        <img src={spidermanImage} />
-      </div>
-
+    <StyledSplash>
       <Login />
-      <Register />
-    </div>
+      {/* <Register /> */}
+    </StyledSplash>
   )
 }
 

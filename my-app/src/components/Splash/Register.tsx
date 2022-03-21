@@ -1,11 +1,18 @@
 import React from 'react';
 import blackLogo from './images/black-logo.png';
+import spidermanImage from './images/spiderman.jpeg'
+
 
 
 function Register() {
   return (
     <div>
       <div>
+
+        <div>
+          <img src={spidermanImage} />
+        </div>
+
         <form>
           <div>Welcome !</div>
           <h2>Sign up to</h2>

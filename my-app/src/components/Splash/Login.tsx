@@ -1,43 +1,54 @@
 import React from 'react'
 import blackLogo from './images/black-logo.png';
+import {StyledLogin} from './Login.styled';
+import spidermanImage from './images/spiderman.png'
+
 
 function Login() {
-
-
-
   return (
-    <div>
-      <div>
-        <form>
-          <div>Welcome !</div>
-          <h2>Sign in to</h2>
-          <div>NO SPOILERS!</div>
+    <StyledLogin>
+        <div className='spiderman-container'>
+          <img src={spidermanImage} />
+        </div>
 
-          <div>
-            <img src={blackLogo} />
-          </div>
+        <div className='form-container'>
+          <form>
 
-          <div>
-            <div>User name</div>
-            <input type='text' value='' name='user-name' placeholder='Enter your user name' />
-          </div>
+            <header>
+              <div className='text-container'>
+                <div className='welcome'>Welcome !</div>
+                <div className='sign-in-to'>Sign in to</div>
+                <div>NO SPOILERS!</div>
+              </div>
 
-          <div>
-            <div>Password</div>
-            <input type='text' value='' name='password' placeholder='Enter your password' />
-          </div>
+              <div className='blacklogo'>
+                <img src={blackLogo} />
+              </div>
+            </header>
 
-          <div>
-            <button type='submit'>Login</button>
-          </div>
+            <section>
+              <div className='user-name'>
+                <div>User name</div>
+                <input type='text' value='' name='user-name' placeholder='Enter your user name' />
+              </div>
 
-          <div>
-            Dont have an Account? <span>Register</span>
-          </div>
+              <div className='password'>
+                <div>Password</div>
+                <input type='text' value='' name='password' placeholder='Enter your password' />
+              </div>
 
-        </form>
-      </div>
-    </div>
+              <div>
+                <button type='submit'>Login</button>
+              </div>
+            </section>
+
+            <footer>
+              Dont have an Account? <button className='btn-register'>Register</button>
+            </footer>
+
+          </form>
+        </div>
+    </StyledLogin>
   )
 }
 
