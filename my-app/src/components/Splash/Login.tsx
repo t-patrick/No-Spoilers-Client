@@ -68,7 +68,7 @@ function Login({ setLoginOrRegister }: LoginProps) {
             </div>
 
             <div>
-              <button type='submit'>Login</button>
+              <button type='submit' onClick={onSubmit}>Login</button>
             </div>
           </section>
 

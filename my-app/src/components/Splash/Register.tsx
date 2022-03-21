@@ -28,6 +28,7 @@ function Register({ setLoginOrRegister }: LoginProps) {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [displayName, setDisplayName] = useState('');
 
   const fetchUser = async (userToSend: DBUser) => {
@@ -39,7 +40,7 @@ function Register({ setLoginOrRegister }: LoginProps) {
 
   const onSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    if (checkEmail(email) && checkPassword(password) && displayName) {
+    if (checkEmail(email) && checkPassword(password) && passwordConfirm === password && displayName) {
       fetchUser({
         email,
         password,
@@ -72,26 +73,26 @@ function Register({ setLoginOrRegister }: LoginProps) {
           <section>
             <div className='email'>
               <div>Email</div>
-              <input type='text' value='' name='new-email' placeholder='Enter your email' />
+              <input type='text' value={email} onChange={(e) => setEmail(e.target.value)} name='new-email' placeholder='Enter your email' />
             </div>
 
             <div className='user-name'>
               <div>User name</div>
-              <input type='text' value='' name='new-user-name' placeholder='Enter your user name' />
+              <input type='text' value={displayName} onChange={(e) => setDisplayName(e.target.value)} name='new-user-name' placeholder='Enter your user name' />
             </div>
 
             <div className='password'>
               <div>Password</div>
-              <input type='text' value='' name='new-password' placeholder='Enter your password' />
+              <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} name='new-password' placeholder='Enter your password' />
             </div>
 
             <div className='confirm-password'>
               <div>Confirm Password</div>
-              <input type='text' value='' name='new-confirm-password' placeholder='Confirm your password' />
+              <input type='password' value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)} name='new-confirm-password' placeholder='Confirm your password' />
             </div>
 
             <div>
-              <button type='submit'>Register</button>
+              <button type='submit' onClick={onSubmit}>Register</button>
             </div>
           </section>
 

@@ -16,8 +16,9 @@ function Splash() {
 
   return (
     <StyledSplash>
-      <Login setLoginOrRegister={setLoginOrRegister} />
-      <Register setLoginOrRegister={setLoginOrRegister} />
+      {loginOrRegister === 'login' ? <Login setLoginOrRegister={setLoginOrRegister} /> :
+        <Register setLoginOrRegister={setLoginOrRegister} />
+      }
     </StyledSplash>
   )
 }
