@@ -9,7 +9,7 @@ const StyledLogin = styled.div`
   border: 2px solid red;
 
   .spiderman-container img  {
-    width: 500px;
+    width: 600px;
   }
 
   .form-container {
@@ -18,50 +18,55 @@ const StyledLogin = styled.div`
     margin: 2%; 
     width: 25%;
     padding: 1%;
-
   }
 
   header {
     display: flex;
-    // border: 5px solid blue;
     justify-content: space-between;
   }
 
   .blacklogo img {
-    width: 100px;
-    // border: 2px solid yellow;
+    width: 150px;
+    padding-top: 10%;
+    padding-right: 20px;
   }
 
   header .text-container {
-    // border: 2px solid green;
     padding-top: 16px;
+  }
+
+  .welcome {
+    font-size: 32px;
   }
 
   .sign-in-to {
     font-weight: 400;
-    margin-top: 10%;
+    margin-top: 50px;
     font-size: 30px;
     margin-bottom: 3%;
   }
 
   section {
-    // border: 2px solid red;
     margin: 5% auto;
-    margin-top: 30px;
+    margin-top: 50px;
   }
 
   section .user-name {
+    // padding-top: 20%;
     padding-bottom: 5%;
   }
 
   section .user-name input {
     margin-top: 2%;
-    width: 98%;
+    width: 90%;
+    padding: 20px;
+
   }
 
   section .password  input{
     margin-top: 2%;
-    width: 98%;
+    width: 90%;
+    padding: 20px;
   }
 
   section button {
@@ -70,7 +75,7 @@ const StyledLogin = styled.div`
     border: none;
     background-color: black;
     color: white;
-    padding: 30% auto; 
+    padding: 20px; 
   }
 
   .btn-register {
@@ -80,9 +85,8 @@ const StyledLogin = styled.div`
   }
 
   footer {
-    // border: 2px solid purple;
     text-align: center;
-    margin-top: 50%;
+    margin-top: 30%;
   }
 
 

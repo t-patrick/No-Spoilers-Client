@@ -43,7 +43,7 @@ function Login() {
             </section>
 
             <footer>
-              Dont have an Account? <button className='btn-register'>Register</button>
+              Do not have a No Spoilers Account?<button className='btn-register'>Register</button>
             </footer>
 
           </form>
