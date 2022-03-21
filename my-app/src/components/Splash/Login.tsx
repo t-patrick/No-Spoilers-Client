@@ -6,6 +6,8 @@ import { loginUser } from '../../API/user-api';
 import { UserActionCreators } from '../../state/action-creators';
 import { checkEmail, checkPassword } from './formHelpers';
 import blackLogo from './images/black-logo.png';
+import { StyledLogin } from './Login.styled';
+import spidermanImage from './images/spiderman.png'
 
 function Login() {
 
@@ -32,45 +34,55 @@ function Login() {
         password,
         displayName,
         avatar: ''
-      })
+      });
     }
   }
 
-
   return (
-    <div>
-      <div>
+    <StyledLogin>
+      <div className='spiderman-container'>
+        <img src={spidermanImage} />
+      </div>
+
+      <div className='form-container'>
         <form>
-          <div>Welcome !</div>
-          <h2>Sign in to</h2>
-          <div>NO SPOILERS!</div>
 
-          <div>
-            <img src={blackLogo} />
-          </div>
+          <header>
+            <div className='text-container'>
+              <div className='welcome'>Welcome !</div>
+              <div className='sign-in-to'>Sign in to</div>
+              <div>NO SPOILERS!</div>
+            </div>
 
-          <div>
-            <div>User name</div>
-            <input type='text' value='' name='user-name' placeholder='Enter your user name' />
-          </div>
+            <div className='blacklogo'>
+              <img src={blackLogo} />
+            </div>
+          </header>
 
-          <div>
-            <div>Password</div>
-            <input type='text' value='' name='password' placeholder='Enter your password' />
-          </div>
+          <section>
+            <div className='user-name'>
+              <div>User name</div>
+              <input type='text' value='' name='user-name' placeholder='Enter your user name' />
+            </div>
 
-          <div>
-            <button type='submit'>Login</button>
-          </div>
+            <div className='password'>
+              <div>Password</div>
+              <input type='text' value='' name='password' placeholder='Enter your password' />
+            </div>
 
-          <div>
-            Dont have an Account? <span>Register</span>
-          </div>
+            <div>
+              <button type='submit'>Login</button>
+            </div>
+          </section>
+
+          <footer>
+            Dont have an Account? <button className='btn-register'>Register</button>
+          </footer>
 
         </form>
       </div>
-    </div>
+    </StyledLogin>
   )
 }
 
-export default Login; 
+export default Login;

@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { registerUser } from '../../API/user-api';
 import { UserActionCreators } from '../../state/action-creators';
 import blackLogo from './images/black-logo.png';
+import spidermanImage from './images/spiderman.jpeg'
+
 
 
 const userr: DBUser = {
@@ -32,6 +34,11 @@ function Register() {
     <div>
       <div>
         <button onClick={() => fetchUser(userr)}>Test Button</button>
+
+        <div>
+          <img src={spidermanImage} />
+        </div>
+
         <form>
           <div>Welcome !</div>
           <h2>Sign up to</h2>
