@@ -87,7 +87,7 @@ const StyledRegister = styled.div`
   }
 
   section button {
-    margin-top: 7%;
+    margin-top: 4%;
     width: 100%;
     border: none;
     background-color: black;
@@ -103,7 +103,7 @@ const StyledRegister = styled.div`
 
   footer {
     text-align: center;
-    margin-top: 7%;
+    margin-top: 5%;
   }
 `
 export default StyledRegister;

@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 
+
 /**
  * Hi Boys, let's keep global variables in here!
  * + '--' before a property makes it a variable
@@ -13,6 +14,7 @@ const GlobalStyles = createGlobalStyle`
 
   html {
     --bg-color: #050214;
+    --main-font: 'Poppins', sans-serif;
   }
 `;
 
