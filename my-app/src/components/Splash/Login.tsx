@@ -1,8 +1,40 @@
-import React from 'react'
+import React, { SyntheticEvent, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { loginUser } from '../../API/user-api';
+import { UserActionCreators } from '../../state/action-creators';
+import { checkEmail, checkPassword } from './formHelpers';
 import blackLogo from './images/black-logo.png';
 
 function Login() {
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { setUserAction } = bindActionCreators(UserActionCreators, dispatch);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [displayName, setDisplayName] = useState('');
+
+  const fetchUser = async (userToSend: DBUser) => {
+    const user = await loginUser(userToSend);
+    setUserAction(user);
+    navigate('/home');
+  };
+
+  const onSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+    if (checkEmail(email) && checkPassword(password) && displayName) {
+      fetchUser({
+        email,
+        password,
+        displayName,
+        avatar: ''
+      })
+    }
+  }
 
 
   return (
