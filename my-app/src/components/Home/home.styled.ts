@@ -34,13 +34,9 @@ const StyledHome = styled.div`
     font-size: 32px;
   }
 
-  .on-the-go {
-    border: 2px solid yellow;
-  }
 
-  .completed {
-    border: 2px solid red;
-  }
+
+
 `;
 
 export default StyledHome;
