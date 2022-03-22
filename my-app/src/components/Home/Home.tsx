@@ -1,9 +1,11 @@
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useState, Component } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Reel from "../Reel/Reel";
 import StyledHome from "./home.styled";
+import search from './image/search.png'
+
 
 function Home() {
 
@@ -37,21 +39,26 @@ function Home() {
   }
 
 
+
+
   return (
     <StyledHome>
       <Navbar />
-      <div>
-        <input type="text" placeholder="Filter the lists below..." />
-      </div>
+      <div >
+        <div className="filter">
+          <input type="text" placeholder="Filter the lists below..." />
+          {/* <button type="submit"><img src={search}/></button> */}
+        </div>
 
-      <div>
-        <div>On the go</div>
-        <Reel />
-      </div>
+        <div className="row "> 
+          <div className="heading">On the go</div>
+          <Reel />
+        </div>
 
-      <div>
-        <div>Completed</div>
-        <Reel />
+        <div className="row ">
+          <div className="heading">Completed</div>
+          <Reel />
+        </div>
       </div>
 
     </StyledHome>
