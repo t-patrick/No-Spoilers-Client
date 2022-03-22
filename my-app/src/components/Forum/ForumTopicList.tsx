@@ -6,20 +6,27 @@ function ForumTopicList() {
     <StyledForumTopicList>
 
       <div className='score'>
-        <button className='up'>UP</button>
+        <div >
+          <button className='up'></button>
+        </div>
         <div>56</div>
-        <button>DOWN</button>
+        
+        <button className='down'></button>
       </div>
       
       <div className='text-container'>
 
         <div className='topic-header'>
           <div>The topic title</div>
+          <div>Date</div>
         </div>
         
         <div className='bottom-half'>
           <div className='user-info'>
-            <div>Avatar</div>
+              <div className='avatar'>
+                <img src='https://avatars.dicebear.com/api/male/haha.svg'></img>
+              </div>
+              <div>Admin</div>
           </div>
 
           <div className='topic-content'>
