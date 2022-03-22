@@ -6,6 +6,7 @@ const StyledNavbar = styled.nav`
   width: 100%;
   justify-content: flex-end;
   color: black;
+
 `;
 
 export default StyledNavbar;
