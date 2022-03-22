@@ -3,6 +3,7 @@ import Episodechooser from "../EpisodeChooser/Episodechooser";
 import Forum from "../Forum/Forum";
 import Backintime from "../BackInTime/Backintime";
 import { useSelector } from "react-redux";
+import QuickSearch from "../Navbar/quick-search";
 
 function Show() {
 
@@ -14,8 +15,8 @@ function Show() {
       {/* <Backintime /> */}
 
       <Episodechooser />
-
       {/* <Forum /> */}
+      <QuickSearch />
     </div>
   );
 }

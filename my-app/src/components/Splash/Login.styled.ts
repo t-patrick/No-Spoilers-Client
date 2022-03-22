@@ -1,21 +1,18 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 const StyledLogin = styled.div`
-
   background-color: var(--bg-color);
   display: flex;
   justify-content: space-evenly;
-  border: 2px solid red;
 
-  .spiderman-container img  {
+  .spiderman-container img {
     width: 600px;
   }
 
   .form-container {
     background-color: white;
     border-radius: 2%;
-    margin: 2%; 
+    margin: 2%;
     width: 25%;
     padding: 1%;
   }
@@ -60,10 +57,9 @@ const StyledLogin = styled.div`
     margin-top: 2%;
     width: 90%;
     padding: 20px;
-
   }
 
-  section .password  input{
+  section .password input {
     margin-top: 2%;
     width: 90%;
     padding: 20px;
@@ -75,7 +71,7 @@ const StyledLogin = styled.div`
     border: none;
     background-color: black;
     color: white;
-    padding: 20px; 
+    padding: 20px;
   }
 
   .btn-register {
@@ -88,11 +84,6 @@ const StyledLogin = styled.div`
     text-align: center;
     margin-top: 30%;
   }
-
 `;
 
-
-
-
-
-export { StyledLogin};
+export { StyledLogin };

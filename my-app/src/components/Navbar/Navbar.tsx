@@ -6,6 +6,8 @@ import { loginUser, registerUser } from '../../API/user-api';
 import { UserActionCreators } from '../../state/action-creators';
 import { setUserAction as setUserActionCreator } from '../../state/action-creators/user-action-creators';
 import { ActionType } from '../../state/action-types';
+import StyledNavbar from './navbar.styled';
+import QuickSearch from './quick-search';
 
 function Navbar() {
 
@@ -17,17 +19,14 @@ function Navbar() {
 
   const navigate = useNavigate();
 
-  return isLoggedIn ? (
-    <div>
-      <h1 onClick={() => navigate('/show/5')}>Hello!</h1>
-    </div>
+  return !isLoggedIn ? (
+
+    <></>
   )
-    : (
-      <button onClick={() => loginUser({
-        email: 'email@email',
-        password: 'lalala',
-      })}>Go to show</button>
-    )
+    :
+    <StyledNavbar>
+      <QuickSearch />
+    </StyledNavbar>
 }
 
 export default Navbar;

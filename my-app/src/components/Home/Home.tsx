@@ -2,6 +2,7 @@ import React, { SyntheticEvent, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import QuickSearch from "../Navbar/quick-search";
 import Reel from "../Reel/Reel";
 import StyledHome from "./home.styled";
 
@@ -13,8 +14,8 @@ function Home() {
 
   // To map through
   const userShows: UserTVShow[] = (user as User).userTVInfo;
-  const defaultWatched = userShows.filter(show => show.isCompleted);
-  const defaultOnTheGo = userShows.filter(show => !show.isCompleted);
+  const defaultWatched = userShows && userShows.filter(show => show.isCompleted);
+  const defaultOnTheGo = userShows && userShows.filter(show => !show.isCompleted);
 
   const [watched, setWatched] = useState(defaultWatched);
   const [onTheGo, setOnTheGo] = useState(defaultOnTheGo);
@@ -52,6 +53,7 @@ function Home() {
         <div>Completed</div>
         <Reel />
       </div>
+
     </StyledHome>
   );
 }

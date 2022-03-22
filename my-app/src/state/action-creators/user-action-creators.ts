@@ -1,7 +1,4 @@
-import { DispatchProp } from 'react-redux';
 import { ActionType } from '../action-types';
-import { Dispatch } from 'redux';
-import { Action } from '../actions';
 
 export const setUserAction = (payload: User) => {
   return {

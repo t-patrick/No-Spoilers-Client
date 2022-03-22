@@ -11,6 +11,7 @@ import { createStore } from "redux";
 import reducers from "./state/reducers";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
+import QuickSearch from "./components/Navbar/quick-search";
 
 /**
  * 
