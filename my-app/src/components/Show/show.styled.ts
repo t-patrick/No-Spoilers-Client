@@ -6,18 +6,29 @@ const StyledShow = styled.div`
   .show-view {
     display: flex;
     justify-content: space-around;
-  }
-
-  .image-button-container img{
-    border: 2px solid red;
-  }
-
-  .image-button-container {
-    border: 2px solid yellow;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
   }
   
   .button-container {
     text-align: center;
+  }
+
+  .button-container Button {
+    color: white;
+    font-family: var(--main-font);
+    background-color: var(--navbar-color);
+    padding: 8px;
+    border-radius: 8px;
+    margin-top: 16px;
+
+  }
+
+  .button-container Button: hover {
+    border: 2px solid var(--sharp-purple);
+    margin-top: 16px;
+    padding: 6px;
+    outline: none;
   }
 
 

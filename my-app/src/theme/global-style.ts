@@ -20,6 +20,7 @@ const GlobalStyles = createGlobalStyle`
     --chatbox-border: #718096;
     --chatbox-wrd: #cbd5e0;
     --light-purple: #5d5fef;
+    --sharp-purple: #7B61ff;
     --chatlist-wrd: #c6cbd2;
     --score-font: 'Inter', sans-serif;
   }
