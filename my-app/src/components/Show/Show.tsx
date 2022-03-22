@@ -48,7 +48,10 @@ function Show() {
                   Some TV shows details ...
                 </Typography>
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                  <p>Description: <span>Duis mollis, est non commodo luctus, nisi.</span> </p>
+                  <p>Release year: <span>2010</span></p>
+                  <p>Actors: <span>Benedict Cumberbatch</span></p>
+
                 </Typography>
               </Box>
             </Modal>

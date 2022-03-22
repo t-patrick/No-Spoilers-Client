@@ -14,6 +14,10 @@ const StyledShow = styled.div`
     text-align: center;
   }
 
+  .image-button-container img {
+    width: 300px;
+  }
+
   .button-container Button {
     color: white;
     font-family: var(--main-font);
