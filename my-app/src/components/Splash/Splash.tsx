@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Login from './Login'
 import Register from './Register';
 import StyledSplash from './Splash.styled';
-import Forum from '../Forum/Forum';
 
 
 function Splash() {
@@ -13,9 +12,8 @@ function Splash() {
 
   return (
     <StyledSplash>
-      <Forum />
-      {/* <Login />
-      <Register /> */}
+      <Login />
+      <Register />
     </StyledSplash>
   )
 }
