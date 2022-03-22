@@ -3,20 +3,20 @@ import Episodechooser from "../EpisodeChooser/Episodechooser";
 import Forum from "../Forum/Forum";
 import Backintime from "../BackInTime/Backintime";
 import { useSelector } from "react-redux";
-import QuickSearch from "../Navbar/quick-search";
+import Navbar from "../Navbar/Navbar";
 
 function Show() {
 
 
   return (
     <div>
+      <Navbar />
       <div>Some TV shows details ...</div>
 
       {/* <Backintime /> */}
 
       <Episodechooser />
-      {/* <Forum /> */}
-      <QuickSearch />
+      <Forum />
     </div>
   );
 }

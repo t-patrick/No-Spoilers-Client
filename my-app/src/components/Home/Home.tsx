@@ -2,7 +2,6 @@ import React, { SyntheticEvent, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import QuickSearch from "../Navbar/quick-search";
 import Reel from "../Reel/Reel";
 import StyledHome from "./home.styled";
 
@@ -40,6 +39,7 @@ function Home() {
 
   return (
     <StyledHome>
+      <Navbar />
       <div>
         <input type="text" placeholder="Filter the lists below..." />
       </div>

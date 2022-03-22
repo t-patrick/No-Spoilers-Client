@@ -19,14 +19,11 @@ function Navbar() {
 
   const navigate = useNavigate();
 
-  return !isLoggedIn ? (
-
-    <></>
-  )
-    :
+  return (
     <StyledNavbar>
       <QuickSearch />
     </StyledNavbar>
+  )
 }
 
 export default Navbar;

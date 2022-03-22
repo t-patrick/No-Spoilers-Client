@@ -11,7 +11,6 @@ import { createStore } from "redux";
 import reducers from "./state/reducers";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
-import QuickSearch from "./components/Navbar/quick-search";
 
 /**
  * 
@@ -28,7 +27,6 @@ function App() {
         <GlobalStyles />
         <div className="App">
           <Router>
-            <Navbar />
             <Routes>
               <Route path="/home" element={<Home />} />
               <Route path="/show/:id" element={<Show />} />
