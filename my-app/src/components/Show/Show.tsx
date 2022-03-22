@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
-import Episodechooser from "../EpisodeChooser/Episodechooser";
-import Forum from "../Forum/Forum";
-import Backintime from "../BackInTime/Backintime";
-import { useSelector } from "react-redux";
-import Navbar from "../Navbar/Navbar";
-import { useParams } from "react-router-dom";
-import { getShowDetail } from "../../API/user-api";
-import StyledShow from "./show.styled";
+import React, { useEffect, useState } from 'react';
+import Episodechooser from '../EpisodeChooser/Episodechooser';
+import Forum from '../Forum/Forum';
+import Backintime from '../BackInTime/Backintime';
+import { useSelector } from 'react-redux';
+import Navbar from '../Navbar/Navbar';
+import { useParams } from 'react-router-dom';
+import { getShowDetail } from '../../API/user-api';
+import StyledShow from './show.styled';
 
 function Show() {
-
   const { id } = useParams();
   const [show, setShow] = useState<TVShow>();
-  const [userTVShow, setUserTVShow] = useState<UserTVShow>();
+  const [userTVShow, setUserTVShow] = useState<UserTVShow>({} as UserTVShow);
 
-  const user = useSelector<MainState>(state => state.user.user) as User;
+  const user = useSelector<MainState>((state) => state.user.user) as User;
 
   useEffect(() => {
     const getShow = async () => {
@@ -22,29 +21,33 @@ function Show() {
         const detail = await getShowDetail(id);
         setShow(detail);
 
-
-        const userShow = user.userTVInfo.find(show => show.TMDB_show_id === parseInt(id))
+        const userShow = user.userTVInfo.find(
+          (show) => show.TMDB_show_id === parseInt(id)
+        );
 
         if (userShow) setUserTVShow(userShow);
       }
-    }
-    getShow()
+    };
+    getShow();
+  }, [id]);
 
-  }, [])
+  return show && userTVShow ? (
+    <StyledShow>
+      <Navbar />
+      <div>{show.name} </div>
 
-  return (
-    show && userTVShow ? (
-      <StyledShow>
-        <Navbar />
-        <div>{show.name} </div>
+      <Backintime />
 
-        <Backintime />
-
-        <Episodechooser seasons={show.seasons} userShow={userTVShow} />
-        <Forum showDetail={show} userShow={userTVShow} />
-      </StyledShow>
-    ) : <></>
-  )
+      <Episodechooser
+        seasons={show.seasons}
+        userShow={userTVShow}
+        setUserTVShow={setUserTVShow}
+      />
+      <Forum showDetail={show} userShow={userTVShow} />
+    </StyledShow>
+  ) : (
+    <></>
+  );
 }
 
 export default Show;

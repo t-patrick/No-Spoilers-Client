@@ -1,6 +1,7 @@
 import React, {
   Component,
   createRef,
+  Fragment,
   FunctionComponent,
   Ref,
   useEffect,
@@ -63,12 +64,15 @@ const getOptions = async (query: string) => {
 
 function QuickSearch() {
   const [addedShows, setAddedShows] = useState<Array<string>>([]);
+  const [disabled, setDisabled] = useState<boolean>(true);
   const user = useSelector<MainState>((state) => state.user.user) as User;
   const dispatch = useDispatch();
   const { addUserShowAction } = bindActionCreators(
     UserActionCreators,
     dispatch
   );
+
+  const ref = React.useRef<HTMLDivElement>(null);
 
   const renderFriend = (
     domProps: DomProps,
@@ -98,13 +102,13 @@ function QuickSearch() {
 
     const goToShow = () => {
       setAddedShows([]);
-      console.log("The option.value code", ops.value);
-
-      navigate(`/show/${ops.value}`);
+      navigate(`/show/${ops.value}`, { replace: true });
+      snapshot.selected = true;
     };
 
     const renderButton = (id: string) => {
-      const inCollection = user.userTVInfo &&
+      const inCollection =
+        user.userTVInfo &&
         user.userTVInfo.findIndex(
           (show) => show.TMDB_show_id === parseInt(id)
         ) !== -1;
@@ -144,20 +148,23 @@ function QuickSearch() {
   };
 
   return (
-    <StyledQuickSearch>
-      <SelectSearch
-        className="select-search"
-        options={emptyOptions}
-        getOptions={getOptions}
-        renderOption={renderFriend}
-        multiple
-        search
-        placeholder="Add a TV Show"
-        closeOnSelect={true}
-        printOptions={'on-focus'}
-        debounce={600}
-      />
-    </StyledQuickSearch>
+    <Fragment>
+      <div ref={ref}></div>
+      <StyledQuickSearch>
+        <SelectSearch
+          className="select-search"
+          options={emptyOptions}
+          getOptions={getOptions}
+          renderOption={renderFriend}
+          multiple
+          search
+          placeholder="Add a TV Show"
+          closeOnSelect={true}
+          printOptions={'on-focus'}
+          debounce={600}
+        />
+      </StyledQuickSearch>
+    </Fragment>
   );
 }
 

@@ -124,10 +124,13 @@ type ExternalIds = {
  */
 
 type Topic = {
-  _id: number;
+  _id?: number;
   TMDB_show_id: number;
   TMDB_episode_id: number;
   authorUserId: number;
+  authorName: string;
+  numberOfReplies: number;
+  avatar: string;
   title: string;
   body: string;
   date: Date;

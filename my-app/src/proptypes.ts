@@ -18,7 +18,21 @@ export type ForumProps = {
   userShow: UserTVShow;
 };
 
+export interface ForumNewTopicProps extends ForumProps {
+  updateTopics: (topic: Topic) => void;
+}
+
 export type EpisodechooserProps = {
   seasons: Array<Season>;
   userShow: UserTVShow;
+  setUserTVShow: Dispatch<SetStateAction<UserTVShow>>;
 };
+
+export type NavbarProps = {};
+
+export interface TopicsProps extends ForumProps {
+  topics: Topic[];
+}
+export interface TopicProps extends ForumProps {
+  topic: Topic;
+}

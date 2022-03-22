@@ -8,14 +8,18 @@ import { constructEpCode, getBackground } from './episode-chooser-helpers';
 import StyledEpisodeChooser from './episodechooser.styled';
 import useEpisodeUpTo from './useEpisodeUpTo';
 
-function Episodechooser({ seasons, userShow }: EpisodechooserProps) {
+function Episodechooser({
+  seasons,
+  userShow,
+  setUserTVShow,
+}: EpisodechooserProps) {
   const {
     episodeUpTo,
     setEpisodeUpTo,
     selectedTab,
     setSelectedTab,
     updateCurrentEp,
-  } = useEpisodeUpTo(userShow);
+  } = useEpisodeUpTo(userShow, setUserTVShow);
 
   const renderEps = (season: number, episodes: Episode[]) => {
     const [seasonUpToNumber, episodeUpToNumber] = episodeUpTo

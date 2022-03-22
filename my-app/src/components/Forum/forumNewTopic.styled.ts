@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledForumNewTopic = styled.div`
   font-family: var(--main-font);
@@ -6,17 +6,26 @@ const StyledForumNewTopic = styled.div`
   color: var(--chatbox-wrd);
   margin: auto 80px;
   border-radius: 10px;
-
+  margin-bottom: 50px;
+  margin-top: 30px;
+  min-height: 430px;
+  max-height: 430px;
 
   .title {
     padding-top: 3%;
   }
 
   .body {
-    padding-top: 1%
+    padding-top: 1%;
+    height: 200px;
+
+    textarea {
+      height: 150px;
+    }
   }
 
-  .title, .body {
+  .title,
+  .body {
     margin: 20px;
   }
 
@@ -54,9 +63,6 @@ const StyledForumNewTopic = styled.div`
     outline: none;
     border: 1px solid var(--light-purple);
   }
-
-
-
 `;
 
 export default StyledForumNewTopic;

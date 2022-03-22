@@ -16,6 +16,5 @@ export const constructEpCode = (
   next: string
 ) => {
   const str = 's' + season + 'e' + episode;
-  console.log(str, next);
   return str;
 };

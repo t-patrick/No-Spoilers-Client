@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const StyledQuickSearch = styled.div`
+  position: relative;
   padding: 10px;
   .option {
     display: flex;

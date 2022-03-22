@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -10,10 +10,7 @@ import StyledNavbar from './navbar.styled';
 import QuickSearch from './quick-search';
 
 function Navbar() {
-
-  const isLoggedIn = useSelector<MainState>(state => state.user.isLoggedIn);
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const { setUserAction } = bindActionCreators(UserActionCreators, dispatch);
 
@@ -23,8 +20,7 @@ function Navbar() {
     <StyledNavbar>
       <QuickSearch />
     </StyledNavbar>
-  )
+  );
 }
 
 export default Navbar;
-

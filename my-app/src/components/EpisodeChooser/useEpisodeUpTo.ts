@@ -4,7 +4,10 @@ import { bindActionCreators } from 'redux';
 import { updateEpisode } from '../../API/user-api';
 import { UserActionCreators } from '../../state/action-creators';
 
-function useEpisodeUpTo(userShow: UserTVShow) {
+function useEpisodeUpTo(
+  userShow: UserTVShow,
+  setUserTVShow: Dispatch<SetStateAction<UserTVShow>>
+) {
   const [episodeUpTo, setEpisodeUpTo] = useState<string>('0');
   const [selectedTab, setSelectedTab] = useState<number>(0);
   const user = useSelector<MainState>((state) => state.user.user) as User;
@@ -19,7 +22,7 @@ function useEpisodeUpTo(userShow: UserTVShow) {
     userShow && userShow.episodeCodeUpTo !== ''
       ? setEpisodeUpTo(userShow.episodeCodeUpTo)
       : setEpisodeUpTo('s1e0');
-  }, []);
+  }, [userShow]);
 
   const updateCurrentEp = async (episode: number) => {
     const newEpisodeCode = `s${selectedTab + 1}e${episode}`;
@@ -38,6 +41,7 @@ function useEpisodeUpTo(userShow: UserTVShow) {
       );
       shows[index] = update;
       setUserTVShowsAction(shows);
+      setUserTVShow(update);
     } else {
       console.log('failed');
     }

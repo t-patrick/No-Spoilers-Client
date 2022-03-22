@@ -1,10 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 const StyledForumTopicList = styled.div`
   display: flex;
   font-family: var(--main-font);
   color: var(--chatlist-wrd);
   margin: 25px 80px;
   padding-bottom: 45px;
+  flex-direction: column;
+  gap: 30px;
 
   .score {
     color: #6030d0;
@@ -17,8 +19,8 @@ const StyledForumTopicList = styled.div`
   }
 
   .up {
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     padding: 0;
     border-left: 25px solid var(--bg-color);
     border-right: 25px solid var(--bg-color);
@@ -27,8 +29,8 @@ const StyledForumTopicList = styled.div`
   }
 
   .down {
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     padding: 0;
     border-left: 25px solid var(--bg-color);
     border-right: 25px solid var(--bg-color);
@@ -38,7 +40,7 @@ const StyledForumTopicList = styled.div`
 
   .number {
     padding-top: 15px;
-    padding-bottom: 15px;  
+    padding-bottom: 15px;
   }
 
   .text-container {
@@ -47,10 +49,10 @@ const StyledForumTopicList = styled.div`
   }
 
   .topic-header {
-    background-color: #4A5568;
-    padding: 15px 15px 15px ;
+    background-color: #4a5568;
+    padding: 15px 15px 15px;
   }
-  
+
   .bottom-half {
     display: flex;
     background-color: #2d3748;
