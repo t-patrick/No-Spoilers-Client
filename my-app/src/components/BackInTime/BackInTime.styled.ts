@@ -1,5 +1,63 @@
 import styled from "styled-components";
 
-const StyledBackInTime = styled.div``;
+const StyledBackInTime = styled.div`
+
+// border: 2px solid red;
+width: 20%;
+
+
+.dropbtn {
+  background: linear-gradient(to right, #363839, #3b3d3f);
+  width: 100%;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.dropdown img {
+  width: 5%;
+}
+
+.dropdown-content {
+  overflow: scroll;
+  max-height: 440px;
+  min-width: 160px;
+  z-index: 1;
+  margin-top: 40px;
+
+  // display: none;
+}
+
+.dropdown-content a {
+  border: 2px solid grey;
+  color: white;
+  background-image: linear-gradient(#3a3c3e, #4d4f51);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-radius: 5px;
+  margin-top: 3px;
+}
+
+input {
+
+}
+
+.dropdown-content a:hover {
+  border: 2px solid black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+`;
 
 export default StyledBackInTime;

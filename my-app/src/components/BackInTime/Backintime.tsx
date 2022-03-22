@@ -1,10 +1,28 @@
 import React from "react";
 import StyledBackInTime from "./BackInTime.styled";
+import downArrow from './image/down.png';
+
+
 
 function Backintime() {
+
+  
+
   return (
     <StyledBackInTime>
-      <div>Backintime</div>
+      <div className="dropdown">
+        
+        <button className="dropbtn"><span>BACK IN TIME</span> <img src={downArrow}/></button>
+
+        <div className="dropdown-content">
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="#">Twitter</a>
+          <a href="#">IMDB</a>
+          <a href="#">Wikipedia</a>
+          <input type='text' placeholder='Type your URL here'/>
+        </div>
+      </div>
     </StyledBackInTime>
   );
 }
