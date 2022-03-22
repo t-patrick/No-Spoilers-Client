@@ -4,19 +4,22 @@ const StyledForumTopicList = styled.div`
   font-family: var(--main-font);
   color: var(--chatlist-wrd);
   margin: 25px 80px;
+  padding-bottom: 45px;
 
   .score {
-    border: 1px solid red;
     color: #6030d0;
     font-family: var(--score-font);
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .up {
     width: 0; 
     height: 0; 
     padding: 0;
-
     border-left: 25px solid var(--bg-color);
     border-right: 25px solid var(--bg-color);
     border-bottom: 25px solid #5d5fef;
@@ -33,8 +36,12 @@ const StyledForumTopicList = styled.div`
     cursor: pointer;
   }
 
+  .number {
+    padding-top: 15px;
+    padding-bottom: 15px;  
+  }
+
   .text-container {
-    border: 1px solid green;
     width: 100%;
     flex: 9;
   }
@@ -50,7 +57,6 @@ const StyledForumTopicList = styled.div`
   }
 
   .user-info {
-    border: 2px solid blue;
     flex: 2;
     display: flex;
     flex-direction: column;
@@ -60,14 +66,23 @@ const StyledForumTopicList = styled.div`
 
   .avatar {
     width: 50%;
-    border: 2px solid yellow;
   }
 
   .topic-content {
     flex: 8;
-    padding: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
   }
 
+  .topic-content button {
+    margin-left: 90%;
+    margin-top: 16px;
+    background-color: var(--chatbox-color);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
 `;
 
 export default StyledForumTopicList;
