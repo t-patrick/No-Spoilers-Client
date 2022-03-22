@@ -98,6 +98,8 @@ function QuickSearch() {
 
     const goToShow = () => {
       setAddedShows([]);
+      console.log("The option.value code", ops.value);
+
       navigate(`/show/${ops.value}`);
     };
 

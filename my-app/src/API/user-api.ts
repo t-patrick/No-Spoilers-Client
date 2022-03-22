@@ -29,3 +29,27 @@ export const addTVShow = async (_id: number, TMDB_show_Id: number) => {
 
   return newUserTVShow.data as UserTVShow;
 };
+
+export const getShowDetail = async (id: string) => {
+  const newUserTVShow = await axios.get(`${BASE_URL}/show/${id}`);
+
+  return newUserTVShow.data as TVShow;
+};
+
+export const updateEpisode = async (
+  _id: string,
+  newEpisodeCode: string,
+  TMDB_show_Id: string
+) => {
+  const updated = await axios.patch(`${BASE_URL}/show/${TMDB_show_Id}`, {
+    _id,
+    newEpisodeCode,
+  });
+
+  console.log('/////////////////////////');
+  console.log(updated, 'from', TMDB_show_Id);
+
+  if (updated.status === 500) return undefined;
+
+  return updated.data as UserTVShow;
+};

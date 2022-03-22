@@ -49,7 +49,7 @@ type DBUser = {
  */
 
 type UserTVShow = {
-  userId?: string;
+  userId: string;
   TMDB_show_id: number;
   name: string;
   poster_path: string;
@@ -58,6 +58,7 @@ type UserTVShow = {
   episodeCodeUpTo: string;
   episodeCodeNext: string;
   episodesWatchedSoFar: number;
+  percentComplete?: number;
 };
 
 /////////////////////// ADD SHOW
@@ -150,3 +151,7 @@ type Report = {
   itemId: number;
   date: Date;
 };
+
+interface UserTVShowUpdate extends UserTVShow {
+  percentComplete: number;
+}

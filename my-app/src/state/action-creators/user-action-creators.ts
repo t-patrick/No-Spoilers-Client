@@ -12,7 +12,7 @@ export const updateUserAction = (payload: User) => {
     payload,
   };
 };
-export const setUserTVShowsAction = (payload: User) => {
+export const setUserTVShowsAction = (payload: UserTVShow[]) => {
   return {
     type: ActionType.SET_USER_TV_SHOWS,
     payload,

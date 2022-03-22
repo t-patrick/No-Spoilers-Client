@@ -94,13 +94,17 @@ const StyledEpisodeChooser = styled.div`
     padding: 22px;
     border-radius: 10px;
     min-width: fit-content;
-    max-width: 30px;
-    min-width: 30px;
+    max-width: 80px;
+    min-width: 80px;
     text-align: center;
     box-shadow: 3px 2px 3px rgba(0, 0, 0, 0.3);
     font-size: 22px;
     letter-spacing: 1px;
     transition: transform 0.5s;
+
+    span {
+      font-size: 10px;
+    }
   }
 
   .episode:hover {
