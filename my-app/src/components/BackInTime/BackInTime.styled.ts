@@ -45,9 +45,44 @@ width: 20%;
   margin-top: 3px;
 }
 
-input {
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
+  border: 2px solid grey;
+  color: white;
+  background-image: linear-gradient(#3a3c3e, #4d4f51);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-radius: 5px;
+  margin-top: 3px;
+  width: 90.5%;
 }
+
+input {
+  border: none;
+  background-color: transparent;
+  color: white;
+  width: 100%;
+  padding-top: 10px;
+  
+}
+
+input: focus {
+  outline: none;
+}
+
+form button {
+  border: 2px solid grey;
+  border-radius: 5px;
+  background: transparent;
+  margin-top: 15px;
+  color: white;
+  cursor: pointer;
+}
+
 
 .dropdown-content a:hover {
   border: 2px solid black;
@@ -56,8 +91,6 @@ input {
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
-
 `;
 
 export default StyledBackInTime;

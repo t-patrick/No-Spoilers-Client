@@ -20,7 +20,14 @@ function Backintime() {
           <a href="#">Twitter</a>
           <a href="#">IMDB</a>
           <a href="#">Wikipedia</a>
-          <input type='text' placeholder='Type your URL here'/>
+          <form>
+            <div>
+              <input type='text' placeholder='Enter your URL here...'/>
+            </div>
+            <div>
+              <button>Add</button>
+            </div>
+          </form>
         </div>
       </div>
     </StyledBackInTime>
