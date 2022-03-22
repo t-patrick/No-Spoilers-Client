@@ -15,45 +15,49 @@ width: 20%;
   border-radius: 10px;
   cursor: pointer;
   text-align: left;
+  display: flex;
+  justify-content: space-between;
 }
 
 
 .dropdown img {
   width: 5%;
-  padding-left: 60%;
 }
 
 .dropdown-content {
-  display: none;
   overflow: scroll;
   max-height: 440px;
-  background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  margin-top: 20px;
+  margin-top: 40px;
+
+  // display: none;
 }
 
 .dropdown-content a {
-  width: 100%;
+  border: 2px solid grey;
   color: white;
-  background-color: #4b4e50;
+  background-image: linear-gradient(#3a3c3e, #4d4f51);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  outline-style: solid; 
-  margin: 2px;
+  border-radius: 5px;
+  margin-top: 3px;
 }
 
-.dropdown-content a:hover {background-color: red}
+input {
+
+}
+
+.dropdown-content a:hover {
+  border: 2px solid black;
+}
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-// .dropdown:hover .dropbtn {
-//   background-color: red;
-// }
+
 `;
 
 export default StyledBackInTime;

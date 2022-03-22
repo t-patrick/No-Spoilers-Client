@@ -12,7 +12,7 @@ function Backintime() {
     <StyledBackInTime>
       <div className="dropdown">
         
-        <button className="dropbtn">BACK IN TIME <img src={downArrow}/></button>
+        <button className="dropbtn"><span>BACK IN TIME</span> <img src={downArrow}/></button>
 
         <div className="dropdown-content">
           <a href="#">Facebook</a>
