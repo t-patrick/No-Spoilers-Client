@@ -1,7 +1,7 @@
 /**
  * Main wrapper
  */
- .select-search {
+.select-search {
   width: 500px;
   position: relative;
   font-family: 'Nunito Sans', sans-serif;
@@ -42,7 +42,7 @@
   padding: 0 40px 0 16px;
   background: #fff;
   border: 1px solid transparent;
-  box-shadow: 0 .0625rem .125rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
   border-radius: 3px;
   outline: none;
   font-family: 'Noto Sans', sans-serif;
@@ -57,7 +57,7 @@
 .select-search__input::-webkit-search-cancel-button,
 .select-search__input::-webkit-search-results-button,
 .select-search__input::-webkit-search-results-decoration {
-  -webkit-appearance:none;
+  -webkit-appearance: none;
 }
 
 .select-search__input:not([readonly]):focus {
@@ -69,7 +69,7 @@
 */
 .select-search__select {
   background: #fff;
-  box-shadow: 0 .0625rem .125rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
 }
 
 /**
@@ -109,7 +109,7 @@
 }
 
 .select-search__option.is-selected {
-  background: #2FCC8B;
+  background: #2fcc8b;
   color: #fff;
 }
 
@@ -158,7 +158,8 @@
   overflow: hidden;
 }
 
-.select-search:not(.is-loading):not(.select-search--multiple) .select-search__value::after {
+.select-search:not(.is-loading):not(.select-search--multiple)
+  .select-search__value::after {
   transform: rotate(45deg);
   border-right: 1px solid #000;
   border-bottom: 1px solid #000;
@@ -178,9 +179,8 @@
 }
 
 .select-search:not(.select-search--multiple) .select-search__input:hover {
-  border-color: #2FCC8B;
+  border-color: #2fcc8b;
 }
-
 
 .select-search:not(.select-search--multiple) .select-search__select {
   position: absolute;

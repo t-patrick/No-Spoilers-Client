@@ -4,20 +4,21 @@ import Forum from "../Forum/Forum";
 import Backintime from "../BackInTime/Backintime";
 import { useSelector } from "react-redux";
 import Navbar from "../Navbar/Navbar";
+import StyledShow from "./show.styled";
 
 function Show() {
 
 
   return (
-    <div>
+    <StyledShow>
       <Navbar />
       <div>Some TV shows details ...</div>
 
-      {/* <Backintime /> */}
+      <Backintime />
 
       <Episodechooser />
       <Forum />
-    </div>
+    </StyledShow>
   );
 }
 

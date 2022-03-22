@@ -14,6 +14,7 @@ const GlobalStyles = createGlobalStyle`
 
   html {
     --bg-color: #050214;
+    --navbar-color: #1b2530;
     --main-font: 'Poppins', sans-serif;
     --chatbox-color: #2D3748;
     --chatbox-border: #718096;
