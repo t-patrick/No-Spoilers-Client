@@ -1,5 +1,6 @@
 import { TopicProps } from '../../proptypes';
 import StyledForumReplies from './forumReplies.styled';
+import redFlag from './image/red-flag.png';
 // modal:
 import * as React from 'react';
 import Button from '@mui/material/Button';
@@ -27,6 +28,14 @@ function ForumReplies({topic}: TopicProps) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleReportOpen = () => {
+    setOpen(true);
+  }
+
+  const handleReportClose = () => {
+    setOpen(false);
+  }
   //modal overridding mui's style below
   const divStyle = {
     'width': '600px',
@@ -36,6 +45,7 @@ function ForumReplies({topic}: TopicProps) {
 
   return (
     <StyledForumReplies>
+{/* accordion */}
       <div className='replies'>
         <Accordion>
             <AccordionSummary
@@ -69,12 +79,13 @@ function ForumReplies({topic}: TopicProps) {
           </AccordionDetails>
         </Accordion>
       </div>
-
+{/* reply button */}
       <div className='reply-modal'>
           <Button variant="outlined" onClick={handleClickOpen}>
             Reply
             <div className='num-of-replies'>30</div>
           </Button>
+          <Button className='report-btn'>Report<img src={redFlag}/></Button>
           <div className='reply-box'>
             <Dialog open={open} onClose={handleClose} >
               <div style={divStyle}>
@@ -100,7 +111,34 @@ function ForumReplies({topic}: TopicProps) {
               </DialogActions>
             </Dialog>
           </div>
+
+          <div className='report-box'>
+            <Dialog open={open} onClose={handleReportClose} >
+              <div style={divStyle}>
+                <DialogTitle>{topic.title}</DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                    Reply to join the discussion!
+                  </DialogContentText>
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Your comment here..."
+                    type="email"
+                    fullWidth
+                    variant="standard"
+                  />
+                </DialogContent>
+              </div>
+              <DialogActions>
+                <Button onClick={handleClose}>Cancel</Button>
+                <Button onClick={handleClose}>Reply</Button>
+              </DialogActions>
+            </Dialog>
+          </div>
         </div>
+
 
 
       {/* <div className='replies'>

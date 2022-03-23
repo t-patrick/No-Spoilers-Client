@@ -10,10 +10,12 @@ margin-top: 5px;
 .reply-modal {
   // border: 2px solid blue;
   text-align: right;
+  display: flex;
+  flex-direction: column;
+  width: 10%;
 }
 
 .replies {
-  // border: 5px solid yellow;
   border-radius: 20px;
   width: 98%;
   margin-right: 1%;
@@ -30,6 +32,24 @@ margin-top: 5px;
 .reply-content {
   background-color: #dee2e7;
 }  
+
+.report-container {
+  display: flex;
+  justify-content: center;
+  width: 10%;
+}
+
+.report-btn {
+  margin-top: 12px;
+  border: 0.5px solid red;
+  color: red;
+  // width: 10%;
+}
+
+.report-btn img {
+  width: 15%;
+  padding-left: 15px;
+}
 
 `
 
