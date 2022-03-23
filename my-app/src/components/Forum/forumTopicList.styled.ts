@@ -26,6 +26,7 @@ const StyledForumTopicList = styled.div`
     border-right: 25px solid var(--bg-color);
     border-bottom: 25px solid #5d5fef;
     cursor: pointer;
+    border-top-width: 0px;
   }
 
   .down {
@@ -36,6 +37,7 @@ const StyledForumTopicList = styled.div`
     border-right: 25px solid var(--bg-color);
     border-top: 25px solid #5d5fef;
     cursor: pointer;
+    border-bottom-width: 0px;
   }
 
   .number {
