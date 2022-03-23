@@ -6,7 +6,7 @@ const StyledEpisodeChooser = styled.div`
   width: 50%;
   max-width: 70%;
   height: 600px;
-  background-color: '#6b7280';
+  background-color: var(--navbar-color);
   margin: 0 auto;
   user-select: none;
   font-family: 'Barlow', sans-serif;
@@ -59,7 +59,7 @@ const StyledEpisodeChooser = styled.div`
   .main {
     height: 100%;
     width: 100%;
-    background-color: #d4d4d8;
+    background-color: var(--navbar-color);
     overflow-y: none;
     overflow-x: auto;
     border-radius: 0 0 10px 10px;
@@ -94,8 +94,8 @@ const StyledEpisodeChooser = styled.div`
     padding: 22px;
     border-radius: 10px;
     min-width: fit-content;
-    max-width: 80px;
-    min-width: 80px;
+    max-width: 130px;
+    min-width: 130px;
     text-align: center;
     box-shadow: 3px 2px 3px rgba(0, 0, 0, 0.3);
     font-size: 22px;

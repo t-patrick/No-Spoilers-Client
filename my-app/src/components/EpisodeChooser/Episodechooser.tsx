@@ -41,7 +41,7 @@ function Episodechooser({
         (episode.season_number === seasonUpToNumber &&
           episode.episode_number <= episodeUpToNumber);
       const style = {
-        backgroundColor: hasWatched ? '#16a34a' : '#52525b',
+        backgroundColor: hasWatched ? '#278036' : '#52525b',
       };
       const num =
         episode.episode_number < 10
@@ -54,8 +54,7 @@ function Episodechooser({
           style={style}
           onClick={() => updateCurrentEp(episode.episode_number)}
         >
-          {' '}
-          {num}{' '}
+          <div> {num} </div>
           {hasWatched ||
           constructEpCode(
             episode.season_number,

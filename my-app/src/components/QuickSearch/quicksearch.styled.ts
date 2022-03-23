@@ -19,8 +19,9 @@ const StyledQuickSearch = styled.div`
     align-items: center;
   }
 
-  h1 {
+  .message {
     font-family: var(--main-font);
+    font-weight: 500;
   }
 
   .info {

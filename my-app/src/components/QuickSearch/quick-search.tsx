@@ -34,11 +34,17 @@ function QuickSearch() {
 
     if (ops.value === '1')
       return (
-        <h1>Search for a show you are currently watching or completed!</h1>
+        <h1 className="message">
+          Search for a show you are currently watching, or have completed!
+        </h1>
       );
 
     if (ops.value === '2')
-      return <h1>No results found, hit search for a comprehensive search</h1>;
+      return (
+        <h1 className="message">
+          No results found, hit enter for a comprehensive search
+        </h1>
+      );
 
     return (
       <div className="option">

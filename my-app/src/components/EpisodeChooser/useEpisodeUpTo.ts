@@ -34,7 +34,7 @@ function useEpisodeUpTo(
     );
 
     const hasUpdated = await updateUserWayback(user._id, userShow.TMDB_show_id);
-    if (update && hasUpdated) {
+    if (update) {
       setEpisodeUpTo(newEpisodeCode);
       const shows = [...user.userTVInfo];
       const index = shows.findIndex(

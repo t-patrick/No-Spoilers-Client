@@ -9,13 +9,13 @@ import { dummyTopics } from './mocks';
 function Forum({ showDetail, userShow }: ForumProps) {
   const user = useSelector<MainState>((state) => state.user.user) as User;
 
-  const [topics, setTopics] = useState<Array<Topic>>([]);
+  const [topics, setTopics] = useState<Array<UserTopic>>([]);
 
   /* 
     Use effect to set topics
   */
 
-  const updateTopics = (topic: Topic) => {
+  const updateTopics = (topic: UserTopic) => {
     setTopics([...topics, topic]);
   };
 

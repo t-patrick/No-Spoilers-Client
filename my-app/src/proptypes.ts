@@ -19,7 +19,7 @@ export type ForumProps = {
 };
 
 export interface ForumNewTopicProps extends ForumProps {
-  updateTopics: (topic: Topic) => void;
+  updateTopics: (topic: UserTopic) => void;
 }
 
 export type EpisodechooserProps = {
@@ -33,13 +33,17 @@ export type NavbarProps = {
 };
 
 export interface TopicsProps extends ForumProps {
-  topics: Topic[];
+  topics: UserTopic[];
 }
 export interface TopicProps extends ForumProps {
-  topic: Topic;
+  topic: UserTopic;
 }
 
 export type BackintimeProps = {
   show: TVShow;
   currentEpisode: string;
+};
+
+export type ReplyProps = {
+  reply: Reply;
 };

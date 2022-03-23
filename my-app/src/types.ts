@@ -137,13 +137,19 @@ type Topic = {
   voteScore: number;
 };
 
+interface UserTopic extends Topic {
+  userVote: number;
+}
+
 type Reply = {
   _id: number;
   topicId: number;
   authorUserId: number;
+  authorName: string;
   replierEpisodeUpTo: number;
   body: string;
   date: Date;
+  avatar: string;
 };
 
 type Report = {

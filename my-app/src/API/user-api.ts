@@ -87,14 +87,16 @@ export const addUserWaybackUrl = async (
 };
 
 export const updateUserWayback = async (_id: number, TMDB_show_Id: number) => {
-  const waybacks = await axios.patch(
-    `${BASE_URL}/userwayback/update/${TMDB_show_Id}`,
-    {
-      _id,
-    }
-  );
-
-  console.log('updated', waybacks);
-
-  return true;
+  try {
+    const waybacks = await axios.patch(
+      `${BASE_URL}/userwayback/update/${TMDB_show_Id}`,
+      {
+        _id,
+      }
+    );
+    return true;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
 };

@@ -38,7 +38,7 @@ export default function ForumNewTopic({
     }
   }, [userShow]);
 
-  const constructTopic = (): Topic => {
+  const constructTopic = (): UserTopic => {
     return {
       title,
       body,
@@ -50,13 +50,14 @@ export default function ForumNewTopic({
       voteScore: 0,
       authorName: user.displayName,
       avatar: user.avatar,
+      userVote: 0,
     };
   };
 
   const submit = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    const topicRequest: Topic = constructTopic();
+    const topicRequest: UserTopic = constructTopic();
 
     updateTopics(topicRequest);
 
