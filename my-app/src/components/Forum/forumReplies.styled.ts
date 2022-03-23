@@ -17,19 +17,19 @@ margin-top: 5px;
   border-radius: 20px;
   width: 98%;
   margin-right: 1%;
-  
+  display: hidden;
+}
 
 
 .reply-summary {
   background-color: var(--chatbox-border);
   font-family: var(--main-font);
   color: var(--chatbox-wrd);
-
 }
+
 .reply-content {
   background-color: #dee2e7;
 }  
-}
 
 `
 

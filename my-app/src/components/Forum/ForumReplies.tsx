@@ -53,7 +53,6 @@ function ForumReplies({topic}: TopicProps) {
             </AccordionDetails>
         </Accordion>
 
-
         <Accordion>
           <AccordionSummary
             aria-controls="panel2a-content"

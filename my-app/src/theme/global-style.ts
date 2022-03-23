@@ -17,8 +17,8 @@ const GlobalStyles = createGlobalStyle`
     --navbar-color: #1b2530;
     --main-font: 'Poppins', sans-serif;
     
-    // TYPO: chatbox/chatlist below means forum... So sorry guys, I've used  
-    // the variables so many times arcoss different components that 
+    // TYPO: "chatbox"/"chatlist" below means forum... So sorry guys, I've   
+    // used the variables so many times arcoss different components that 
     // it might be too late to change the names now ...
     
     --chatbox-color: #2D3748;
