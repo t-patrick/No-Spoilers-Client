@@ -4,15 +4,17 @@ import StyledForumTopicList from './forumTopicList.styled';
 import replyTo from './image/icon.png';
 import TopicBox from './TopicBox';
 
+import ForumReplies from './ForumReplies';
+
 function ForumTopicList({ topics, userShow, showDetail }: TopicsProps) {
   const renderTopic = (topic: Topic, index: number) => {
     return (
-      <TopicBox
-        key={index}
-        topic={topic}
-        showDetail={showDetail}
-        userShow={userShow}
-      />
+        <TopicBox
+          key={index}
+          topic={topic}
+          showDetail={showDetail}
+          userShow={userShow}
+        />
     );
   };
 

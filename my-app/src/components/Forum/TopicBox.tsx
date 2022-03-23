@@ -1,30 +1,11 @@
-// import React from 'react';
+import React from 'react';
 import { TopicProps, TopicsProps } from '../../proptypes';
 import StyledForumTopicList from './forumTopicList.styled';
-import replyTo from './image/icon.png';
 import StyledTopicBox from './topicbox.styled';
-
-//import from mui library
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import ForumReplies from './ForumReplies';
 
 
 function TopicBox({ topic, userShow, showDetail }: TopicProps) {
-// mui library
-  const [open, setOpen] = React.useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-//mui library 
 
   const upVote = () => {};
 
@@ -39,6 +20,14 @@ function TopicBox({ topic, userShow, showDetail }: TopicProps) {
 
   return (
     <StyledTopicBox>
+
+      <ForumReplies           
+        // key={index}
+        topic={topic}
+        showDetail={showDetail}
+        userShow={userShow}
+      />   
+
       <div className="score">
         <div>
           <button className="up"></button>
@@ -64,43 +53,10 @@ function TopicBox({ topic, userShow, showDetail }: TopicProps) {
             </div>
             <div>{topic.authorName}</div>
           </div>
-{/* mui library */}
+
           <div className="topic-content">
             <div>{topic.body}</div>
-            <div>
-              <Button variant="outlined" onClick={handleClickOpen}>
-                Open form dialog
-              </Button>
-              <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Subscribe</DialogTitle>
-                <DialogContent>
-                  <DialogContentText>
-                    To subscribe to this website, please enter your email address here. We
-                    will send updates occasionally.
-                  </DialogContentText>
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="name"
-                    label="Email Address"
-                    type="email"
-                    fullWidth
-                    variant="standard"
-                  />
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={handleClose}>Cancel</Button>
-                  <Button onClick={handleClose}>Subscribe</Button>
-                </DialogActions>
-              </Dialog>
-            </div>
-{/* mui library */}
 
-            {/* <div>
-              <button>
-                <img src={replyTo} />
-              </button>
-            </div> */}
           </div>
         </div>
       </div>
