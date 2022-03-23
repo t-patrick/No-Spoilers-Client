@@ -1,16 +1,26 @@
 import React from 'react';
 import { TopicProps, TopicsProps } from '../../proptypes';
 import StyledForumTopicList from './forumTopicList.styled';
-import replyTo from './image/icon.png';
 import StyledTopicBox from './topicbox.styled';
+import ForumReplies from './ForumReplies';
+
 
 function TopicBox({ topic, userShow, showDetail }: TopicProps) {
+
   const upVote = () => {};
 
   const downVote = () => {};
 
   return (
     <StyledTopicBox>
+
+      <ForumReplies           
+        // key={index}
+        topic={topic}
+        showDetail={showDetail}
+        userShow={userShow}
+      />   
+
       <div className="score">
         <div>
           <button className="up"></button>
@@ -39,11 +49,7 @@ function TopicBox({ topic, userShow, showDetail }: TopicProps) {
 
           <div className="topic-content">
             <div>{topic.body}</div>
-            <div>
-              <button>
-                <img src={replyTo} />
-              </button>
-            </div>
+
           </div>
         </div>
       </div>
