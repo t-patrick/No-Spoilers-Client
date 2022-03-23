@@ -20,19 +20,21 @@ export default function ForumNewTopic({
 
   useEffect(() => {
     if (userShow.episodeCodeUpTo) {
-      const [season, episode] =
+      const [seas, ep] =
         userShow.episodeCodeUpTo &&
         userShow.episodeCodeUpTo
           .slice(1)
           .split('e')
           .map((n) => parseInt(n));
 
-      setSeason(season as number);
-      setEpisode(episode as number);
+      seas && setSeason((seas as number) - 1);
+      ep && setEpisode(ep as number);
 
-      setEpisodeDetail(
-        showDetail.seasons[season as number].episodes[episode as number]
-      );
+      season &&
+        episode &&
+        setEpisodeDetail(
+          showDetail.seasons[season as number].episodes[episode as number]
+        );
     }
   }, [userShow]);
 
@@ -40,7 +42,7 @@ export default function ForumNewTopic({
     return {
       title,
       body,
-      TMDB_episode_id: episodeDetail.TMDB_episode_id,
+      TMDB_episode_id: userShow.episodeIdUpTo,
       TMDB_show_id: userShow.TMDB_show_id,
       authorUserId: parseInt(userShow.userId),
       numberOfReplies: 0,

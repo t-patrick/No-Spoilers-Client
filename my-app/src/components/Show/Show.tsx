@@ -55,14 +55,15 @@ function Show() {
   //
   return (
     <StyledShow>
-      <Navbar />
+      <Navbar showSearch={false} />
       <div className="show-view">
         <div className="image-button-container">
-          {/* placeholder image below  */}
-          <img src="https://static.posters.cz/image/1300/posters/sherlock-series-4-iconic-i33910.jpg" />
+          <img
+            src={`https://image.tmdb.org/t/p/w500${userTVShow.poster_path}`}
+          />
           {/* modal */}
           <div className="button-container">
-            <Button onClick={handleOpen}>CLICK ME!</Button>
+            <Button onClick={handleOpen}>Show Details</Button>
             <Modal
               open={open}
               onClose={handleClose}
@@ -70,26 +71,24 @@ function Show() {
               aria-describedby="modal-modal-description"
             >
               <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Some TV shows details ...
+                <Typography id="modal-modal-title" variant="h6" component="h3">
+                  &quot;{show.tagline}&quot;
                 </Typography>
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                   <p>
-                    Description:{' '}
-                    <span>Duis mollis, est non commodo luctus, nisi.</span>{' '}
+                    <span style={{ fontWeight: 800 }}> Description:</span>{' '}
+                    {show.overview}
                   </p>
                   <p>
-                    Release year: <span>2010</span>
-                  </p>
-                  <p>
-                    Actors: <span>Benedict Cumberbatch</span>
+                    Release year:{' '}
+                    <span>{new Date(show.first_air_date).getFullYear()}</span>
                   </p>
                 </Typography>
               </Box>
             </Modal>
           </div>
         </div>
-        <Backintime />
+        <Backintime show={show} currentEpisode={userTVShow.episodeCodeUpTo} />
       </div>
 
       <Episodechooser

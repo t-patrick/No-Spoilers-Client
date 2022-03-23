@@ -4,9 +4,9 @@ const StyledNavbar = styled.nav`
   background-color: var(--navbar-color);
   display: flex;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   color: black;
-
 `;
 
 export default StyledNavbar;

@@ -2,7 +2,7 @@ import { ActionType } from '../action-types';
 import { Action } from '../actions';
 
 const defaultState: UserState = {
-  isLoggedIn: false,
+  isLoggedIn: true,
   user: {},
 };
 

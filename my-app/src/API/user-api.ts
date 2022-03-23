@@ -53,3 +53,11 @@ export const updateEpisode = async (
 
   return updated.data as UserTVShow;
 };
+
+export const getWaybackUrls = async (userId: number, TMDB_show_Id: number) => {
+  const waybacks = await axios.post(`${BASE_URL}/wayback/${TMDB_show_Id}`, {
+    _id: userId,
+  });
+
+  return waybacks.data as ExternalIds;
+};

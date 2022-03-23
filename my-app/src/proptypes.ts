@@ -28,7 +28,9 @@ export type EpisodechooserProps = {
   setUserTVShow: Dispatch<SetStateAction<UserTVShow>>;
 };
 
-export type NavbarProps = {};
+export type NavbarProps = {
+  showSearch?: boolean;
+};
 
 export interface TopicsProps extends ForumProps {
   topics: Topic[];
@@ -36,3 +38,8 @@ export interface TopicsProps extends ForumProps {
 export interface TopicProps extends ForumProps {
   topic: Topic;
 }
+
+export type BackintimeProps = {
+  show: TVShow;
+  currentEpisode: string;
+};

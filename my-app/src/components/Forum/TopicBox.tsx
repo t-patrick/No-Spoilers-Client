@@ -9,13 +9,6 @@ function TopicBox({ topic, userShow, showDetail }: TopicProps) {
 
   const downVote = () => {};
 
-  const renderTopic = (topic: Topic) => {};
-
-  const renderTopics = () => {
-    // map through topics.
-    // Render Topic component
-  };
-
   return (
     <StyledTopicBox>
       <div className="score">

@@ -1,9 +1,5 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { updateEpisode } from '../../API/user-api';
+import React from 'react';
 import { EpisodechooserProps } from '../../proptypes';
-import { UserActionCreators } from '../../state/action-creators';
 import { constructEpCode, getBackground } from './episode-chooser-helpers';
 import StyledEpisodeChooser from './episodechooser.styled';
 import useEpisodeUpTo from './useEpisodeUpTo';
@@ -20,6 +16,18 @@ function Episodechooser({
     setSelectedTab,
     updateCurrentEp,
   } = useEpisodeUpTo(userShow, setUserTVShow);
+
+  const renderSeason = (index: number) => {
+    return (
+      <li
+        key={index}
+        onClick={() => setSelectedTab(index)}
+        style={getBackground(index, selectedTab)}
+      >
+        Season {index + 1}{' '}
+      </li>
+    );
+  };
 
   const renderEps = (season: number, episodes: Episode[]) => {
     const [seasonUpToNumber, episodeUpToNumber] = episodeUpTo
@@ -61,18 +69,6 @@ function Episodechooser({
         </div>
       );
     });
-  };
-
-  const renderSeason = (index: number) => {
-    return (
-      <li
-        key={index}
-        onClick={() => setSelectedTab(index)}
-        style={getBackground(index, selectedTab)}
-      >
-        Season {index + 1}{' '}
-      </li>
-    );
   };
 
   return seasons ? (
