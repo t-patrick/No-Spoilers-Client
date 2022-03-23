@@ -1,26 +1,20 @@
-import React, { Fragment, useState } from "react";
-import "./App.css";
-import Splash from "./components/Splash/Splash";
-import Show from "./components/Show/Show";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./components/Home/Home";
-import Search from "./components/search/Search";
-import GlobalStyles from "./theme/global-style";
-import Navbar from "./components/Navbar/Navbar";
-import { createStore } from "redux";
-import reducers from "./state/reducers";
-import { Provider } from "react-redux";
+import React, { Fragment, useState } from 'react';
+import './App.css';
+import Splash from './components/Splash/Splash';
+import Show from './components/Show/Show';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './components/Home/Home';
+import Search from './components/search/Search';
+import GlobalStyles from './theme/global-style';
+import Navbar from './components/Navbar/Navbar';
+import { createStore } from 'redux';
+import reducers from './state/reducers';
+import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-
-/**
- * 
- */
 
 const store = createStore(reducers, composeWithDevTools());
 
 function App() {
-
-
   return (
     <Provider store={store}>
       <Fragment>
@@ -34,7 +28,7 @@ function App() {
               <Route path="/" element={<Splash />} />
             </Routes>
           </Router>
-        </div >
+        </div>
       </Fragment>
     </Provider>
   );

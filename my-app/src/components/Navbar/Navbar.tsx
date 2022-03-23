@@ -5,23 +5,29 @@ import { bindActionCreators } from 'redux';
 import { loginUser, registerUser } from '../../API/user-api';
 import { NavbarProps } from '../../proptypes';
 import { UserActionCreators } from '../../state/action-creators';
-import { setUserAction as setUserActionCreator } from '../../state/action-creators/user-action-creators';
-import { ActionType } from '../../state/action-types';
 import QuickSearch from '../QuickSearch/quick-search';
 import StyledNavbar from './navbar.styled';
 
 function Navbar({ showSearch }: NavbarProps) {
-  const dispatch = useDispatch();
+  const user = useSelector<MainState>((state) => state.user);
 
-  const { setUserAction } = bindActionCreators(UserActionCreators, dispatch);
-
-  const navigate = useNavigate();
+  const logout = () => {
+    // Delete user data
+  };
 
   return (
     <StyledNavbar>
-      <Link to="/home">
-        <button>Home</button>
-      </Link>
+      <div className="links">
+        <Link to="/home">
+          <button>Home</button>
+        </Link>
+        <Link to="/profile">
+          <button>Profile</button>
+        </Link>
+        <Link to="/">
+          <button onClick={logout}>Logout</button>
+        </Link>
+      </div>
       {showSearch && <QuickSearch />}
     </StyledNavbar>
   );
