@@ -61,3 +61,40 @@ export const getWaybackUrls = async (userId: number, TMDB_show_Id: number) => {
 
   return waybacks.data as ExternalIds;
 };
+
+export const getUserWaybackUrls = async (_id: number, TMDB_show_Id: number) => {
+  const waybacks = await axios.post(`${BASE_URL}/userwayback/${TMDB_show_Id}`, {
+    _id,
+  });
+
+  return waybacks.data.websites as Array<UserWayback>;
+};
+
+export const addUserWaybackUrl = async (
+  _id: number,
+  website: string,
+  TMDB_show_Id: number
+) => {
+  const waybacks = await axios.post(
+    `${BASE_URL}/userwayback/add/${TMDB_show_Id}`,
+    {
+      _id,
+      website,
+    }
+  );
+
+  return waybacks.data as UserWayback;
+};
+
+export const updateUserWayback = async (_id: number, TMDB_show_Id: number) => {
+  const waybacks = await axios.patch(
+    `${BASE_URL}/userwayback/update/${TMDB_show_Id}`,
+    {
+      _id,
+    }
+  );
+
+  console.log('updated', waybacks);
+
+  return true;
+};

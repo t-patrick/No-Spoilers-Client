@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateEpisode } from '../../API/user-api';
+import { updateEpisode, updateUserWayback } from '../../API/user-api';
 import { UserActionCreators } from '../../state/action-creators';
 
 function useEpisodeUpTo(
@@ -33,7 +33,8 @@ function useEpisodeUpTo(
       '' + userShow.TMDB_show_id
     );
 
-    if (update) {
+    const hasUpdated = await updateUserWayback(user._id, userShow.TMDB_show_id);
+    if (update && hasUpdated) {
       setEpisodeUpTo(newEpisodeCode);
       const shows = [...user.userTVInfo];
       const index = shows.findIndex(

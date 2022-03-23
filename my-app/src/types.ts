@@ -158,3 +158,8 @@ type Report = {
 interface UserTVShowUpdate extends UserTVShow {
   percentComplete: number;
 }
+
+type UserWayback = {
+  name: string;
+  waybackUrl: string;
+};

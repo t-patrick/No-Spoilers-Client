@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ClockLoader } from 'react-spinners';
-import { getWaybackUrls } from '../../API/user-api';
+import {
+  addUserWaybackUrl,
+  getUserWaybackUrls,
+  getWaybackUrls,
+} from '../../API/user-api';
 import { BackintimeProps } from '../../proptypes';
 import StyledBackInTime from './BackInTime.styled';
 import downArrow from './image/down.png';
@@ -11,20 +15,86 @@ function Backintime({ show, currentEpisode }: BackintimeProps) {
     {} as ExternalIds
   );
 
+  const [userWaybackUrls, setUserWaybackUrls] = useState<Array<UserWayback>>(
+    []
+  );
+
+  const [currentUserWayback, setCurrentUserWayback] = useState<string>('');
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const user: User = useSelector<MainState>((state) => state.user.user) as User;
 
+  const addUserWayback = async (website: string) => {
+    const response = await addUserWaybackUrl(
+      user._id,
+      website,
+      show.TMDB_show_id
+    );
+    console.log(response);
+
+    response && setUserWaybackUrls([...userWaybackUrls, response]);
+  };
+
+  const handleAddWayback = (e: SyntheticEvent) => {
+    e.preventDefault();
+    addUserWayback(currentUserWayback);
+  };
+
   useEffect(() => {
-    // Add loading spinner
     setIsLoading(true);
+
     const getWaybacks = async () => {
       const result = await getWaybackUrls(user._id, show.TMDB_show_id);
       setWaybackUrls(result);
       setIsLoading(false);
     };
 
+    const getUserWaybacks = async () => {
+      const userWaybacks = await getUserWaybackUrls(
+        user._id,
+        show.TMDB_show_id
+      );
+      setUserWaybackUrls(userWaybacks);
+    };
+
     getWaybacks();
+    getUserWaybacks();
   }, [currentEpisode]);
+
+  const renderUserWayback = (wayback: UserWayback) => {
+    if (!wayback) return <></>;
+    if (!wayback.waybackUrl) {
+      return (
+        <>
+          <a
+            href={wayback.waybackUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            {wayback.name} ({'Current - No snapsnot found before next episode'})
+          </a>
+        </>
+      );
+    }
+
+    if (wayback.waybackUrl === wayback.name) {
+      return (
+        <a href={wayback.waybackUrl} target="_blank" rel="noreferrer noopener">
+          {wayback.name} ({'Current'})
+        </a>
+      );
+    }
+
+    return (
+      <a href={wayback.waybackUrl} target="_blank" rel="noreferrer noopener">
+        {wayback.name}
+        <br /> (
+        {extractDate(wayback.waybackUrl as string).toLocaleDateString() ||
+          'None Found'}
+        )
+      </a>
+    );
+  };
 
   return (
     <StyledBackInTime>
@@ -122,15 +192,20 @@ function Backintime({ show, currentEpisode }: BackintimeProps) {
                 )
               </a>
             )}
+            {userWaybackUrls &&
+              userWaybackUrls.length > 0 &&
+              userWaybackUrls.map((wayback) => renderUserWayback(wayback))}
             <form>
               <div>
                 <input
                   type="text"
                   placeholder="Enter your own website, perhaps a subreddit?"
+                  value={currentUserWayback}
+                  onChange={(e) => setCurrentUserWayback(e.target.value)}
                 />
               </div>
               <div>
-                <button>Add</button>
+                <button onClick={(e) => handleAddWayback(e)}>Add</button>
               </div>
             </form>
           </div>

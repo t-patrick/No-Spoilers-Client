@@ -8,12 +8,6 @@ const StyledNavbar = styled.nav`
   align-items: center;
   color: black;
 
-  .links {
-    display: flex;
-    gap: 10px;
-    margin-left: 10px;
-  }
-
   button {
     border: 1px solid #6f6f6f;
     color: #6f6f6f;
@@ -22,6 +16,12 @@ const StyledNavbar = styled.nav`
     padding: 8px 20px;
     width: fit-content;
     color: white;
+  }
+  .links {
+    display: flex;
+    gap: 10px;
+    margin: 10px;
+    margin-left: 10px;
   }
 `;
 
