@@ -29,12 +29,12 @@ function ForumReplies({topic}: TopicProps) {
     setOpen(false);
   };
 
+  const [openReport, setOpenReport] = React.useState(false);
   const handleReportOpen = () => {
-    setOpen(true);
+    setOpenReport(true);
   }
-
   const handleReportClose = () => {
-    setOpen(false);
+    setOpenReport(false);
   }
   //modal overridding mui's style below
   const divStyle = {
@@ -85,7 +85,7 @@ function ForumReplies({topic}: TopicProps) {
             Reply
             <div className='num-of-replies'>30</div>
           </Button>
-          <Button className='report-btn'>Report<img src={redFlag}/></Button>
+          <Button className='report-btn' onClick={handleReportOpen}>Report<img src={redFlag}/></Button>
           <div className='reply-box'>
             <Dialog open={open} onClose={handleClose} >
               <div style={divStyle}>
@@ -113,27 +113,15 @@ function ForumReplies({topic}: TopicProps) {
           </div>
 
           <div className='report-box'>
-            <Dialog open={open} onClose={handleReportClose} >
-              <div style={divStyle}>
-                <DialogTitle>{topic.title}</DialogTitle>
+            <Dialog open={openReport} onClose={handleReportClose} >
+                <DialogTitle>REPORT SPOILERS!</DialogTitle>
                 <DialogContent>
                   <DialogContentText>
-                    Reply to join the discussion!
+                    Your shit has been reported HAHAHA!
                   </DialogContentText>
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="name"
-                    label="Your comment here..."
-                    type="email"
-                    fullWidth
-                    variant="standard"
-                  />
                 </DialogContent>
-              </div>
               <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleClose}>Reply</Button>
+                <Button onClick={handleReportClose}>Close</Button>
               </DialogActions>
             </Dialog>
           </div>
