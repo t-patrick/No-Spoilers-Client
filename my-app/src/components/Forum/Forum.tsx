@@ -4,7 +4,7 @@ import ForumTopicList from './ForumTopicList';
 import StyledForum from './forum.styled';
 import { ForumProps } from '../../proptypes';
 import { useSelector } from 'react-redux';
-import { dummyTopics } from './mocks';
+// import { dummyTopics } from './mocks';
 
 function Forum({ showDetail, userShow }: ForumProps) {
   const user = useSelector<MainState>((state) => state.user.user) as User;

@@ -127,14 +127,19 @@ type Topic = {
   _id?: number;
   TMDB_show_id: number;
   TMDB_episode_id: number;
-  authorUserId: number;
+  authorUserId: string;
   authorName: string;
-  numberOfReplies: number;
-  avatar: string;
+  episodeCode: string;
   title: string;
   body: string;
+  numberOfReplies: number;
+  avatar: string;
   date: Date;
   voteScore: number;
+  upVoteIds: string[];
+  downVoteIds: string[];
+  replies: Reply[];
+  isReported: boolean;
 };
 
 interface UserTopic extends Topic {
@@ -150,6 +155,7 @@ type Reply = {
   body: string;
   date: Date;
   avatar: string;
+  isReported: boolean;
 };
 
 type Report = {

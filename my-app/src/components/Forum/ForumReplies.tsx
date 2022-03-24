@@ -20,20 +20,13 @@ function ForumReplies({ topic, userShow }: TopicProps) {
     setOpen(false);
   };
 
-  const [checked, setChecked] = useState(false);
-
-  const handleChange = () => {
-    setChecked((prev) => !prev);
-  };
-
+  const [openReport, setOpenReport] = React.useState(false);
   const handleReportOpen = () => {
-    setOpen(true);
+    setOpenReport(true);
   };
-
   const handleReportClose = () => {
-    setOpen(false);
+    setOpenReport(false);
   };
-
   //modal overridding mui's style below
   const divStyle = {
     width: '600px',
@@ -42,16 +35,17 @@ function ForumReplies({ topic, userShow }: TopicProps) {
   return (
     <StyledForumReplies>
       <div className="replies">
-        <ReplyBox reply={mockReplies[0]} userShow={userShow} />
-        <ReplyBox reply={mockReplies[1]} userShow={userShow} />
+        {topic.replies.map((reply, index) => (
+          <ReplyBox key={index} reply={reply} userShow={userShow} />
+        ))}
       </div>
       <div className="reply-modal">
         <Button variant="outlined" onClick={handleClickOpen}>
           Reply
           <div className="num-of-replies">30</div>
         </Button>
-        <Button className="report-btn">
-          Spoiler
+        <Button className="report-btn" onClick={handleReportOpen}>
+          Report
           <img src={redFlag} />
         </Button>
         <div className="reply-box">
@@ -81,30 +75,44 @@ function ForumReplies({ topic, userShow }: TopicProps) {
         </div>
 
         <div className="report-box">
-          <Dialog open={open} onClose={handleReportClose}>
-            <div style={divStyle}>
-              <DialogTitle>{topic.title}</DialogTitle>
-              <DialogContent>
-                <DialogContentText>
-                  Reply to join the discussion!
-                </DialogContentText>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="name"
-                  label="Your comment here..."
-                  type="email"
-                  fullWidth
-                  variant="standard"
-                />
-              </DialogContent>
-            </div>
+          <Dialog open={openReport} onClose={handleReportClose}>
+            <DialogTitle>REPORT SPOILERS!</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Your shit has been reported HAHAHA!
+              </DialogContentText>
+            </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleClose}>Reply</Button>
+              <Button onClick={handleReportClose}>Close</Button>
             </DialogActions>
           </Dialog>
         </div>
+      </div>
+
+      <div className="report-box">
+        <Dialog open={open} onClose={handleReportClose}>
+          <div style={divStyle}>
+            <DialogTitle>{topic.title}</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Reply to join the discussion!
+              </DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Your comment here..."
+                type="email"
+                fullWidth
+                variant="standard"
+              />
+            </DialogContent>
+          </div>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleClose}>Reply</Button>
+          </DialogActions>
+        </Dialog>
       </div>
 
       {/* <div className='replies'>
@@ -134,6 +142,7 @@ const mockReplies: Reply[] = [
     body: 'This is a fun replyyyyyyyyy',
     date: new Date(Date.now()),
     avatar: 'aergiehjrh',
+    isReported: false,
   },
   {
     _id: 23423,
@@ -144,5 +153,6 @@ const mockReplies: Reply[] = [
     body: 'This is a fun replyyyyyyyyy',
     date: new Date(Date.now()),
     avatar: 'aergiehjrh',
+    isReported: false,
   },
 ];
