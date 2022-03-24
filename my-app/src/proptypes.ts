@@ -46,4 +46,5 @@ export type BackintimeProps = {
 
 export type ReplyProps = {
   reply: Reply;
+  userShow: UserTVShow;
 };

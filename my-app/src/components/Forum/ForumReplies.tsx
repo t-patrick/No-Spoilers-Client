@@ -9,12 +9,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
+import ReplyBox from './ReplyBox';
 
-function ForumReplies({ topic }: TopicProps) {
+function ForumReplies({ topic, userShow }: TopicProps) {
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -45,39 +42,8 @@ function ForumReplies({ topic }: TopicProps) {
   return (
     <StyledForumReplies>
       <div className="replies">
-        <Accordion>
-          <AccordionSummary
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-            className="reply-summary"
-          >
-            <Typography>User 1</Typography>
-          </AccordionSummary>
-          <AccordionDetails className="reply-content">
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-
-        <Accordion>
-          <AccordionSummary
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-            className="reply-summary"
-          >
-            <Typography>User 2</Typography>
-          </AccordionSummary>
-          <AccordionDetails className="reply-content">
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
+        <ReplyBox reply={mockReplies[0]} userShow={userShow} />
+        <ReplyBox reply={mockReplies[1]} userShow={userShow} />
       </div>
       <div className="reply-modal">
         <Button variant="outlined" onClick={handleClickOpen}>
@@ -85,7 +51,7 @@ function ForumReplies({ topic }: TopicProps) {
           <div className="num-of-replies">30</div>
         </Button>
         <Button className="report-btn">
-          Report
+          Spoiler
           <img src={redFlag} />
         </Button>
         <div className="reply-box">
@@ -157,3 +123,26 @@ function ForumReplies({ topic }: TopicProps) {
 }
 
 export default ForumReplies;
+
+const mockReplies: Reply[] = [
+  {
+    _id: 23423,
+    topicId: 123,
+    authorUserId: 1235,
+    authorName: 'Tim Patrick',
+    replierEpisodeUpTo: 2,
+    body: 'This is a fun replyyyyyyyyy',
+    date: new Date(Date.now()),
+    avatar: 'aergiehjrh',
+  },
+  {
+    _id: 23423,
+    topicId: 123,
+    authorUserId: 1235,
+    authorName: 'Tim Patrick',
+    replierEpisodeUpTo: 50,
+    body: 'This is a fun replyyyyyyyyy',
+    date: new Date(Date.now()),
+    avatar: 'aergiehjrh',
+  },
+];

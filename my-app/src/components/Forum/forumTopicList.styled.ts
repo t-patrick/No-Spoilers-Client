@@ -11,7 +11,7 @@ const StyledForumTopicList = styled.div`
   .score {
     color: #6030d0;
     font-family: var(--score-font);
-    flex: 1;
+    width: 10%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -46,18 +46,20 @@ const StyledForumTopicList = styled.div`
   }
 
   .text-container {
+    display: flex;
     width: 100%;
-    flex: 9;
   }
 
   .topic-header {
     background-color: #4a5568;
-    padding: 15px 15px 15px;
+    /* padding: 15px 15px 15px; */
+    width: 100%;
   }
 
   .bottom-half {
     display: flex;
     background-color: #2d3748;
+    padding: 10px;
   }
 
   .user-info {
