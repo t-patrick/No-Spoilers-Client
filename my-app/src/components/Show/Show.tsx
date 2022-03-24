@@ -14,6 +14,7 @@ import { useParams } from 'react-router-dom';
 
 import { getShowDetail } from '../../API/user-api';
 import { CurrentShowContextType } from '../../proptypes';
+import { TailSpin } from 'react-loader-spinner';
 
 export const CurrentShowContext = createContext<CurrentShowContextType>(
   {} as CurrentShowContextType
@@ -26,6 +27,7 @@ function Show() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const style = {
     position: 'absolute' as 'absolute',
@@ -42,6 +44,7 @@ function Show() {
   const user = useSelector<MainState>((state) => state.user.user) as User;
 
   useEffect(() => {
+    setIsLoading(true);
     const getShow = async () => {
       if (id) {
         const detail = await getShowDetail(id, userTVShow.userId);
@@ -52,10 +55,30 @@ function Show() {
         );
 
         if (userShow) setUserTVShow(userShow);
+        setIsLoading(false);
       }
     };
     getShow();
   }, [id]);
+
+  const spinnerStyle = {
+    position: 'absolute' as 'absolute' | 'relative' | 'fixed',
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%, -50%)',
+  };
+
+  const coverStyle = {
+    position: 'absolute' as 'absolute' | 'relative' | 'fixed',
+    height: '100%',
+    width: '100%',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    zIndex: 40,
+  };
 
   return (
     <CurrentShowContext.Provider
@@ -65,6 +88,13 @@ function Show() {
         setUserTVShow: setUserTVShow,
       }}
     >
+      {isLoading && (
+        <div style={coverStyle}>
+          <div style={spinnerStyle}>
+            <TailSpin color="#00BFFF" height={200} width={200} />
+          </div>
+        </div>
+      )}
       <StyledShow>
         <Navbar showSearch={false} />
         <div className="show-view">
