@@ -69,7 +69,7 @@ function ForumReplies({ topic }: TopicProps) {
         ))}
       </div>
       <div className="reply-modal">
-        <Button onClick={() => setShowReplies(!showReplies)}>{showReplies ? 'Hide!': 'Show!'}</Button>
+        <Button className="show-hide-btn" variant='outlined' onClick={() => setShowReplies(!showReplies)}>{showReplies ? 'Hide': 'Show'}</Button>
         <Button variant="outlined" onClick={handleClickOpen}>
           Reply
           <div className="num-of-replies">30</div>
