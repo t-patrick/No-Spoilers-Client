@@ -5,6 +5,13 @@ import Navbar from '../Navbar/Navbar';
 import Reel from '../Reel/Reel';
 import StyledHome from './home.styled';
 import search from './image/search.png';
+// import completedIcon from './image/completed.png';
+// import deleteIcon from './image/remove.png';
+
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+
+
 
 function Home() {
   const user = useSelector<MainState>((state) => state.user.user);
@@ -46,6 +53,8 @@ function Home() {
     filterMovies(value);
   };
 
+  const mockShowPath: Array<string> = ['https://image.tmdb.org/t/p/w500/aiy35Evcofzl7hASZZvsFgltHTX.jpg','https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg']
+
   return (
     <StyledHome>
       <Navbar showSearch={true} />
@@ -64,25 +73,46 @@ function Home() {
           {onTheGo && <Reel userTVShows={onTheGo} />}
           <div className='poster-container'>
             <div>
-              <img src='https://image.tmdb.org/t/p/w500/aiy35Evcofzl7hASZZvsFgltHTX.jpg'/>
+              <img src={mockShowPath[0]}/>
+              <div className='btn'>
+                <Button variant="outlined" className='completed'>Completed!</Button>
+                <Button variant="outlined" className='delete'> Delete! </Button>
+              </div>
             </div>
             <div>
-              <img src='https://image.tmdb.org/t/p/w500/aiy35Evcofzl7hASZZvsFgltHTX.jpg'/>
+              <img src={mockShowPath[0]}/>
+              <div className='btn'>
+                <Button variant="outlined" className='completed'>Completed!</Button>
+                <Button variant="outlined" className='delete'> Delete! </Button>
+              </div>
             </div>
             <div>
-              <img src='https://image.tmdb.org/t/p/w500/aiy35Evcofzl7hASZZvsFgltHTX.jpg'/>
+              <img src={mockShowPath[0]}/>
+              <div className='btn'>
+                <Button variant="outlined" className='completed'>Completed!</Button>
+                <Button variant="outlined" className='delete'> Delete! </Button>
+              </div>
             </div>
             <div>
-              <img src='https://image.tmdb.org/t/p/w500/aiy35Evcofzl7hASZZvsFgltHTX.jpg'/>
+              <img src={mockShowPath[0]}/>
+              <div className='btn'>
+                <Button variant="outlined" className='completed'>Completed!</Button>
+                <Button variant="outlined" className='delete'> Delete! </Button>
+              </div>
             </div>
             <div>
-              <img src='https://image.tmdb.org/t/p/w500/aiy35Evcofzl7hASZZvsFgltHTX.jpg'/>
+              <img src={mockShowPath[0]}/>
+              <div className='btn'>
+                <Button variant="outlined" className='completed'>Completed!</Button>
+                <Button variant="outlined" className='delete'> Delete! </Button>
+              </div>
             </div>
             <div>
-              <img src='https://image.tmdb.org/t/p/w500/aiy35Evcofzl7hASZZvsFgltHTX.jpg'/>
-            </div>
-            <div>
-              <img src='https://image.tmdb.org/t/p/w500/aiy35Evcofzl7hASZZvsFgltHTX.jpg'/>
+              <img src={mockShowPath[0]}/>
+              <div className='btn'>
+                <Button variant="outlined" className='completed'>Completed!</Button>
+                <Button variant="outlined" className='delete'> Delete! </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -92,32 +122,18 @@ function Home() {
           {watched && <Reel userTVShows={watched} />}
           <div className='poster-container'>
             <div>
-              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
+              <img src={mockShowPath[1]}/>
+              <div className='btn'>
+                <Button variant="outlined" className='delete'> Delete! </Button>
+              </div>
             </div>
             <div>
-              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
+              <img src={mockShowPath[1]}/>
+              <div className='btn'>
+                <Button variant="outlined" className='delete'> Delete! </Button>
+              </div>
             </div>
-            <div>
-              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
-            </div>
-            <div>
-              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
-            </div>
-            <div>
-              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
-            </div>
-            <div>
-              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
-            </div>
-            <div>
-              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
-            </div>
-            <div>
-              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
-            </div>
-            <div>
-              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
-            </div>
+            
            
           </div>
         </div>

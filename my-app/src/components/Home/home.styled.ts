@@ -24,12 +24,12 @@ const StyledHome = styled.div`
   }
 
   .row {
-    border: 1px solid red;
+    // border: 1px solid red;
     margin: 20px;
   }
   
   .poster-container {
-    border: 1px solid blue;
+    // border: 1px solid blue;
 
     display: flex;
     flex-wrap: nowrap;
@@ -40,7 +40,6 @@ const StyledHome = styled.div`
 
   .row img {
     width: 300px;
-    border: 1px solid green;
     margin: auto 8px;
   }
   
@@ -49,6 +48,19 @@ const StyledHome = styled.div`
     padding-bottom: 15px;
     font-weight: 500;
     font-size: 32px;
+  }
+
+  .btn {
+    // border: 0.5px solid yellow;
+    width: 98%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+
+  .btn .delete {
+    border: 1px solid red;
+    color: red;
   }
 
 
