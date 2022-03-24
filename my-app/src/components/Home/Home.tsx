@@ -57,17 +57,69 @@ function Home() {
             value={currentSearch}
             onChange={(e) => updateSearch(e.target.value)}
           />
-          {/* <button type="submit"><img src={search}/></button> */}
         </div>
 
         <div className="row ">
           <div className="heading">On the go</div>
           {onTheGo && <Reel userTVShows={onTheGo} />}
+          <div className='poster-container'>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/aiy35Evcofzl7hASZZvsFgltHTX.jpg'/>
+            </div>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/aiy35Evcofzl7hASZZvsFgltHTX.jpg'/>
+            </div>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/aiy35Evcofzl7hASZZvsFgltHTX.jpg'/>
+            </div>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/aiy35Evcofzl7hASZZvsFgltHTX.jpg'/>
+            </div>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/aiy35Evcofzl7hASZZvsFgltHTX.jpg'/>
+            </div>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/aiy35Evcofzl7hASZZvsFgltHTX.jpg'/>
+            </div>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/aiy35Evcofzl7hASZZvsFgltHTX.jpg'/>
+            </div>
+          </div>
         </div>
 
         <div className="row ">
           <div className="heading">Completed</div>
           {watched && <Reel userTVShows={watched} />}
+          <div className='poster-container'>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
+            </div>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
+            </div>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
+            </div>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
+            </div>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
+            </div>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
+            </div>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
+            </div>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
+            </div>
+            <div>
+              <img src='https://image.tmdb.org/t/p/w500/9T4e6kA8tVtIK9GZ1Cy1QMvK9js.jpg'/>
+            </div>
+           
+          </div>
         </div>
       </div>
     </StyledHome>

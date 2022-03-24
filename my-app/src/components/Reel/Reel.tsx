@@ -7,6 +7,7 @@ function Reel({ userTVShows }: ReelProps) {
       {userTVShows.map((show, index) => (
         <h2 key={index}>{show.name}</h2>
       ))}
+
     </div>
   );
 }

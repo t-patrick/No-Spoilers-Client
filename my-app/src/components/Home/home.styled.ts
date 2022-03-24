@@ -24,7 +24,24 @@ const StyledHome = styled.div`
   }
 
   .row {
+    border: 1px solid red;
     margin: 20px;
+  }
+  
+  .poster-container {
+    border: 1px solid blue;
+
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 5vh;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+
+  .row img {
+    width: 300px;
+    border: 1px solid green;
+    margin: auto 8px;
   }
   
   .heading {
