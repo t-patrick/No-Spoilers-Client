@@ -28,6 +28,7 @@ function ForumReplies({ topic }: TopicProps) {
   const [reportFormOpen, setReportFormOpen] = useState(false);
   const [replyText, setReplyText] = useState<string>('');
   const [openReport, setOpenReport] = React.useState(false);
+  const [showReplies, setShowReplies] = useState(false);
 
   const handleSendReply = () => {
     const reply: Reply = {
@@ -63,11 +64,12 @@ function ForumReplies({ topic }: TopicProps) {
   return (
     <StyledForumReplies>
       <div className="replies">
-        {topic.replies.map((reply, index) => (
+        {showReplies && topic.replies.map((reply, index) => (
           <ReplyBox key={index} reply={reply} userTVShow={userTVShow} />
         ))}
       </div>
       <div className="reply-modal">
+        <Button onClick={() => setShowReplies(!showReplies)}>{showReplies ? 'Hide!': 'Show!'}</Button>
         <Button variant="outlined" onClick={handleClickOpen}>
           Reply
           <div className="num-of-replies">30</div>
