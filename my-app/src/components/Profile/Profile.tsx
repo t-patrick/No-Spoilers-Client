@@ -50,7 +50,7 @@ function Profile() {
           </div>
 
           <div className="btn-row row">
-            <button type="submit">
+            <button className='save-change' type="submit">
               SAVE CHANGES
             </button>
           </div>

@@ -73,27 +73,29 @@ const StyledProfile = styled.div`
 
 
 
-  button {
+  .save-change {
     background-color: #4a5568;
     font-family: var(--main-font);
     border: none;
     border-radius: 5px;
     color: white;
-    padding: 15px;
+    padding: 15px 70px;
   }
 
-  button: hover {
+
+
+  .save-change: hover {
     cursor: pointer;
     outline: none;
-    padding: 14px;
+    padding: 14px 69px;
     border: 1px solid var(--light-purple);
   }
 
   .btn-row {
     display: flex;
     align-items: flex-start;
-    justify-content: flex-end;
-    padding-right: 13%;
+    justify-content: center;
+    margin-top: 10px;
 
 
     flex: 2;
