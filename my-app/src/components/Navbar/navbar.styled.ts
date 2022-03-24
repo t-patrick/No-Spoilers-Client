@@ -16,6 +16,7 @@ const StyledNavbar = styled.nav`
     padding: 8px 20px;
     width: fit-content;
     color: white;
+    cursor: pointer;
   }
   .links {
     display: flex;
