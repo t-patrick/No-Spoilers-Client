@@ -1,13 +1,14 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { ForumNewTopicProps, ForumProps } from '../../proptypes';
 import StyledForumNewTopic from './forumNewTopic.styled';
+import { CurrentShowContext } from '../Show/Show';
+import { ForumContext } from '../Forum/Forum';
 
-export default function ForumNewTopic({
-  userShow,
-  showDetail,
-  updateTopics,
-}: ForumNewTopicProps) {
+export default function ForumNewTopic() {
+  const { userTVShow, showDetail } = useContext(CurrentShowContext);
+  const { updateTopics } = useContext(ForumContext);
+
   const [title, setTitle] = useState<string>('');
   const [body, setBody] = useState<string>('');
   const [season, setSeason] = useState<number>();
@@ -19,10 +20,10 @@ export default function ForumNewTopic({
   ) as User;
 
   useEffect(() => {
-    if (userShow.episodeCodeUpTo) {
+    if (userTVShow.episodeCodeUpTo) {
       const [seas, ep] =
-        userShow.episodeCodeUpTo &&
-        userShow.episodeCodeUpTo
+        userTVShow.episodeCodeUpTo &&
+        userTVShow.episodeCodeUpTo
           .slice(1)
           .split('e')
           .map((n) => parseInt(n));
@@ -36,17 +37,19 @@ export default function ForumNewTopic({
           showDetail.seasons[season as number].episodes[episode as number]
         );
     }
-  }, [userShow]);
+  }, [userTVShow]);
 
+  // TODO change id so it is not hardcoded
   const constructTopic = (): UserTopic => {
     return {
+      _id: 1,
       title,
       body,
-      TMDB_episode_id: userShow.episodeIdUpTo,
-      TMDB_show_id: userShow.TMDB_show_id,
-      authorUserId: userShow.userId,
+      TMDB_episode_id: userTVShow.episodeIdUpTo,
+      TMDB_show_id: userTVShow.TMDB_show_id,
+      authorUserId: userTVShow.userId,
       authorName: user.displayName,
-      episodeCode: userShow.episodeCodeUpTo,
+      episodeCode: userTVShow.episodeCodeUpTo,
       numberOfReplies: 0,
       avatar: user.avatar,
       date: new Date(),

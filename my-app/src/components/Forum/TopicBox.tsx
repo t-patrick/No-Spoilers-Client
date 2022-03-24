@@ -1,28 +1,33 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { TopicProps, TopicsProps } from '../../proptypes';
 import StyledForumTopicList from './forumTopicList.styled';
 import StyledTopicBox from './topicbox.styled';
 import ForumReplies from './ForumReplies';
 
-function TopicBox({ topic, userShow, showDetail }: TopicProps) {
+function TopicBox({ topic }: TopicProps) {
+  const user = useSelector<MainState>((state) => state.user.user) as User;
+
   const upVote = () => {
     // send topic id
     // _id
+
+    if (topic.authorUserId === user._id.toString() || topic.userVote === 1) {
+      // Cancel action
+      return;
+    }
+
+    // Otherwise. upvote. Take response and update state.
   };
 
   const downVote = () => {
     // check user model if
     // topic id
     // _id
-  };
 
-  const addReply = () => {
-    // topic id
-    // reply body
-    // userId
+    if (topic.authorUserId === user._id.toString() || topic.userVote === -1)
+      return;
   };
-
-  const renderRating = () => {};
 
   return (
     <StyledTopicBox>
@@ -60,7 +65,7 @@ function TopicBox({ topic, userShow, showDetail }: TopicProps) {
         </div>
       </div>
 
-      <ForumReplies topic={topic} showDetail={showDetail} userShow={userShow} />
+      <ForumReplies topic={topic} />
     </StyledTopicBox>
   );
 }

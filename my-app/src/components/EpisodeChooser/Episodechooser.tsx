@@ -1,21 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { EpisodechooserProps } from '../../proptypes';
+import { CurrentShowContext } from '../Show/Show';
 import { constructEpCode, getBackground } from './episode-chooser-helpers';
 import StyledEpisodeChooser from './episodechooser.styled';
 import useEpisodeUpTo from './useEpisodeUpTo';
 
-function Episodechooser({
-  seasons,
-  userShow,
-  setUserTVShow,
-}: EpisodechooserProps) {
+function Episodechooser({ seasons }: EpisodechooserProps) {
+  const { userTVShow } = useContext(CurrentShowContext);
+
   const {
     episodeUpTo,
     setEpisodeUpTo,
     selectedTab,
     setSelectedTab,
     updateCurrentEp,
-  } = useEpisodeUpTo(userShow, setUserTVShow);
+  } = useEpisodeUpTo();
 
   const renderSeason = (index: number) => {
     return (
@@ -59,8 +58,8 @@ function Episodechooser({
           constructEpCode(
             episode.season_number,
             episode.episode_number,
-            userShow.episodeCodeNext
-          ) === userShow.episodeCodeNext ? (
+            userTVShow.episodeCodeNext
+          ) === userTVShow.episodeCodeNext ? (
             <span>{episode.name}</span>
           ) : (
             ''

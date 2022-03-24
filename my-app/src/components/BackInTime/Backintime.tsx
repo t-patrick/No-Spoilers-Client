@@ -9,6 +9,7 @@ import {
 import { BackintimeProps } from '../../proptypes';
 import StyledBackInTime from './BackInTime.styled';
 import downArrow from './image/down.png';
+import WikiLogo from '../../images/imdb.png';
 
 function Backintime({ show, currentEpisode }: BackintimeProps) {
   const [waybackUrls, setWaybackUrls] = useState<ExternalIds>(

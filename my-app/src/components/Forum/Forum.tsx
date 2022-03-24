@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import ForumNewTopic from './ForumNewTopic';
 import ForumTopicList from './ForumTopicList';
 import StyledForum from './forum.styled';
-import { ForumProps } from '../../proptypes';
+import { ForumContextType, ForumProps } from '../../proptypes';
 import { useSelector } from 'react-redux';
+import { CurrentShowContext } from '../Show/Show';
 // import { dummyTopics } from './mocks';
 
-function Forum({ showDetail, userShow }: ForumProps) {
+export const ForumContext = createContext<ForumContextType>(
+  {} as ForumContextType
+);
+
+function Forum() {
   const user = useSelector<MainState>((state) => state.user.user) as User;
+
+  const { showDetail, userTVShow } = useContext(CurrentShowContext);
 
   const [topics, setTopics] = useState<Array<UserTopic>>([]);
 
@@ -19,22 +26,31 @@ function Forum({ showDetail, userShow }: ForumProps) {
     setTopics([...topics, topic]);
   };
 
+  const addReply = (topicToUpdate: UserTopic, reply: Reply) => {
+    const topicsCopy = [...topics];
+    topicsCopy
+      .find((topic) => topic._id === topicToUpdate._id)
+      ?.replies.push(reply);
+    setTopics(topicsCopy);
+  };
+
   return (
-    <StyledForum>
-      <h2>
-        {showDetail.name}: Next Episode: {userShow.episodeCodeNext}
-      </h2>
-      <ForumNewTopic
-        userShow={userShow}
-        showDetail={showDetail}
-        updateTopics={updateTopics}
-      />
-      <ForumTopicList
-        topics={topics}
-        userShow={userShow}
-        showDetail={showDetail}
-      />
-    </StyledForum>
+    <ForumContext.Provider
+      value={{
+        topics: topics,
+        setTopics: setTopics,
+        updateTopics: updateTopics,
+        addReply: addReply,
+      }}
+    >
+      <StyledForum>
+        <h2>
+          {showDetail.name}: Next Episode: {userTVShow.episodeCodeNext}
+        </h2>
+        <ForumNewTopic />
+        <ForumTopicList />
+      </StyledForum>
+    </ForumContext.Provider>
   );
 }
 

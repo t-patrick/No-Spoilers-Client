@@ -1,7 +1,7 @@
 import { TopicProps } from '../../proptypes';
 import StyledForumReplies from './forumReplies.styled';
 import redFlag from './image/red-flag.png';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -10,20 +10,48 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ReplyBox from './ReplyBox';
+import { useSelector } from 'react-redux';
+import { CurrentShowContext } from '../Show/Show';
+import { ForumContext } from './Forum';
 
-function ForumReplies({ topic, userShow }: TopicProps) {
+function ForumReplies({ topic }: TopicProps) {
+  //// REDUX STORE
+  const user = useSelector<MainState>((state) => state.user.user) as User;
+
+  //// CONTEXT
+  const { userTVShow } = useContext(CurrentShowContext);
+
+  const { addReply } = useContext(ForumContext);
+
+  //// LOCAL STATE
   const [open, setOpen] = useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
+  const [reportFormOpen, setReportFormOpen] = useState(false);
+  const [replyText, setReplyText] = useState<string>('');
+  const [openReport, setOpenReport] = React.useState(false);
+
+  const handleSendReply = () => {
+    const reply: Reply = {
+      _id: 1,
+      authorName: user.displayName,
+      avatar: user.avatar,
+      authorUserId: user._id,
+      date: new Date(Date.now()),
+      body: replyText,
+      topicId: topic._id as number,
+      replierEpisodeUpTo: userTVShow.episodesWatchedSoFar,
+      isReported: false,
+    };
+
+    // TODO Send to API
+
+    addReply(topic, reply);
     setOpen(false);
   };
 
-  const [openReport, setOpenReport] = React.useState(false);
-  const handleReportOpen = () => {
-    setOpenReport(true);
+  const handleClickOpen = () => {
+    setOpen(true);
   };
+
   const handleReportClose = () => {
     setOpenReport(false);
   };
@@ -36,7 +64,7 @@ function ForumReplies({ topic, userShow }: TopicProps) {
     <StyledForumReplies>
       <div className="replies">
         {topic.replies.map((reply, index) => (
-          <ReplyBox key={index} reply={reply} userShow={userShow} />
+          <ReplyBox key={index} reply={reply} userTVShow={userTVShow} />
         ))}
       </div>
       <div className="reply-modal">
@@ -44,12 +72,12 @@ function ForumReplies({ topic, userShow }: TopicProps) {
           Reply
           <div className="num-of-replies">30</div>
         </Button>
-        <Button className="report-btn" onClick={handleReportOpen}>
+        <Button className="report-btn" onClick={() => setReportFormOpen(true)}>
           Report
           <img src={redFlag} />
         </Button>
         <div className="reply-box">
-          <Dialog open={open} onClose={handleClose}>
+          <Dialog open={open} onClose={() => setOpen(true)}>
             <div style={divStyle}>
               <DialogTitle>{topic.title}</DialogTitle>
               <DialogContent>
@@ -64,12 +92,14 @@ function ForumReplies({ topic, userShow }: TopicProps) {
                   type="email"
                   fullWidth
                   variant="standard"
+                  value={replyText}
+                  onChange={(e) => setReplyText(e.target.value)}
                 />
               </DialogContent>
             </div>
             <DialogActions>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleClose}>Reply</Button>
+              <Button onClick={handleSendReply}>Reply</Button>
+              <Button onClick={() => setOpen(false)}>Cancel</Button>
             </DialogActions>
           </Dialog>
         </div>
@@ -90,18 +120,18 @@ function ForumReplies({ topic, userShow }: TopicProps) {
       </div>
 
       <div className="report-box">
-        <Dialog open={open} onClose={handleReportClose}>
+        <Dialog open={reportFormOpen} onClose={handleReportClose}>
           <div style={divStyle}>
             <DialogTitle>{topic.title}</DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Reply to join the discussion!
+                Report a spoiler, or other unsuitable content
               </DialogContentText>
               <TextField
                 autoFocus
                 margin="dense"
                 id="name"
-                label="Your comment here..."
+                label="Your cosdv."
                 type="email"
                 fullWidth
                 variant="standard"
@@ -109,23 +139,11 @@ function ForumReplies({ topic, userShow }: TopicProps) {
             </DialogContent>
           </div>
           <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleClose}>Reply</Button>
+            <Button onClick={handleReportClose}>Cancel</Button>
+            <Button onClick={handleReportClose}>Reply</Button>
           </DialogActions>
         </Dialog>
       </div>
-
-      {/* <div className='replies'>
-        <Box sx={{ height: 180 }}>
-        <FormControlLabel
-          control={<Switch checked={checked} onChange={handleChange} />}
-          label="Show Comments"
-        />
-        <Box sx={{ display: 'flex' }}>
-          <Fade in={checked}>{commentBox}</Fade>
-        </Box>
-        </Box>
-      </div> */}
     </StyledForumReplies>
   );
 }

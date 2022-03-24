@@ -24,8 +24,6 @@ export interface ForumNewTopicProps extends ForumProps {
 
 export type EpisodechooserProps = {
   seasons: Array<Season>;
-  userShow: UserTVShow;
-  setUserTVShow: Dispatch<SetStateAction<UserTVShow>>;
 };
 
 export type NavbarProps = {
@@ -35,7 +33,7 @@ export type NavbarProps = {
 export interface TopicsProps extends ForumProps {
   topics: UserTopic[];
 }
-export interface TopicProps extends ForumProps {
+export interface TopicProps {
   topic: UserTopic;
 }
 
@@ -46,5 +44,18 @@ export type BackintimeProps = {
 
 export type ReplyProps = {
   reply: Reply;
-  userShow: UserTVShow;
+  userTVShow: UserTVShow;
+};
+
+export type ForumContextType = {
+  topics: Array<UserTopic>;
+  updateTopics: (topic: UserTopic) => void;
+  setTopics: Dispatch<SetStateAction<UserTopic[]>>;
+  addReply: (topic: UserTopic, reply: Reply) => void;
+};
+
+export type CurrentShowContextType = {
+  showDetail: TVShow;
+  userTVShow: UserTVShow;
+  setUserTVShow: Dispatch<SetStateAction<UserTVShow>>;
 };

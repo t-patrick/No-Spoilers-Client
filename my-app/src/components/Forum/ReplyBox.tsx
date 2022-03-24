@@ -12,24 +12,28 @@ import Reply from '@material-ui/icons/Reply';
 
 // Needs the conditional
 
-function ReplyBox({ reply, userShow }: ReplyProps) {
-  const user = useSelector<MainState>((state) => state.user.user);
+function ReplyBox({ reply, userTVShow }: ReplyProps) {
+  const user = useSelector<MainState>((state) => state.user.user) as User;
 
   const [isExpanded, setIsExpanded] = useState<boolean>(true);
 
   const isReplierFurtherAlong = () => {
-    return reply.replierEpisodeUpTo > userShow.episodesWatchedSoFar;
+    return reply.replierEpisodeUpTo > userTVShow.episodesWatchedSoFar;
+  };
+
+  const isReplierTheUser = () => {
+    return reply.authorUserId === user._id;
   };
 
   const renderReplierProgress = () => {
     const diff = Math.abs(
-      reply.replierEpisodeUpTo - userShow.episodesWatchedSoFar
+      reply.replierEpisodeUpTo - userTVShow.episodesWatchedSoFar
     );
 
-    if (reply.replierEpisodeUpTo > userShow.episodesWatchedSoFar) {
+    if (reply.replierEpisodeUpTo > userTVShow.episodesWatchedSoFar) {
       return (
         <>
-          they are{' '}
+          {isReplierTheUser() ? 'you ' : 'they '} are{' '}
           <span className="replier-progress-ahead replier-progress">
             {diff} episodes ahead of you
           </span>
@@ -37,10 +41,10 @@ function ReplyBox({ reply, userShow }: ReplyProps) {
       );
     }
 
-    if (reply.replierEpisodeUpTo < userShow.episodesWatchedSoFar) {
+    if (reply.replierEpisodeUpTo < userTVShow.episodesWatchedSoFar) {
       return (
         <>
-          they are{' '}
+          {isReplierTheUser() ? 'you ' : 'they '} are{' '}
           <span className="replier-progress-behind replier-progress">
             {diff} episodes behind you
           </span>{' '}
@@ -50,7 +54,7 @@ function ReplyBox({ reply, userShow }: ReplyProps) {
 
     return (
       <>
-        they are{' '}
+        {isReplierTheUser() ? 'you' : 'they'} are
         <span className="replier-progress-same replier-progress">
           on the same episode
         </span>{' '}
@@ -59,7 +63,7 @@ function ReplyBox({ reply, userShow }: ReplyProps) {
   };
 
   useEffect(() => {
-    userShow && setIsExpanded(!isReplierFurtherAlong());
+    userTVShow && setIsExpanded(!isReplierFurtherAlong());
   }, []);
 
   return (
@@ -75,7 +79,8 @@ function ReplyBox({ reply, userShow }: ReplyProps) {
         >
           <Typography>
             <Reply />
-            Reply from: {reply.authorName}, {renderReplierProgress()}
+            Reply from {isReplierTheUser() ? 'You' : reply.authorName},{' '}
+            {renderReplierProgress()}
           </Typography>
         </AccordionSummary>
         <AccordionDetails className="reply-content">

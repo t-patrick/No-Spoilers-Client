@@ -30,8 +30,10 @@ export const addTVShow = async (_id: number, TMDB_show_Id: number) => {
   return newUserTVShow.data as UserTVShow;
 };
 
-export const getShowDetail = async (id: string) => {
-  const newUserTVShow = await axios.get(`${BASE_URL}/show/${id}`);
+export const getShowDetail = async (id: string, userId: string) => {
+  const newUserTVShow = await axios.post(`${BASE_URL}/show/${id}`, {
+    _id: userId,
+  });
 
   return newUserTVShow.data as TVShow;
 };

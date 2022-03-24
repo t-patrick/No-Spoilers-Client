@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import Episodechooser from '../EpisodeChooser/Episodechooser';
 import Forum from '../Forum/Forum';
 import Backintime from '../BackInTime/Backintime';
@@ -13,6 +13,11 @@ import Modal from '@mui/material/Modal';
 import { useParams } from 'react-router-dom';
 
 import { getShowDetail } from '../../API/user-api';
+import { CurrentShowContextType } from '../../proptypes';
+
+export const CurrentShowContext = createContext<CurrentShowContextType>(
+  {} as CurrentShowContextType
+);
 
 function Show() {
   const { id } = useParams();
@@ -39,7 +44,7 @@ function Show() {
   useEffect(() => {
     const getShow = async () => {
       if (id) {
-        const detail = await getShowDetail(id);
+        const detail = await getShowDetail(id, userTVShow.userId);
         setShow(detail);
 
         const userShow = user.userTVInfo.find(
@@ -52,52 +57,59 @@ function Show() {
     getShow();
   }, [id]);
 
-  //
   return (
-    <StyledShow>
-      <Navbar showSearch={false} />
-      <div className="show-view">
-        <div className="image-button-container">
-          <img
-            src={`https://image.tmdb.org/t/p/w500${userTVShow.poster_path}`}
-          />
-          {/* modal */}
-          <div className="button-container">
-            <Button onClick={handleOpen}>Show Details</Button>
-            <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h3">
-                  {show.tagline && <>&quot;{show.tagline}&quot;</>}
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  <p>
-                    <span style={{ fontWeight: 800 }}> Description:</span>{' '}
-                    {show.overview}
-                  </p>
-                  <p>
-                    Release year:{' '}
-                    <span>{new Date(show.first_air_date).getFullYear()}</span>
-                  </p>
-                </Typography>
-              </Box>
-            </Modal>
+    <CurrentShowContext.Provider
+      value={{
+        showDetail: show,
+        userTVShow: userTVShow,
+        setUserTVShow: setUserTVShow,
+      }}
+    >
+      <StyledShow>
+        <Navbar showSearch={false} />
+        <div className="show-view">
+          <div className="image-button-container">
+            <img
+              src={`https://image.tmdb.org/t/p/w500${userTVShow.poster_path}`}
+            />
+            {/* modal */}
+            <div className="button-container">
+              <Button onClick={handleOpen}>Show Details</Button>
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <Typography
+                    id="modal-modal-title"
+                    variant="h6"
+                    component="h3"
+                  >
+                    {show.tagline && <>&quot;{show.tagline}&quot;</>}
+                  </Typography>
+                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                    <p>
+                      <span style={{ fontWeight: 800 }}> Description:</span>{' '}
+                      {show.overview}
+                    </p>
+                    <p>
+                      Release year:{' '}
+                      <span>{new Date(show.first_air_date).getFullYear()}</span>
+                    </p>
+                  </Typography>
+                </Box>
+              </Modal>
+            </div>
           </div>
+          <Backintime show={show} currentEpisode={userTVShow.episodeCodeUpTo} />
         </div>
-        <Backintime show={show} currentEpisode={userTVShow.episodeCodeUpTo} />
-      </div>
 
-      <Episodechooser
-        seasons={show.seasons}
-        userShow={userTVShow}
-        setUserTVShow={setUserTVShow}
-      />
-      <Forum showDetail={show} userShow={userTVShow} />
-    </StyledShow>
+        <Episodechooser seasons={show.seasons} />
+        <Forum />
+      </StyledShow>
+    </CurrentShowContext.Provider>
   );
 }
 
