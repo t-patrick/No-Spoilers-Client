@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, Profiler, useState } from 'react';
 import './App.css';
 import Splash from './components/Splash/Splash';
 import Show from './components/Show/Show';
@@ -11,6 +11,7 @@ import { createStore } from 'redux';
 import reducers from './state/reducers';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import Profile from './components/Profile/Profile';
 
 const store = createStore(reducers, composeWithDevTools());
 
@@ -26,6 +27,7 @@ function App() {
               <Route path="/show/:id" element={<Show />} />
               <Route path="/search" element={<Search />} />
               <Route path="/" element={<Splash />} />
+              <Route path="/profile/:id" element={<Profile/>}/>
             </Routes>
           </Router>
         </div>

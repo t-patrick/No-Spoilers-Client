@@ -5,9 +5,6 @@ import Navbar from '../Navbar/Navbar';
 import Reel from '../Reel/Reel';
 import StyledHome from './home.styled';
 import search from './image/search.png';
-// import completedIcon from './image/completed.png';
-// import deleteIcon from './image/remove.png';
-
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Tooltip from "@mui/material/Tooltip";
@@ -93,6 +90,30 @@ function Home() {
           {watched && <Reel userTVShows={watched} />}
 
           <div className='poster-container'>
+            <div>
+              <img src={mockShowPath[1]}/>
+              <div className='btn'>
+                <Tooltip title='Delete the show' arrow>
+                  <Button variant="outlined" className='delete'>✖</Button>
+                </Tooltip>
+              </div>
+            </div>
+            <div>
+              <img src={mockShowPath[1]}/>
+              <div className='btn'>
+                <Tooltip title='Delete the show' arrow>
+                  <Button variant="outlined" className='delete'>✖</Button>
+                </Tooltip>
+              </div>
+            </div>
+            <div>
+              <img src={mockShowPath[1]}/>
+              <div className='btn'>
+                <Tooltip title='Delete the show' arrow>
+                  <Button variant="outlined" className='delete'>✖</Button>
+                </Tooltip>
+              </div>
+            </div>
             <div>
               <img src={mockShowPath[1]}/>
               <div className='btn'>
