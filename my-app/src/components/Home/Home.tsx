@@ -10,6 +10,7 @@ import search from './image/search.png';
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Tooltip from "@mui/material/Tooltip";
 
 
 
@@ -75,67 +76,33 @@ function Home() {
             <div>
               <img src={mockShowPath[0]}/>
               <div className='btn'>
-                <Button variant="outlined" className='completed'>Completed!</Button>
-                <Button variant="outlined" className='delete'> Delete! </Button>
-              </div>
-            </div>
-            <div>
-              <img src={mockShowPath[0]}/>
-              <div className='btn'>
-                <Button variant="outlined" className='completed'>Completed!</Button>
-                <Button variant="outlined" className='delete'> Delete! </Button>
-              </div>
-            </div>
-            <div>
-              <img src={mockShowPath[0]}/>
-              <div className='btn'>
-                <Button variant="outlined" className='completed'>Completed!</Button>
-                <Button variant="outlined" className='delete'> Delete! </Button>
-              </div>
-            </div>
-            <div>
-              <img src={mockShowPath[0]}/>
-              <div className='btn'>
-                <Button variant="outlined" className='completed'>Completed!</Button>
-                <Button variant="outlined" className='delete'> Delete! </Button>
-              </div>
-            </div>
-            <div>
-              <img src={mockShowPath[0]}/>
-              <div className='btn'>
-                <Button variant="outlined" className='completed'>Completed!</Button>
-                <Button variant="outlined" className='delete'> Delete! </Button>
-              </div>
-            </div>
-            <div>
-              <img src={mockShowPath[0]}/>
-              <div className='btn'>
-                <Button variant="outlined" className='completed'>Completed!</Button>
-                <Button variant="outlined" className='delete'> Delete! </Button>
+              <Tooltip title='Mark as Complete' arrow>
+                <Button variant="outlined" className='completed'>✔</Button>
+              </Tooltip>
+              <Tooltip title='Delete the show' arrow>
+                <Button variant="outlined" className='delete'>✖</Button>
+              </Tooltip>
               </div>
             </div>
           </div>
         </div>
 
+{/* Completed */}
         <div className="row ">
           <div className="heading">Completed</div>
           {watched && <Reel userTVShows={watched} />}
+
           <div className='poster-container'>
             <div>
               <img src={mockShowPath[1]}/>
               <div className='btn'>
-                <Button variant="outlined" className='delete'> Delete! </Button>
+                <Tooltip title='Delete the show' arrow>
+                  <Button variant="outlined" className='delete'>✖</Button>
+                </Tooltip>
               </div>
             </div>
-            <div>
-              <img src={mockShowPath[1]}/>
-              <div className='btn'>
-                <Button variant="outlined" className='delete'> Delete! </Button>
-              </div>
-            </div>
-            
-           
           </div>
+
         </div>
       </div>
     </StyledHome>
