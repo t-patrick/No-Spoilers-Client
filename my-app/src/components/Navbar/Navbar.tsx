@@ -21,7 +21,7 @@ function Navbar({ showSearch }: NavbarProps) {
         <Link to="/home">
           <button>Home</button>
         </Link>
-        <Link to="/profile">
+        <Link to="/profile/:id">
           <button>Profile</button>
         </Link>
         <Link to="/">
