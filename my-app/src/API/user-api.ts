@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Login
 
-const BASE_URL = 'http://localhost:3010';
+const BASE_URL = 'http://localhost:3001';
 
 export const loginUser = async (
   user: Omit<DBUser, 'avatar' | 'displayName'>
