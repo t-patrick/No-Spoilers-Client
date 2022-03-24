@@ -41,11 +41,11 @@ function Profile() {
           <div className='pwd-row row'>
             <div>
               <div>Password</div>
-              <input type='text' />
+              <input type='password' />
             </div>
             <div>
               <div>Confirm Password</div>
-              <input type='text' />
+              <input type='password' />
             </div>
           </div>
 
