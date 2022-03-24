@@ -49,8 +49,10 @@ function Profile() {
             </div>
           </div>
 
-          <div className='btn-row row'>
-            <button>SAVE CHANGES</button>
+          <div className="btn-row row">
+            <button type="submit">
+              SAVE CHANGES
+            </button>
           </div>
 
         </form>

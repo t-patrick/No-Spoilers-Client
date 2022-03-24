@@ -42,9 +42,7 @@ const StyledProfile = styled.div`
     justify-content: space-between;
   }
   
-  .row {
-    // border: 1px solid white;
-  }
+
 
   .heading-row {
     font-size: 40px;
@@ -73,10 +71,29 @@ const StyledProfile = styled.div`
     flex: 2;
   }
 
+
+
+  button {
+    background-color: #4a5568;
+    font-family: var(--main-font);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 15px;
+  }
+
+  button: hover {
+    cursor: pointer;
+    outline: none;
+    padding: 14px;
+    border: 1px solid var(--light-purple);
+  }
+
   .btn-row {
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
+    padding-right: 13%;
 
 
     flex: 2;
@@ -90,6 +107,10 @@ const StyledProfile = styled.div`
     margin-top: 20px;
     padding: 15px 10px
   }
+
+  // .row {
+  //   border: 1px solid white;
+  // }
 
 
 `
