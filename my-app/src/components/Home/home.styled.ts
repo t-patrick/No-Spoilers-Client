@@ -29,7 +29,7 @@ const StyledHome = styled.div`
   }
   
   .poster-container {
-    // border: 1px solid blue;
+    border: 1px solid blue;
 
     display: flex;
     flex-wrap: nowrap;
@@ -43,6 +43,16 @@ const StyledHome = styled.div`
     margin: auto 8px;
   }
   
+  .row img: hover {
+    opacity: 0.3;
+    cursor: pointer;
+  }
+
+  .row img: hover + .btn {
+    // display: block;
+    visibility: visible;
+  }
+
   .heading {
     padding-top: 15px;
     padding-bottom: 15px;
@@ -52,16 +62,28 @@ const StyledHome = styled.div`
 
   .btn {
     // border: 0.5px solid yellow;
-    width: 98%;
     display: flex;
     justify-content: flex-end;
-    margin-top: 10px;
+    margin-top: -65px;
+    z-index: 1;
+    
+
+    display: hidden;
   }
 
   .btn .delete {
-    border: 1px solid red;
+    // border: 1px solid red;
+    border: none;
     color: red;
+    font-size: 32px;
   }
+
+  .btn .completed {
+    border: none;
+    font-size: 32px;
+    // font-weight: bold;
+  }
+
 
 
 
