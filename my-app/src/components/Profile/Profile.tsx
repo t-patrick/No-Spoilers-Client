@@ -12,20 +12,21 @@ function Profile() {
       <div className='profile-layout'>
 
         <div className='avatar-container'>
-          <div className='old-user-name'>
+          <h1 className='current-user-name'>
             Bruce Wayne
-          </div>
-          <div className='old-avatar'>
+          </h1>
+          <div className='current-avatar'>
             <img src={placeholderAvatar}/>
           </div>
         </div>
 
         <form className='input-container'>
-          <div className='heading'>
-            <h2>Edit User&#39;s Detail</h2>
+          <div className='heading-row row'>
+          {/* <div>Edit User&#39;s Detail</div> */}
+            <div>Hey Bruce, you wanna change your details below?</div>
           </div>
 
-          <div className='name-email'>
+          <div className='name-email-row row'>
             <div>
               <div>User Name</div>
               <input type='text' />
@@ -37,7 +38,7 @@ function Profile() {
             </div>
           </div>
 
-          <div className='pwd'>
+          <div className='pwd-row row'>
             <div>
               <div>Password</div>
               <input type='text' />
@@ -48,7 +49,7 @@ function Profile() {
             </div>
           </div>
 
-          <div className='btn'>
+          <div className='btn-row row'>
             <button>SAVE CHANGES</button>
           </div>
 

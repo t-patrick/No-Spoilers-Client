@@ -5,49 +5,90 @@ const StyledProfile = styled.div`
   
   .profile-layout {
     display: flex;
-    border: 1px solid red;
+    // border: 1px solid red;
     justify-content: space-between;
+    margin-top: 30px;
+    height: 90vh;
   }
 
+  
   .avatar-container {
     display: flex;
-    // border: 1px solid green;
     display: center;
     align-items: center;
     flex-direction: column;
     flex: 1;
+
+
+    padding-top: 200px;
+  }
+  
+
+  .current-avatar {
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 
-  .old-avatar img {
-    width: 50%;
-    // border: 1px solid blue;
+  .current-avatar img {
+    width: 100%;
   }
+
 
   .input-container {
+    flex: 2;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 1px solid purple;
-    flex: 1;
   }
   
-  .heading {
-    flex: 1;
+  .row {
+    // border: 1px solid white;
   }
 
-  .name-email {
-    display: flex;
-    flex: 1;
-  }
+  .heading-row {
+    font-size: 40px;
+    line-height: 60px;
+    font-weight: 300;
+    
+    padding-left: 13%;
 
-  .pwd {
-    display: flex;
     flex: 2;
-
   }
 
-  .btn {
+  .name-email-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    
     flex: 2;
+  }
+
+  .pwd-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    flex: 2;
+  }
+
+  .btn-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+
+
+    flex: 2;
+  }
+
+  input {
+    border-radius: 10px;
+    outline: none;
+    border-color: transparent;
+    width: 367px;
+    margin-top: 20px;
+    padding: 15px 10px
   }
 
 
