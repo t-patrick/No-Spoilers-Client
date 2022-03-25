@@ -62,6 +62,10 @@ const StyledForumTopicList = styled.div`
     padding: 10px;
   }
 
+  .avatar {
+    width: 50%;
+  }
+
   .user-info {
     flex: 2;
     display: flex;
@@ -70,15 +74,15 @@ const StyledForumTopicList = styled.div`
     justify-content: center;
   }
 
-  .avatar {
-    width: 50%;
-  }
-
   .topic-content {
-    flex: 8;
+    flex: 7;
     padding: 10px;
     display: flex;
     flex-direction: column;
+  }
+
+  .button-cluster {
+    flex: 1;
   }
 
   .topic-content button {

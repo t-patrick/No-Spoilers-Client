@@ -1,6 +1,8 @@
 import { TopicProps } from '../../proptypes';
 import StyledForumReplies from './forumReplies.styled';
 import redFlag from './image/red-flag.png';
+import reply from './image/reply.png';
+import hide from './image/hide.png';
 import React, { useContext, useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -57,12 +59,6 @@ function ForumReplies({ topic }: TopicProps) {
 
   return topic.replies ? (
     <StyledForumReplies>
-      <div className="replies">
-        {showReplies &&
-          topic.replies.map((reply, index) => (
-            <ReplyBox key={index} reply={reply} userTVShow={userTVShow} />
-          ))}
-      </div>
       <div className="reply-modal">
         <Button
           className="show-hide-btn"
@@ -71,16 +67,19 @@ function ForumReplies({ topic }: TopicProps) {
         >
           {showReplies
             ? 'Hide'
-            : topic.numberOfReplies +
-              (topic.numberOfReplies === 1 ? ' reply' : ' replies')}
+            : `${topic.numberOfReplies} ${
+                topic.numberOfReplies === 1 ? 'reply' : 'replies'
+              }`}
         </Button>
-        <Button variant="outlined" onClick={handleClickOpen}>
-          Reply
+        <Button
+          className="reply-btn"
+          variant="outlined"
+          onClick={handleClickOpen}
+        >
+          <img src={reply} style={{ transform: 'scale(2)' }} />
         </Button>
-
         <Button className="report-btn" onClick={() => setReportFormOpen(true)}>
-          Report
-          <img src={redFlag} />
+          <img src={redFlag} style={{ transform: 'scale(2)' }} />
         </Button>
 
         <div className="reply-box">
@@ -139,6 +138,13 @@ function ForumReplies({ topic }: TopicProps) {
           </Dialog>
         </div>
       </div>
+
+      <div className="replies">
+        {showReplies &&
+          topic.replies.map((reply, index) => (
+            <ReplyBox key={index} reply={reply} userTVShow={userTVShow} />
+          ))}
+      </div>
     </StyledForumReplies>
   ) : (
     <></>
@@ -171,3 +177,25 @@ const mockReplies: Reply[] = [
     isReported: false,
   },
 ];
+
+/* 
+      <div className="replies">
+        {showReplies &&
+          topic.replies.map((reply, index) => (
+            <ReplyBox key={index} reply={reply} userTVShow={userTVShow} />
+          ))}
+      </div>
+      <div className="reply-modal">
+        <Button
+          className="show-hide-btn"
+          variant="outlined"
+          onClick={() => showReplyBox()}
+        >
+          {showReplies
+            ? 'Hide'
+            : topic.numberOfReplies +
+              (topic.numberOfReplies === 1 ? ' reply' : ' replies')}
+        </Button>
+        <Button variant="outlined" onClick={handleClickOpen}>
+          Reply
+*/

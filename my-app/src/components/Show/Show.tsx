@@ -148,6 +148,16 @@ function Show() {
               </Modal>
             </div>
           </div>
+          <div className='show-description'>
+            <h1>{show.name}</h1>
+            <br></br>
+            <p>First episode date: {show.first_air_date}</p>
+            <p>Last episode date: {show.last_air_date}</p>
+            <p>Total number of seasons: {show.number_of_seasons}</p>
+            <p>Total number of episode: {show.number_of_episodes}</p>
+            {/* italic for tagline */}
+            <p className='tagline'>{show.tagline}</p>
+          </div>
           <Backintime show={show} currentEpisode={userTVShow.episodeCodeUpTo} />
         </div>
 
