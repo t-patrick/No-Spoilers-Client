@@ -53,6 +53,7 @@ export type ForumContextType = {
   updateTopics: (topic: UserTopic) => void;
   setTopics: Dispatch<SetStateAction<UserTopic[]>>;
   addReply: (topic: UserTopic, reply: Reply) => void;
+  updateTopic: (topic: UserTopic) => void;
 };
 
 export type CurrentShowContextType = {

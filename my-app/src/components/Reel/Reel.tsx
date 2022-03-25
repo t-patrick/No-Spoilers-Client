@@ -12,8 +12,6 @@ function Reel({ userTVShows, isCompleted }: ReelProps) {
   const { userTVShow } = useContext(CurrentShowContext);
   const navigate = useNavigate();
   const goToShowPage = (showId: number) => {
-    console.log(userTVShow);
-
     navigate(`/show/${showId}`);
   };
 

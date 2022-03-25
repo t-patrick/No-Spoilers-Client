@@ -38,13 +38,11 @@ function useEpisodeUpTo() {
     const episodeDetail = showDetail.seasons[selectedTab].episodes[episode];
     // need episode id
 
-    console.log(episodeDetail);
-
     const update = await updateEpisode(
       userTVShow.userId,
       newEpisodeCode,
       episodeDetail.TMDB_episode_id.toString(),
-      showDetail
+      userTVShow.TMDB_show_id.toString()
     );
 
     if (update) {

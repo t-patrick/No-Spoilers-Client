@@ -1,32 +1,41 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { TopicProps, TopicsProps } from '../../proptypes';
 import StyledForumTopicList from './forumTopicList.styled';
 import StyledTopicBox from './topicbox.styled';
 import ForumReplies from './ForumReplies';
+import { downVotePost, upVotePost } from '../../API/user-api';
+import { ForumContext } from '../../App';
 
 function TopicBox({ topic }: TopicProps) {
   const user = useSelector<MainState>((state) => state.user.user) as User;
+  const { updateTopic } = useContext(ForumContext);
 
-  const upVote = () => {
+  const vote = async (vote: number) => {
     // send topic id
     // _id
 
-    if (topic.authorUserId === user._id.toString() || topic.userVote === 1) {
-      // Cancel action
-      return;
+    let response;
+
+    if (vote === 1) {
+      response = await upVotePost(
+        user._id.toString(),
+        topic._id?.toString() as string
+      );
+    } else {
+      response = await downVotePost(
+        user._id.toString(),
+        topic._id?.toString() as string
+      );
     }
 
-    // Otherwise. upvote. Take response and update state.
-  };
+    console.log(response);
 
-  const downVote = () => {
-    // check user model if
-    // topic id
-    // _id
-
-    if (topic.authorUserId === user._id.toString() || topic.userVote === -1)
-      return;
+    if (response) {
+      const updatedTopic = Object.assign({}, topic);
+      updatedTopic.voteScore += vote;
+      updateTopic(updatedTopic);
+    }
   };
 
   return topic ? (
@@ -35,11 +44,11 @@ function TopicBox({ topic }: TopicProps) {
         <div className="text-container">
           <div className="score">
             <div>
-              <button className="up" onClick={upVote}></button>
+              <button className="up" onClick={() => vote(1)}></button>
             </div>
             <div className="number">{topic.voteScore}</div>
             <div>
-              <button className="down" onClick={downVote}></button>
+              <button className="down" onClick={() => vote(-1)}></button>
             </div>
           </div>
           <div className="topic-header">

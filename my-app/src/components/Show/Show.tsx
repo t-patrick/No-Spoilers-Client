@@ -43,15 +43,12 @@ function Show() {
   useEffect(() => {
     setIsLoading(true);
     const getShow = async () => {
-      console.log(user);
-
       if (id && user) {
         const userShow = user.userTVInfo.find(
           (show) => show.TMDB_show_id === parseInt(id)
         ) as UserTVShow;
 
         const detail = await getShowDetail(id, userShow.userId);
-        console.log('detail', detail);
 
         if (userShow) setUserTVShow(userShow);
         setShow(detail);

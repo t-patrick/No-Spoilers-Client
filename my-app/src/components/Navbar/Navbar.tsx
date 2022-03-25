@@ -23,16 +23,18 @@ function Navbar({ showSearch }: NavbarProps) {
       <div className="links">
         <button
           onClick={() => {
-            navigate('/home', {
-              state: state,
-            });
+            navigate('/home');
           }}
         >
           Home
         </button>
-        <Link to="/profile">
-          <button>Profile</button>
-        </Link>
+        <button
+          onClick={() => {
+            navigate('/profile');
+          }}
+        >
+          Profile
+        </button>
         <Link to="/">
           <button onClick={logout}>Logout</button>
         </Link>

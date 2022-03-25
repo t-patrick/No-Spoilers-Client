@@ -53,7 +53,7 @@ function ForumReplies({ topic }: TopicProps) {
     width: '600px',
   };
 
-  return (
+  return topic.replies ? (
     <StyledForumReplies>
       <div className="replies">
         {topic.replies.map((reply, index) => (
@@ -138,6 +138,8 @@ function ForumReplies({ topic }: TopicProps) {
         </Dialog>
       </div>
     </StyledForumReplies>
+  ) : (
+    <></>
   );
 }
 

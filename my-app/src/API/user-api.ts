@@ -33,7 +33,6 @@ export const getShowDetail = async (id: string, userId: string) => {
   const newUserTVShow = await axios.post(`${BASE_URL}/show/${id}`, {
     _id: userId,
   });
-  console.log('in getShow detail', newUserTVShow);
 
   return newUserTVShow.data as TVShow;
 };
@@ -42,14 +41,13 @@ export const updateEpisode = async (
   _id: string,
   newEpisodeCode: string,
   TMDB_episode_id: string,
-  tvShow: TVShow
+  TMDB_show_id: string
 ) => {
   // TODO fix this
-  const updated = await axios.patch(`${BASE_URL}/show/`, {
+  const updated = await axios.patch(`${BASE_URL}/show/${TMDB_show_id}`, {
     _id,
     newEpisodeCode,
     TMDB_episode_id,
-    tvShow,
   });
 
   if (updated.status === 500) return undefined;
@@ -90,8 +88,6 @@ export const addUserWaybackUrl = async (
 };
 
 export const updateUserWayback = async (_id: number, TMDB_show_Id: number) => {
-  console.log('in update user wayback, id', _id, 'show id:', TMDB_show_Id);
-
   if (!_id || !TMDB_show_Id) {
     console.log('in get userwayback api, _id or TMDB show id is not a number');
     return;
@@ -128,17 +124,23 @@ export const addTopic = async (
 };
 
 export const fetchTopics = async (TMDB_show_id: string, userId: string) => {
-  try {
-    const topics = await axios.post(`${BASE_URL}/forum/${TMDB_show_id}`, {
-      _id: userId,
-    });
+  console.log(TMDB_show_id);
+  if (TMDB_show_id && userId) {
+    try {
+      const topics = await axios.post(
+        `${BASE_URL}/forum/load/${TMDB_show_id}`,
+        {
+          _id: userId,
+        }
+      );
 
-    if (topics.data === 'No topics found') return [];
+      if (topics.data === 'No topics found') return [];
 
-    return topics.data as UserTopic[];
-  } catch (e) {
-    console.log(e);
-    return undefined;
+      return topics.data as UserTopic[];
+    } catch (e) {
+      console.log(e);
+      return undefined;
+    }
   }
 };
 
@@ -172,4 +174,22 @@ export const deleteUserShow = async (TMDB_show_id: string, userId: string) => {
 
   if (response.status === 204) return true;
   return false;
+};
+
+export const upVotePost = async (userId: string, topicId: string) => {
+  const response = await axios.patch(`${BASE_URL}/forum/topic/upvote`, {
+    _id: userId,
+    topicId,
+  });
+
+  return response;
+};
+
+export const downVotePost = async (userId: string, topicId: string) => {
+  const response = await axios.patch(`${BASE_URL}/forum/topic/downvote`, {
+    _id: userId,
+    topicId,
+  });
+
+  return response;
 };

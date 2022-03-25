@@ -17,11 +17,14 @@ function Forum() {
   useEffect(() => {
     if (userTVShow && !Number.isNaN(userTVShow.TMDB_show_id)) {
       const getTopics = async () => {
-        const topics = await fetchTopics(
+        let topics = await fetchTopics(
           '' + userTVShow.TMDB_show_id,
           '' + user._id
         );
-        if (topics) setTopics(topics);
+        if (topics) {
+          topics = topics?.reverse().flatMap((x) => x);
+          setTopics(topics);
+        }
       };
       getTopics();
     } else {
@@ -33,6 +36,16 @@ function Forum() {
 
   const updateTopics = (topic: UserTopic) => {
     setTopics([...topics, topic]);
+  };
+
+  const updateTopic = (topic: UserTopic) => {
+    const clone: UserTopic[] = [...topics];
+    clone.splice(
+      clone.findIndex((oldTopic) => oldTopic._id === topic._id),
+      1,
+      topic
+    );
+    setTopics(clone);
   };
 
   const addReply = (topicToUpdate: UserTopic, reply: Reply) => {
@@ -50,6 +63,7 @@ function Forum() {
         setTopics: setTopics,
         updateTopics: updateTopics,
         addReply: addReply,
+        updateTopic,
       }}
     >
       <StyledForum>
