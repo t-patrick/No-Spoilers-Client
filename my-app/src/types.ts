@@ -53,6 +53,7 @@ type UserTVShow = {
   TMDB_show_id: number;
   name: string;
   poster_path: string;
+  current_poster_path?: string | null;
   isCompleted: boolean;
   episodeIdUpTo: number;
   episodeCodeUpTo: string;

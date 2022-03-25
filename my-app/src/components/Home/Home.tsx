@@ -1,18 +1,13 @@
-import React, { SyntheticEvent, useState, Component, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
 import Reel from '../Reel/Reel';
 import StyledHome from './home.styled';
-import search from './image/search.png';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 
 function Home() {
-  const stateMain = useSelector<MainState>((state) => state);
+  const state = useSelector<MainState>((state) => state);
   const user = useSelector<MainState>((state) => state.user.user);
 
-  // To map through
   const userShows: UserTVShow[] = (user as User).userTVInfo;
   const defaultWatched =
     userShows && userShows.filter((show) => show.isCompleted);
@@ -24,14 +19,19 @@ function Home() {
   const [currentSearch, setCurrentSearch] = useState('');
 
   useEffect(() => {
+    console.log('in home', userShows);
+
     setWatched(defaultWatched);
     setOnTheGo(defaultOnTheGo);
     filterMovies(currentSearch);
-  }, [stateMain]);
+  }, [state]);
 
   const filterMovies = (value: string) => {
-    if (value === '') setOnTheGo(defaultOnTheGo);
-    if (value === '') setWatched(defaultOnTheGo);
+    if (value === '') {
+      setOnTheGo(defaultOnTheGo);
+      setWatched(defaultWatched);
+      return;
+    }
     const regexp = new RegExp(`.*${value}.*`, 'ig');
     const filteredOnTheGo = defaultOnTheGo.filter((show) =>
       regexp.test(show.name)

@@ -23,7 +23,6 @@ function useEpisodeUpTo() {
     useContext(CurrentShowContext);
 
   const [episodeUpTo, setEpisodeUpTo] = useState<string>('0');
-  const [currentEpisode, setCurrentEpisode] = useState<Episode>({} as Episode);
   const [selectedTab, setSelectedTab] = useState<number>(0);
 
   useEffect(() => {
@@ -36,7 +35,6 @@ function useEpisodeUpTo() {
     const newEpisodeCode = `s${selectedTab + 1}e${episode}`;
 
     const episodeDetail = showDetail.seasons[selectedTab].episodes[episode];
-    // need episode id
 
     const update = await updateEpisode(
       userTVShow.userId,
@@ -55,7 +53,7 @@ function useEpisodeUpTo() {
       setUserTVShowsAction(shows);
       setUserTVShow(update);
     } else {
-      console.log('failed');
+      console.log('update failed');
     }
   };
 
@@ -69,5 +67,3 @@ function useEpisodeUpTo() {
 }
 
 export default useEpisodeUpTo;
-
-// Array<string | number | Dispatch<SetStateAction<string>> | Dispatch<SetStateAction<string>>>

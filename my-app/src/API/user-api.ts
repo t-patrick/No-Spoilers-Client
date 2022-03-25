@@ -193,3 +193,14 @@ export const downVotePost = async (userId: string, topicId: string) => {
 
   return response;
 };
+
+export const setShowWatched = async (TMDB_show_id: string, userId: string) => {
+  const response = await axios.patch(
+    `${BASE_URL}/home/complete/${TMDB_show_id}`,
+    {
+      _id: userId,
+    }
+  );
+
+  return response.data as UserTVShow;
+};

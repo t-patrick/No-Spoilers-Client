@@ -10,6 +10,7 @@ import { ForumContext } from '../../App';
 function TopicBox({ topic }: TopicProps) {
   const user = useSelector<MainState>((state) => state.user.user) as User;
   const { updateTopic } = useContext(ForumContext);
+  const [topicVisible, setTopicVisible] = useState<boolean>(!topic.isReported);
 
   const vote = async (vote: number) => {
     // send topic id
@@ -50,16 +51,25 @@ function TopicBox({ topic }: TopicProps) {
             </div>
           </div>
 
-          <div className="topic-header">
+          <div
+            className="topic-header"
+            onClick={() => setTopicVisible(!topicVisible)}
+          >
             <button>Remove</button>
             <div className="title-and-date">
               <h3>
-                {topic.title} (Posting about {topic.episodeCode})
+                {topic.isReported
+                  ? 'This topic has been reported for possible spoiler, awaiting review. Click to reveal'
+                  : topic.title}{' '}
+                (Posting about {topic.episodeCode})
               </h3>
               <div>{new Date(topic.date).toDateString()}</div>
             </div>
 
-            <div className="bottom-half">
+            <div
+              style={{ display: topicVisible ? 'flex' : 'none' }}
+              className="bottom-half"
+            >
               <div className="user-info">
                 <div className="avatar">
                   <img

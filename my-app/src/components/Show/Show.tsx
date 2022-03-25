@@ -54,20 +54,9 @@ function Show() {
         setShow(detail);
         setIsLoading(false);
 
-        const seasonNumberMatch = userShow.episodeCodeUpTo
-          .slice(1)
-          .split('e')[0];
-
-        if (
-          seasonNumberMatch &&
-          detail.seasons[+seasonNumberMatch - 1].poster_path
-        ) {
-          setCurrentPosterPath(
-            detail.seasons[+seasonNumberMatch - 1].poster_path
-          );
-        } else {
-          setCurrentPosterPath(userTVShow.poster_path);
-        }
+        setCurrentPosterPath(
+          userShow.current_poster_path || userShow.poster_path
+        );
       } else {
         console.log('====================================');
         console.log('in Show, id param or user is undefined');
@@ -77,9 +66,13 @@ function Show() {
     getShow();
   }, []);
 
-  const getPosterPath = () => {
-    return;
-  };
+  useEffect(() => {
+    if (userTVShow) {
+      setCurrentPosterPath(
+        userTVShow.current_poster_path || userTVShow.poster_path
+      );
+    }
+  }, [userTVShow]);
 
   const spinnerStyle = {
     position: 'absolute' as 'absolute' | 'relative' | 'fixed',

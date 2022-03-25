@@ -1,11 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ForumNewTopic from './ForumNewTopic';
 import ForumTopicList from './ForumTopicList';
 import StyledForum from './forum.styled';
 import { useSelector } from 'react-redux';
 import { fetchTopics } from '../../API/user-api';
 import { CurrentShowContext, ForumContext } from '../../App';
-// import { dummyTopics } from './mocks';
 
 function Forum() {
   const user = useSelector<MainState>((state) => state.user.user) as User;

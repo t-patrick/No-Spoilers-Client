@@ -16,6 +16,8 @@ function Episodechooser({ seasons }: EpisodechooserProps) {
     updateCurrentEp,
   } = useEpisodeUpTo();
 
+  //////////// RENDER
+
   const renderSeason = (index: number) => {
     return (
       <li
@@ -72,7 +74,7 @@ function Episodechooser({ seasons }: EpisodechooserProps) {
   return seasons ? (
     <StyledEpisodeChooser>
       <ul className="tabs">
-        {seasons.map((season, index) => renderSeason(index))}
+        {seasons.map((season: Season, index: number) => renderSeason(index))}
       </ul>
       <div className="main">
         <h1>{"I've watched up to:"}</h1>
