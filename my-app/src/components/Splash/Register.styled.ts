@@ -93,12 +93,14 @@ const StyledRegister = styled.div`
     background-color: black;
     color: white;
     padding: 20px; 
+    cursor: pointer;
   }
 
   .btn-login {
     border: none;
     background-color: white;
     font-weight: 900;
+    cursor: pointer;
   }
 
   footer {

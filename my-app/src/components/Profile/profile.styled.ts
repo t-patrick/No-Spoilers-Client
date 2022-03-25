@@ -19,7 +19,6 @@ const StyledProfile = styled.div`
     flex-direction: column;
     flex: 1;
 
-
     padding-top: 200px;
   }
   
@@ -108,6 +107,11 @@ const StyledProfile = styled.div`
     width: 367px;
     margin-top: 20px;
     padding: 15px 10px
+    
+  }
+
+  .input-area: focus {
+    border: 2px solid var(--sharp-purple);
   }
 
   // .row {

@@ -35,14 +35,14 @@ function Profile() {
 
         <form className="input-container">
           <div className="heading-row row">
-            {/* <div>Edit User&#39;s Detail</div> */}
-            <div>Hey Bruce, you wanna change your details below?</div>
+            <div>Hey {user.displayName}, you wanna change your details below?</div>
           </div>
 
           <div className="name-email-row row">
             <div>
               <div>Username</div>
-              <input
+              <input 
+                className='input-area'
                 type="text"
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
@@ -52,6 +52,7 @@ function Profile() {
             <div>
               <div>Email</div>
               <input
+                className='input-area'
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -63,6 +64,7 @@ function Profile() {
             <div>
               <div>Password</div>
               <input
+                className='input-area'
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -71,6 +73,7 @@ function Profile() {
             <div>
               <div>Confirm Password</div>
               <input
+                className='input-area'
                 type="password"
                 value={passwordVerify}
                 onChange={(e) => setPasswordVerify(e.target.value)}
