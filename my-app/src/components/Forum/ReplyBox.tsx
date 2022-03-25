@@ -17,6 +17,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
+import Tooltip from '@mui/material/Tooltip';
 
 
 
@@ -98,9 +99,11 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
               Reply from {isReplierTheUser() ? 'You' : reply.authorName},{' '}
               {renderReplierProgress()}
               <span>
-                <Button className="report-btn report-reply-btn" onClick={() => setReportFormOpen(true)}>
-                  <img src={redFlag} />
-                </Button>
+                <Tooltip title='Report' arrow>
+                  <Button className="report-btn report-reply-btn" onClick={() => setReportFormOpen(true)}>
+                    <img src={redFlag} />
+                  </Button>
+                </Tooltip>
               </span>
               <div className="report-box">
                 <Dialog open={reportFormOpen} onClose={() => setReportFormOpen(true)}>
