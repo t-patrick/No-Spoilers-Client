@@ -9,10 +9,26 @@ import { ReplyProps } from '../../proptypes';
 import { useSelector } from 'react-redux';
 import StyledReplyBox from './reply-box.styled';
 import Reply from '@material-ui/icons/Reply';
+import Button from '@mui/material/Button';
+import redFlag from './image/red-flag.png';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import TextField from '@mui/material/TextField';
+
+
+
+
+
+
 
 // Needs the conditional
 
 function ReplyBox({ reply, userTVShow }: ReplyProps) {
+  const [reportFormOpen, setReportFormOpen] = useState(false);
+
   const user = useSelector<MainState>((state) => state.user.user) as User;
 
   const [isExpanded, setIsExpanded] = useState<boolean>(true);
@@ -79,8 +95,41 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
         >
           <Typography>
             <Reply />
-            Reply from {isReplierTheUser() ? 'You' : reply.authorName},{' '}
-            {renderReplierProgress()}
+              Reply from {isReplierTheUser() ? 'You' : reply.authorName},{' '}
+              {renderReplierProgress()}
+              <span>
+                <Button className="report-btn report-reply-btn" onClick={() => setReportFormOpen(true)}>
+                  <img src={redFlag} />
+                </Button>
+              </span>
+              <div className="report-box">
+                <Dialog open={reportFormOpen} onClose={() => setReportFormOpen(true)}>
+
+                  {/* <DialogTitle>{topic.title}</DialogTitle> */}
+                  <DialogContent>
+                  <DialogContentText>
+                      Report a spoiler, or other unsuitable content
+                    </DialogContentText>
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="name"
+                      label="What are you reporting?"
+                      type="text"
+                      fullWidth
+                      variant="standard"
+                      // value={replyText}
+                      // onChange={(e) => setReplyText(e.target.value)}
+                    />
+                  </DialogContent>
+                  
+                  <DialogActions>
+                    {/* TODO: Report button needs to send info the db */}
+                    <Button onClick={() => setReportFormOpen(false)}>Report</Button>
+                    <Button onClick={() => setReportFormOpen(false)}>Cancel</Button>
+                  </DialogActions>
+                </Dialog>
+              </div>
           </Typography>
         </AccordionSummary>
         <AccordionDetails className="reply-content">
