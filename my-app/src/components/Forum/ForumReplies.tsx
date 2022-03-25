@@ -27,7 +27,7 @@ function ForumReplies({ topic }: TopicProps) {
   const [open, setOpen] = useState(false);
   const [reportFormOpen, setReportFormOpen] = useState(false);
   const [replyText, setReplyText] = useState<string>('');
-  const [openReport, setOpenReport] = React.useState(false);
+  const [showReplies, setShowReplies] = useState(false);
 
   const handleSendReply = async () => {
     const newReply = await postReply(
@@ -45,9 +45,8 @@ function ForumReplies({ topic }: TopicProps) {
     setOpen(true);
   };
 
-  const handleReportClose = () => {
-    setOpenReport(false);
-  };
+
+
   //modal overridding mui's style below
   const divStyle = {
     width: '600px',
@@ -56,19 +55,22 @@ function ForumReplies({ topic }: TopicProps) {
   return topic.replies ? (
     <StyledForumReplies>
       <div className="replies">
-        {topic.replies.map((reply, index) => (
+        {showReplies && topic.replies.map((reply, index) => (
           <ReplyBox key={index} reply={reply} userTVShow={userTVShow} />
         ))}
       </div>
       <div className="reply-modal">
+        <Button className="show-hide-btn" variant='outlined' onClick={() => setShowReplies(!showReplies)}>{showReplies ? 'Hide': 'Show'}</Button>
         <Button variant="outlined" onClick={handleClickOpen}>
           Reply
           <div className="num-of-replies">30</div>
         </Button>
+
         <Button className="report-btn" onClick={() => setReportFormOpen(true)}>
           Report
           <img src={redFlag} />
         </Button>
+
         <div className="reply-box">
           <Dialog open={open} onClose={() => setOpen(true)}>
             <div style={divStyle}>
@@ -98,45 +100,36 @@ function ForumReplies({ topic }: TopicProps) {
         </div>
 
         <div className="report-box">
-          <Dialog open={openReport} onClose={handleReportClose}>
-            <DialogTitle>REPORT SPOILERS!</DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-                Your shit has been reported HAHAHA!
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleReportClose}>Close</Button>
-            </DialogActions>
-          </Dialog>
-        </div>
-      </div>
+          <Dialog open={reportFormOpen} onClose={() => setReportFormOpen(true)}>
 
-      <div className="report-box">
-        <Dialog open={reportFormOpen} onClose={handleReportClose}>
-          <div style={divStyle}>
             <DialogTitle>{topic.title}</DialogTitle>
             <DialogContent>
-              <DialogContentText>
+            <DialogContentText>
                 Report a spoiler, or other unsuitable content
               </DialogContentText>
               <TextField
                 autoFocus
                 margin="dense"
                 id="name"
-                label="Your cosdv."
-                type="email"
+                label="What are you reporting?"
+                type="text"
                 fullWidth
                 variant="standard"
+                // value={replyText}
+                // onChange={(e) => setReplyText(e.target.value)}
               />
             </DialogContent>
-          </div>
-          <DialogActions>
-            <Button onClick={handleReportClose}>Cancel</Button>
-            <Button onClick={handleReportClose}>Reply</Button>
-          </DialogActions>
-        </Dialog>
+            
+            <DialogActions>
+              {/* TODO: Report button needs to send info the db */}
+              <Button onClick={() => setReportFormOpen(false)}>Report</Button>
+              <Button onClick={() => setReportFormOpen(false)}>Cancel</Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+
       </div>
+
     </StyledForumReplies>
   ) : (
     <></>

@@ -45,8 +45,15 @@ const StyledForumReplies = styled.div`
     padding: 3px 10px;
     border: 0.5px solid red;
     color: red;
-    font-size: 12px;
+    // font-size: 12px;
     /* width: 0px; */
+  }
+
+  .show-hide-btn {
+    color: var(--sharp-purple);
+    border: 0.5px solid var(--sharp-purple);
+    margin-bottom: 12px;
+
   }
 
   .report-btn img {

@@ -36,7 +36,7 @@ function App() {
               <Route path="show/:id" element={<Show />} />
               <Route path="search" element={<Search />} />
               <Route path="/" element={<Splash />} />
-              <Route path="/profile/:id" element={<Profile />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
           </Router>
         </div>

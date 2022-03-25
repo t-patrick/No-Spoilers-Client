@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { TopicProps, TopicsProps } from '../../proptypes';
 import StyledForumTopicList from './forumTopicList.styled';
@@ -51,13 +51,16 @@ function TopicBox({ topic }: TopicProps) {
               <button className="down" onClick={() => vote(-1)}></button>
             </div>
           </div>
+
           <div className="topic-header">
+            <button>Remove</button>
             <div className="title-and-date">
               <h3>
                 {topic.title} (Posting about {topic.episodeCode})
               </h3>
               <div>{new Date(topic.date).toDateString()}</div>
             </div>
+
             <div className="bottom-half">
               <div className="user-info">
                 <div className="avatar">
