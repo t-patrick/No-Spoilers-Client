@@ -10,6 +10,10 @@ const StyledShow = styled.div`
     margin-bottom: 2.5%;
   }
 
+  .tagline {
+    font-style: italic;
+  }
+
   .button-container {
     text-align: center;
   }
