@@ -29,8 +29,6 @@ function TopicBox({ topic }: TopicProps) {
       );
     }
 
-    console.log(response);
-
     if (response) {
       const updatedTopic = Object.assign({}, topic);
       updatedTopic.voteScore += vote;

@@ -41,11 +41,14 @@ function ForumReplies({ topic }: TopicProps) {
     setOpen(false);
   };
 
+  const showReplyBox = () => {
+    if (topic.numberOfReplies === 0) return;
+    setShowReplies(!showReplies);
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
-
-
 
   //modal overridding mui's style below
   const divStyle = {
@@ -55,15 +58,24 @@ function ForumReplies({ topic }: TopicProps) {
   return topic.replies ? (
     <StyledForumReplies>
       <div className="replies">
-        {showReplies && topic.replies.map((reply, index) => (
-          <ReplyBox key={index} reply={reply} userTVShow={userTVShow} />
-        ))}
+        {showReplies &&
+          topic.replies.map((reply, index) => (
+            <ReplyBox key={index} reply={reply} userTVShow={userTVShow} />
+          ))}
       </div>
       <div className="reply-modal">
-        <Button className="show-hide-btn" variant='outlined' onClick={() => setShowReplies(!showReplies)}>{showReplies ? 'Hide': 'Show'}</Button>
+        <Button
+          className="show-hide-btn"
+          variant="outlined"
+          onClick={() => showReplyBox()}
+        >
+          {showReplies
+            ? 'Hide'
+            : topic.numberOfReplies +
+              (topic.numberOfReplies === 1 ? ' reply' : ' replies')}
+        </Button>
         <Button variant="outlined" onClick={handleClickOpen}>
           Reply
-          <div className="num-of-replies">30</div>
         </Button>
 
         <Button className="report-btn" onClick={() => setReportFormOpen(true)}>
@@ -101,10 +113,9 @@ function ForumReplies({ topic }: TopicProps) {
 
         <div className="report-box">
           <Dialog open={reportFormOpen} onClose={() => setReportFormOpen(true)}>
-
             <DialogTitle>{topic.title}</DialogTitle>
             <DialogContent>
-            <DialogContentText>
+              <DialogContentText>
                 Report a spoiler, or other unsuitable content
               </DialogContentText>
               <TextField
@@ -119,7 +130,7 @@ function ForumReplies({ topic }: TopicProps) {
                 // onChange={(e) => setReplyText(e.target.value)}
               />
             </DialogContent>
-            
+
             <DialogActions>
               {/* TODO: Report button needs to send info the db */}
               <Button onClick={() => setReportFormOpen(false)}>Report</Button>
@@ -127,9 +138,7 @@ function ForumReplies({ topic }: TopicProps) {
             </DialogActions>
           </Dialog>
         </div>
-
       </div>
-
     </StyledForumReplies>
   ) : (
     <></>

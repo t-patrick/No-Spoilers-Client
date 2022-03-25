@@ -9,6 +9,7 @@
 body {
   background-color: var(--bg-color);
   margin: 0;
+  box-sizing: border-box;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@700&display=swap');

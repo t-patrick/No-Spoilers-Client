@@ -53,7 +53,8 @@ const StyledForumReplies = styled.div`
     color: var(--sharp-purple);
     border: 0.5px solid var(--sharp-purple);
     margin-bottom: 12px;
-
+    padding: 10px;
+    font-size: 10px;
   }
 
   .report-btn img {
