@@ -12,6 +12,7 @@ import reducers from './state/reducers';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { CurrentShowContextType, ForumContextType } from './proptypes';
+import Profile from './components/Profile/Profile';
 
 const store = createStore(reducers, composeWithDevTools());
 
@@ -35,6 +36,7 @@ function App() {
               <Route path="show/:id" element={<Show />} />
               <Route path="search" element={<Search />} />
               <Route path="/" element={<Splash />} />
+              <Route path="/profile/:id" element={<Profile />} />
             </Routes>
           </Router>
         </div>

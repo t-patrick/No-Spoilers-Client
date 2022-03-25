@@ -3,6 +3,10 @@ import { useSelector } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
 import Reel from '../Reel/Reel';
 import StyledHome from './home.styled';
+import search from './image/search.png';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
 
 function Home() {
   const stateMain = useSelector<MainState>((state) => state);

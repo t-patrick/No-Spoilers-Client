@@ -44,15 +44,15 @@ const StyledForumNewTopic = styled.div`
     text-align: center;
     padding-bottom: 16px;
   }
-
-  .btn button {
-    margin-: 50px;
-  }
-
+  
   textarea: focus {
     outline: none;
     border: 2px solid var(--light-purple);
     transition: 0.5s;
+  }
+  
+  .btn button {
+    margin-: 50px;
   }
 
   button {
@@ -67,6 +67,7 @@ const StyledForumNewTopic = styled.div`
   button: hover {
     cursor: pointer;
     outline: none;
+    padding: 14px;
     border: 1px solid var(--light-purple);
   }
 `;
