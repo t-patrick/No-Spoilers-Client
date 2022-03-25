@@ -1,6 +1,8 @@
 import { TopicProps } from '../../proptypes';
 import StyledForumReplies from './forumReplies.styled';
 import redFlag from './image/red-flag.png';
+import reply from './image/reply.png'
+import hide from './image/hide.png';
 import React, { useContext, useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -61,20 +63,14 @@ function ForumReplies({ topic }: TopicProps) {
 
   return (
     <StyledForumReplies>
-      <div className="replies">
-        {showReplies && topic.replies.map((reply, index) => (
-          <ReplyBox key={index} reply={reply} userTVShow={userTVShow} />
-        ))}
-      </div>
+
       <div className="reply-modal">
-        <Button className="show-hide-btn" variant='outlined' onClick={() => setShowReplies(!showReplies)}>{showReplies ? 'Hide': 'Show'}</Button>
-        <Button variant="outlined" onClick={handleClickOpen}>
-          Reply
+        <Button className="show-hide-btn" variant='outlined' onClick={() => setShowReplies(!showReplies)}>{showReplies ? 'Hide' : 'Show'}</Button>
+        <Button className="reply-btn" variant="outlined" onClick={handleClickOpen}>
+          <img src={reply}/>
           <div className="num-of-replies">30</div>
         </Button>
-
         <Button className="report-btn" onClick={() => setReportFormOpen(true)}>
-          Report
           <img src={redFlag} />
         </Button>
 
@@ -135,6 +131,12 @@ function ForumReplies({ topic }: TopicProps) {
           </Dialog>
         </div>
 
+      </div>
+
+      <div className="replies">
+        {showReplies && topic.replies.map((reply, index) => (
+          <ReplyBox key={index} reply={reply} userTVShow={userTVShow} />
+        ))}
       </div>
 
     </StyledForumReplies>

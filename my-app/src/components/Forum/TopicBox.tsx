@@ -35,8 +35,14 @@ function TopicBox({ topic }: TopicProps) {
   //   setTopicList(topicList.filter(item => item.body !== topic.body));
   // };
 
+  //deleting a topic
+  const [topicList, setTopicList] = useState(true);
+  const handleRemoveTopic = () => {
+    setTopicList(!topicList);
+  }
+
   return (
-    <StyledTopicBox>
+    < StyledTopicBox>
       <div className="topic-main">
         <div className="text-container">
 
@@ -51,13 +57,16 @@ function TopicBox({ topic }: TopicProps) {
           </div>
 
           <div className="topic-header">
-            <button>Remove</button>
             <div className="title-and-date">
+
+              <button onClick={handleRemoveTopic}>Remove</button>
+
               <h3>{topic.title}</h3>
               <div>{topic.date.toDateString()}</div>
             </div>
 
             <div className="bottom-half">
+
               <div className="user-info">
                 <div className="avatar">
                   <img
@@ -70,6 +79,9 @@ function TopicBox({ topic }: TopicProps) {
               <div className="topic-content">
                 <div>{topic.body}</div>
               </div>
+
+
+              
             </div>
           </div>
         </div>

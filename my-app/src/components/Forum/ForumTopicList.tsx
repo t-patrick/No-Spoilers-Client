@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { TopicsProps } from '../../proptypes';
 import StyledForumTopicList from './forumTopicList.styled';
 import replyTo from './image/icon.png';
@@ -18,7 +18,15 @@ function ForumTopicList() {
     return topics.map((topic, index) => renderTopic(topic, index));
   };
 
-  return <StyledForumTopicList>{renderTopics()}</StyledForumTopicList>;
+
+
+  return (
+    <StyledForumTopicList>
+
+      {renderTopics()}
+    </StyledForumTopicList>
+  );
 }
 
 export default ForumTopicList;
+

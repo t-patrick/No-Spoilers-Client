@@ -1,23 +1,27 @@
 import styled from 'styled-components';
 
 const StyledForumReplies = styled.div`
-  // border: 2px solid red;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin-top: 5px;
 
   .reply-modal {
-    // border: 2px solid blue;
-    text-align: right;
     display: flex;
-    flex-direction: column;
-    width: 10%;
+    justify-content: flex-end;
+    margin-top: -50px;
+    
+    
+    // border: 1px solid blue;
+
+    // flex-direction: column;
+    // width: 10%;
   }
 
   .replies {
-    width: 98%;
-    margin-left: 20%;
-    margin-right: 1%;
+    // width: 98%;
+    // margin-right: 1%;
+    margin-left: 15%;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
@@ -41,24 +45,30 @@ const StyledForumReplies = styled.div`
   }
 
   .report-btn {
-    margin-top: 12px;
-    padding: 3px 10px;
-    border: 0.5px solid red;
+    // padding: 3px 10px;
+    // border: 0.5px solid red;
     color: red;
-    // font-size: 12px;
-    /* width: 0px; */
   }
 
   .show-hide-btn {
-    color: var(--sharp-purple);
-    border: 0.5px solid var(--sharp-purple);
-    margin-bottom: 12px;
-
+    // color: var(--sharp-purple);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: none; 
   }
 
+  .reply-btn {
+    border: none; 
+  }
+
+  .reply-btn img {
+    width: 15px;
+  }
+
+
+
   .report-btn img {
-    width: 15%;
-    padding-left: 15px;
+    width: 15px;
   }
 
   .replier-progress {
@@ -76,6 +86,14 @@ const StyledForumReplies = styled.div`
   .replier-progress-behind {
     color: white;
     background-color: black;
+  }
+
+  .reply-btn: hover {
+    border: none;
+  }
+
+  .show-hide-btn: hover {
+    border: none;
   }
 `;
 
