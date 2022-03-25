@@ -13,12 +13,8 @@ import Modal from '@mui/material/Modal';
 import { useParams } from 'react-router-dom';
 
 import { getShowDetail } from '../../API/user-api';
-import { CurrentShowContextType } from '../../proptypes';
 import { TailSpin } from 'react-loader-spinner';
-
-export const CurrentShowContext = createContext<CurrentShowContextType>(
-  {} as CurrentShowContextType
-);
+import { CurrentShowContext } from '../../App';
 
 function Show() {
   const { id } = useParams();
@@ -28,6 +24,7 @@ function Show() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentPosterPath, setCurrentPosterPath] = useState<string>('');
 
   const style = {
     position: 'absolute' as 'absolute',
@@ -46,20 +43,46 @@ function Show() {
   useEffect(() => {
     setIsLoading(true);
     const getShow = async () => {
-      if (id) {
-        const detail = await getShowDetail(id, userTVShow.userId);
-        setShow(detail);
+      console.log(user);
 
+      if (id && user) {
         const userShow = user.userTVInfo.find(
           (show) => show.TMDB_show_id === parseInt(id)
-        );
+        ) as UserTVShow;
+
+        const detail = await getShowDetail(id, userShow.userId);
+        console.log('detail', detail);
 
         if (userShow) setUserTVShow(userShow);
+        setShow(detail);
         setIsLoading(false);
+
+        const seasonNumberMatch = userShow.episodeCodeUpTo
+          .slice(1)
+          .split('e')[0];
+
+        if (
+          seasonNumberMatch &&
+          detail.seasons[+seasonNumberMatch - 1].poster_path
+        ) {
+          setCurrentPosterPath(
+            detail.seasons[+seasonNumberMatch - 1].poster_path
+          );
+        } else {
+          setCurrentPosterPath(userTVShow.poster_path);
+        }
+      } else {
+        console.log('====================================');
+        console.log('in Show, id param or user is undefined');
+        console.log('====================================');
       }
     };
     getShow();
-  }, [id]);
+  }, []);
+
+  const getPosterPath = () => {
+    return;
+  };
 
   const spinnerStyle = {
     position: 'absolute' as 'absolute' | 'relative' | 'fixed',
@@ -100,7 +123,9 @@ function Show() {
         <div className="show-view">
           <div className="image-button-container">
             <img
-              src={`https://image.tmdb.org/t/p/w500${userTVShow.poster_path}`}
+              src={`https://image.tmdb.org/t/p/w500${
+                currentPosterPath || userTVShow.poster_path
+              }`}
             />
             {/* modal */}
             <div className="button-container">

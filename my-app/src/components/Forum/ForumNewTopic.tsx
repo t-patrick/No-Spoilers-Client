@@ -2,8 +2,8 @@ import React, { SyntheticEvent, useEffect, useState, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { ForumNewTopicProps, ForumProps } from '../../proptypes';
 import StyledForumNewTopic from './forumNewTopic.styled';
-import { CurrentShowContext } from '../Show/Show';
-import { ForumContext } from '../Forum/Forum';
+import { addTopic } from '../../API/user-api';
+import { CurrentShowContext, ForumContext } from '../../App';
 
 export default function ForumNewTopic() {
   const { userTVShow, showDetail } = useContext(CurrentShowContext);
@@ -40,34 +40,45 @@ export default function ForumNewTopic() {
   }, [userTVShow]);
 
   // TODO change id so it is not hardcoded
-  const constructTopic = (): UserTopic => {
-    return {
-      _id: 1,
-      title,
+  const constructTopic = (): TopicRequest => {
+    const requestBody: TopicRequest = {
+      _id: user._id.toString(),
       body,
-      TMDB_episode_id: userTVShow.episodeIdUpTo,
-      TMDB_show_id: userTVShow.TMDB_show_id,
-      authorUserId: userTVShow.userId,
-      authorName: user.displayName,
-      episodeCode: userTVShow.episodeCodeUpTo,
-      numberOfReplies: 0,
-      avatar: user.avatar,
-      date: new Date(),
-      voteScore: 0,
-      upVoteIds: [],
-      downVoteIds: [],
-      replies: [],
-      isReported: false,
-      userVote: 0,
+      title,
     };
+
+    return requestBody;
+
+    // return {
+    //   _id: 1,
+    //   title,
+    //   body,
+    //   TMDB_episode_id: userTVShow.episodeIdUpTo,
+    //   TMDB_show_id: userTVShow.TMDB_show_id,
+    //   authorUserId: userTVShow.userId,
+    //   authorName: user.displayName,
+    //   episodeCode: userTVShow.episodeCodeUpTo,
+    //   numberOfReplies: 0,
+    //   avatar: user.avatar,
+    //   date: new Date(),
+    //   voteScore: 0,
+    //   upVoteIds: [],
+    //   downVoteIds: [],
+    //   replies: [],
+    //   isReported: false,
+    //   userVote: 0,
+    // };
   };
 
-  const submit = (e: SyntheticEvent) => {
+  const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    const topicRequest: UserTopic = constructTopic();
+    const topicRequest = constructTopic();
 
-    updateTopics(topicRequest);
+    const newTopic = await addTopic(topicRequest, userTVShow.TMDB_show_id);
+    if (newTopic) updateTopics(newTopic);
+
+    console.log('new topic', newTopic);
 
     setTitle('');
     setBody('');

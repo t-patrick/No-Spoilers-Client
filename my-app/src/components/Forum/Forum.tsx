@@ -1,15 +1,11 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import ForumNewTopic from './ForumNewTopic';
 import ForumTopicList from './ForumTopicList';
 import StyledForum from './forum.styled';
-import { ForumContextType, ForumProps } from '../../proptypes';
 import { useSelector } from 'react-redux';
-import { CurrentShowContext } from '../Show/Show';
+import { fetchTopics } from '../../API/user-api';
+import { CurrentShowContext, ForumContext } from '../../App';
 // import { dummyTopics } from './mocks';
-
-export const ForumContext = createContext<ForumContextType>(
-  {} as ForumContextType
-);
 
 function Forum() {
   const user = useSelector<MainState>((state) => state.user.user) as User;
@@ -18,9 +14,22 @@ function Forum() {
 
   const [topics, setTopics] = useState<Array<UserTopic>>([]);
 
-  /* 
-    Use effect to set topics
-  */
+  useEffect(() => {
+    if (userTVShow && !Number.isNaN(userTVShow.TMDB_show_id)) {
+      const getTopics = async () => {
+        const topics = await fetchTopics(
+          '' + userTVShow.TMDB_show_id,
+          '' + user._id
+        );
+        if (topics) setTopics(topics);
+      };
+      getTopics();
+    } else {
+      console.log('====================================');
+      console.log('in forum, userTV or id is not defined');
+      console.log('====================================');
+    }
+  }, [userTVShow]);
 
   const updateTopics = (topic: UserTopic) => {
     setTopics([...topics, topic]);

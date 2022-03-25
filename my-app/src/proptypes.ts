@@ -7,6 +7,7 @@ import Episodechooser from './components/EpisodeChooser/Episodechooser';
  */
 export type ReelProps = {
   userTVShows: Array<UserTVShow>;
+  isCompleted: boolean;
 };
 
 export type LoginProps = {

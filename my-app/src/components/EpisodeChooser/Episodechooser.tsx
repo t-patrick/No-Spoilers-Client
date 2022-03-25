@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
+import { CurrentShowContext } from '../../App';
 import { EpisodechooserProps } from '../../proptypes';
-import { CurrentShowContext } from '../Show/Show';
 import { constructEpCode, getBackground } from './episode-chooser-helpers';
 import StyledEpisodeChooser from './episodechooser.styled';
 import useEpisodeUpTo from './useEpisodeUpTo';

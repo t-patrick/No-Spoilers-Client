@@ -76,8 +76,9 @@ type TVShowSnippet = {
 
 type Season = {
   TMDB_season_id: number;
-  numberOfEpisodes: number;
+  numberOfEpisodes?: number;
   episodes: Episode[];
+  poster_path: string;
 };
 
 type Episode = {
@@ -144,6 +145,12 @@ type Topic = {
 
 interface UserTopic extends Topic {
   userVote: number;
+}
+
+interface TopicRequest {
+  title: string;
+  body: string;
+  _id: string;
 }
 
 type Reply = {

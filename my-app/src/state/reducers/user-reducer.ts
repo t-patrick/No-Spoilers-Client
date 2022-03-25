@@ -41,6 +41,8 @@ const userReducer = (state = defaultState, action: Action) => {
       (newState.user as User).userTVInfo.splice(
         findTVShowIndex(arr, action.payload)
       );
+      console.log('does it? ', newState === state);
+
       return newState;
     }
     case ActionType.UPDATE_USER_SHOW: {

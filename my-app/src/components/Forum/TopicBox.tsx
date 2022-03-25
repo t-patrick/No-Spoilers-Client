@@ -29,7 +29,7 @@ function TopicBox({ topic }: TopicProps) {
       return;
   };
 
-  return (
+  return topic ? (
     <StyledTopicBox>
       <div className="topic-main">
         <div className="text-container">
@@ -44,8 +44,10 @@ function TopicBox({ topic }: TopicProps) {
           </div>
           <div className="topic-header">
             <div className="title-and-date">
-              <h3>{topic.title}</h3>
-              <div>{topic.date.toDateString()}</div>
+              <h3>
+                {topic.title} (Posting about {topic.episodeCode})
+              </h3>
+              <div>{new Date(topic.date).toDateString()}</div>
             </div>
             <div className="bottom-half">
               <div className="user-info">
@@ -67,6 +69,8 @@ function TopicBox({ topic }: TopicProps) {
 
       <ForumReplies topic={topic} />
     </StyledTopicBox>
+  ) : (
+    <></>
   );
 }
 

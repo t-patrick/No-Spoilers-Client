@@ -39,7 +39,7 @@ export const addUserShowAction = (payload: UserTVShow) => {
   };
 };
 
-export const removeUserShowAction = (payload: UserTVShow | number) => {
+export const removeUserShowAction = (payload: number) => {
   return {
     type: ActionType.REMOVE_USER_SHOW,
     payload,

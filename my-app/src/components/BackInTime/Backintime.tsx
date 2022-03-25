@@ -1,17 +1,21 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react';
+import React, { SyntheticEvent, useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ClockLoader } from 'react-spinners';
 import {
   addUserWaybackUrl,
   getUserWaybackUrls,
   getWaybackUrls,
+  updateUserWayback,
 } from '../../API/user-api';
 import { BackintimeProps } from '../../proptypes';
 import StyledBackInTime from './BackInTime.styled';
 import downArrow from './image/down.png';
 import WikiLogo from '../../images/imdb.png';
+import { CurrentShowContext } from '../../App';
 
 function Backintime({ show, currentEpisode }: BackintimeProps) {
+  const { userTVShow } = useContext(CurrentShowContext);
+
   const [waybackUrls, setWaybackUrls] = useState<ExternalIds>(
     {} as ExternalIds
   );
@@ -31,7 +35,6 @@ function Backintime({ show, currentEpisode }: BackintimeProps) {
       website,
       show.TMDB_show_id
     );
-    console.log(response);
 
     response && setUserWaybackUrls([...userWaybackUrls, response]);
   };
@@ -45,21 +48,25 @@ function Backintime({ show, currentEpisode }: BackintimeProps) {
     setIsLoading(true);
 
     const getWaybacks = async () => {
-      const result = await getWaybackUrls(user._id, show.TMDB_show_id);
+      const result = await getWaybackUrls(user._id, userTVShow.TMDB_show_id);
       setWaybackUrls(result);
       setIsLoading(false);
     };
 
     const getUserWaybacks = async () => {
+      await updateUserWayback(user._id, userTVShow.TMDB_show_id);
       const userWaybacks = await getUserWaybackUrls(
         user._id,
-        show.TMDB_show_id
+        userTVShow.TMDB_show_id
       );
       setUserWaybackUrls(userWaybacks);
     };
-
-    getWaybacks();
-    getUserWaybacks();
+    if (user && userTVShow.TMDB_show_id) {
+      getWaybacks();
+      getUserWaybacks();
+    } else {
+      console.log('in wayback. user or userTV is undefined');
+    }
   }, [currentEpisode]);
 
   const renderUserWayback = (wayback: UserWayback) => {

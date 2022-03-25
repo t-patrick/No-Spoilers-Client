@@ -33,9 +33,8 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
     if (reply.replierEpisodeUpTo > userTVShow.episodesWatchedSoFar) {
       return (
         <>
-          {isReplierTheUser() ? 'you ' : 'they '} are{' '}
           <span className="replier-progress-ahead replier-progress">
-            {diff} episodes ahead of you
+            {diff} episodes ahead
           </span>
         </>
       );
@@ -44,9 +43,8 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
     if (reply.replierEpisodeUpTo < userTVShow.episodesWatchedSoFar) {
       return (
         <>
-          {isReplierTheUser() ? 'you ' : 'they '} are{' '}
           <span className="replier-progress-behind replier-progress">
-            {diff} episodes behind you
+            {diff} episodes behind
           </span>{' '}
         </>
       );
@@ -54,7 +52,6 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
 
     return (
       <>
-        {isReplierTheUser() ? 'you' : 'they'} are
         <span className="replier-progress-same replier-progress">
           on the same episode
         </span>{' '}

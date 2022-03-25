@@ -11,8 +11,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ReplyBox from './ReplyBox';
 import { useSelector } from 'react-redux';
-import { CurrentShowContext } from '../Show/Show';
-import { ForumContext } from './Forum';
+import { postReply } from '../../API/user-api';
+import { CurrentShowContext, ForumContext } from '../../App';
 
 function ForumReplies({ topic }: TopicProps) {
   //// REDUX STORE
@@ -29,22 +29,15 @@ function ForumReplies({ topic }: TopicProps) {
   const [replyText, setReplyText] = useState<string>('');
   const [openReport, setOpenReport] = React.useState(false);
 
-  const handleSendReply = () => {
-    const reply: Reply = {
-      _id: 1,
-      authorName: user.displayName,
-      avatar: user.avatar,
-      authorUserId: user._id,
-      date: new Date(Date.now()),
-      body: replyText,
-      topicId: topic._id as number,
-      replierEpisodeUpTo: userTVShow.episodesWatchedSoFar,
-      isReported: false,
-    };
+  const handleSendReply = async () => {
+    const newReply = await postReply(
+      userTVShow.TMDB_show_id,
+      user._id,
+      '' + (topic._id as number),
+      replyText
+    );
 
-    // TODO Send to API
-
-    addReply(topic, reply);
+    if (newReply) addReply(topic, newReply);
     setOpen(false);
   };
 

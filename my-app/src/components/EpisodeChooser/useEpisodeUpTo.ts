@@ -8,8 +8,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateEpisode, updateUserWayback } from '../../API/user-api';
+import { CurrentShowContext } from '../../App';
 import { UserActionCreators } from '../../state/action-creators';
-import { CurrentShowContext } from '../Show/Show';
 
 function useEpisodeUpTo() {
   const user = useSelector<MainState>((state) => state.user.user) as User;
@@ -19,9 +19,11 @@ function useEpisodeUpTo() {
     dispatch
   );
 
-  const { setUserTVShow, userTVShow } = useContext(CurrentShowContext);
+  const { setUserTVShow, userTVShow, showDetail } =
+    useContext(CurrentShowContext);
 
   const [episodeUpTo, setEpisodeUpTo] = useState<string>('0');
+  const [currentEpisode, setCurrentEpisode] = useState<Episode>({} as Episode);
   const [selectedTab, setSelectedTab] = useState<number>(0);
 
   useEffect(() => {
@@ -33,16 +35,18 @@ function useEpisodeUpTo() {
   const updateCurrentEp = async (episode: number) => {
     const newEpisodeCode = `s${selectedTab + 1}e${episode}`;
 
+    const episodeDetail = showDetail.seasons[selectedTab].episodes[episode];
+    // need episode id
+
+    console.log(episodeDetail);
+
     const update = await updateEpisode(
       userTVShow.userId,
       newEpisodeCode,
-      '' + userTVShow.TMDB_show_id
+      episodeDetail.TMDB_episode_id.toString(),
+      showDetail
     );
 
-    const hasUpdated = await updateUserWayback(
-      user._id,
-      userTVShow.TMDB_show_id
-    );
     if (update) {
       setEpisodeUpTo(newEpisodeCode);
       const shows = [...user.userTVInfo];

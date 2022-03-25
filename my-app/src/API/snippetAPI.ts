@@ -11,7 +11,5 @@ export const searchSnippets = async (
   };
   const results = await axios.post(`${BASE_URL}/quicksearch`, data);
 
-  console.log(results);
-
   return results.data;
 };

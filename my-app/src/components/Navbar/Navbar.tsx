@@ -10,17 +10,26 @@ import StyledNavbar from './navbar.styled';
 
 function Navbar({ showSearch }: NavbarProps) {
   const user = useSelector<MainState>((state) => state.user);
+  const state = useSelector<MainState>((state) => state);
 
   const logout = () => {
     // Delete user data
   };
 
+  const navigate = useNavigate();
+
   return (
     <StyledNavbar>
       <div className="links">
-        <Link to="/home">
-          <button>Home</button>
-        </Link>
+        <button
+          onClick={() => {
+            navigate('/home', {
+              state: state,
+            });
+          }}
+        >
+          Home
+        </button>
         <Link to="/profile">
           <button>Profile</button>
         </Link>
