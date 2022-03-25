@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { useSelector } from 'react-redux';
 import { TopicProps, TopicsProps } from '../../proptypes';
 import StyledForumTopicList from './forumTopicList.styled';
@@ -29,10 +29,17 @@ function TopicBox({ topic }: TopicProps) {
       return;
   };
 
+  // const [topicList, setTopicList] = useState(topic);
+  // const handleRemoveTopic = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const topicBody = e.target.getAttribute('topic.body');
+  //   setTopicList(topicList.filter(item => item.body !== topic.body));
+  // };
+
   return (
     <StyledTopicBox>
       <div className="topic-main">
         <div className="text-container">
+
           <div className="score">
             <div>
               <button className="up" onClick={upVote}></button>
@@ -42,11 +49,14 @@ function TopicBox({ topic }: TopicProps) {
               <button className="down" onClick={downVote}></button>
             </div>
           </div>
+
           <div className="topic-header">
+            <button>Remove</button>
             <div className="title-and-date">
               <h3>{topic.title}</h3>
               <div>{topic.date.toDateString()}</div>
             </div>
+
             <div className="bottom-half">
               <div className="user-info">
                 <div className="avatar">
