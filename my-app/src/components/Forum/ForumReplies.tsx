@@ -52,9 +52,6 @@ function ForumReplies({ topic, topicVisible }: TopicProps) {
   };
 
   useEffect(() => {
-    console.log('====================================');
-    console.log('topic visible changed to', topicVisible);
-    console.log('====================================');
     if (!topicVisible) setShowReplies(false);
   }, [topicVisible]);
 
@@ -165,7 +162,6 @@ function ForumReplies({ topic, topicVisible }: TopicProps) {
             </DialogContent>
 
             <DialogActions>
-              {/* TODO: Report button needs to send info the db */}
               <Button onClick={() => report()}>Report</Button>
               <Button onClick={() => setReportFormOpen(false)}>Cancel</Button>
             </DialogActions>
@@ -186,50 +182,3 @@ function ForumReplies({ topic, topicVisible }: TopicProps) {
 }
 
 export default ForumReplies;
-
-const mockReplies: Reply[] = [
-  {
-    _id: 23423,
-    topicId: 123,
-    authorUserId: 1235,
-    authorName: 'Tim Patrick',
-    replierEpisodeUpTo: 2,
-    body: 'This is a fun replyyyyyyyyy',
-    date: new Date(Date.now()),
-    avatar: 'aergiehjrh',
-    isReported: false,
-  },
-  {
-    _id: 23423,
-    topicId: 123,
-    authorUserId: 1235,
-    authorName: 'Tim Patrick',
-    replierEpisodeUpTo: 50,
-    body: 'This is a fun replyyyyyyyyy',
-    date: new Date(Date.now()),
-    avatar: 'aergiehjrh',
-    isReported: false,
-  },
-];
-
-/* 
-      <div className="replies">
-        {showReplies &&
-          topic.replies.map((reply, index) => (
-            <ReplyBox key={index} reply={reply} userTVShow={userTVShow} />
-          ))}
-      </div>
-      <div className="reply-modal">
-        <Button
-          className="show-hide-btn"
-          variant="outlined"
-          onClick={() => showReplyBox()}
-        >
-          {showReplies
-            ? 'Hide'
-            : topic.numberOfReplies +
-              (topic.numberOfReplies === 1 ? ' reply' : ' replies')}
-        </Button>
-        <Button variant="outlined" onClick={handleClickOpen}>
-          Reply
-*/

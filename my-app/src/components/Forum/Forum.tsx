@@ -61,6 +61,15 @@ function Forum() {
     setTopics(topicsCopy);
   };
 
+  const deleteTopic = (topicToDelete: UserTopic) => {
+    const topicsCopy = [...topics];
+    topicsCopy.splice(
+      topicsCopy.findIndex((top) => topicToDelete._id === top._id),
+      1
+    );
+    setTopics(topicsCopy);
+  };
+
   return (
     <ForumContext.Provider
       value={{
@@ -69,6 +78,7 @@ function Forum() {
         updateTopics: updateTopics,
         addReply: addReply,
         updateTopic,
+        deleteTopic,
       }}
     >
       <StyledForum>

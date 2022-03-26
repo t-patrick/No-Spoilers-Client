@@ -1,24 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { SyntheticEvent, useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { TopicProps, TopicsProps } from '../../proptypes';
 import StyledForumTopicList from './forumTopicList.styled';
 import StyledTopicBox from './topicbox.styled';
 import ForumReplies from './ForumReplies';
-import { downVotePost, upVotePost } from '../../API/user-api';
+import { deleteTopics, downVotePost, upVotePost } from '../../API/user-api';
 import { ForumContext } from '../../App';
 
 function TopicBox({ topic }: TopicProps) {
   const user = useSelector<MainState>((state) => state.user.user) as User;
-  const { updateTopic, topics } = useContext(ForumContext);
+  const { updateTopic, topics, deleteTopic } = useContext(ForumContext);
   const [topicVisible, setTopicVisible] = useState<boolean>(!topic.isReported);
 
   useEffect(() => {
     setTopicVisible(!topic.isReported);
   }, [topics]);
 
-  const vote = async (vote: number) => {
-    // send topic id
-    // _id
+  const vote = async (e: SyntheticEvent, vote: number) => {
+    e.stopPropagation();
+    e.preventDefault();
 
     let response;
 
@@ -41,17 +41,29 @@ function TopicBox({ topic }: TopicProps) {
     }
   };
 
+  const deleteTopicHandler = async () => {
+    const confirm = await deleteTopics(topic);
+
+    if (confirm) deleteTopic(topic);
+  };
+
   return topic ? (
     <StyledTopicBox>
       <div className="topic-main">
         <div className="text-container">
-          <div className="score">
-            <div>
-              <button className="up" onClick={() => vote(1)}></button>
+          <div
+            className="score"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+            }}
+          >
+            <div onClick={(e) => vote(e, 1)}>
+              <button className="up"></button>
             </div>
             <div className="number">{topic.voteScore}</div>
-            <div>
-              <button className="down" onClick={() => vote(-1)}></button>
+            <div onClick={(e) => vote(e, -1)}>
+              <button className="down"></button>
             </div>
           </div>
 
@@ -59,14 +71,31 @@ function TopicBox({ topic }: TopicProps) {
             className="topic-header"
             onClick={() => setTopicVisible(!topicVisible)}
           >
-            <button>Remove</button>
             <div className="title-and-date">
-              <h3>
-                {topic.isReported
-                  ? 'This topic has been reported for possible spoiler, awaiting review. Click to reveal'
-                  : topic.title}{' '}
-                (Posting about {topic.episodeCode})
-              </h3>
+              <div className="top-row">
+                <h3>
+                  {topic.isReported
+                    ? 'This topic has been reported for possible spoiler, awaiting review. Click to reveal'
+                    : topic.title}{' '}
+                  (Posting about {topic.episodeCode})
+                </h3>
+                {topic.authorUserId === user._id.toString() && (
+                  <div className="user-buttons">
+                    <button
+                      className="remove-button"
+                      onClick={() => deleteTopicHandler()}
+                    >
+                      Delete Post
+                    </button>
+                    <button
+                      className="edit-button"
+                      onClick={() => deleteTopicHandler()}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                )}
+              </div>
               <div>{new Date(topic.date).toDateString()}</div>
             </div>
 

@@ -47,6 +47,7 @@ const StyledForumTopicList = styled.div`
 
   .text-container {
     display: flex;
+    align-items: stretch;
     width: 100%;
   }
 

@@ -184,6 +184,8 @@ export const upVotePost = async (userId: string, topicId: string) => {
     topicId,
   });
 
+  console.log();
+
   return response;
 };
 
@@ -211,4 +213,24 @@ export const reportTopicOrReply = async (report: Report) => {
   const response = await axios.post(`${BASE_URL}/forum/report`, report);
 
   return response;
+};
+
+export const deleteTopics = async (topic: UserTopic) => {
+  const response = await axios.post(`${BASE_URL}/forum/topic/delete`, {
+    topicId: topic._id,
+  });
+
+  console.log(response);
+  if (response.status === 200) return true;
+  return false;
+};
+
+export const deleteReplies = async (reply: Reply) => {
+  const response = await axios.post(`${BASE_URL}/forum/reply/delete`, {
+    topicId: reply.topicId,
+    replyId: reply._id,
+  });
+
+  if (response.status === 200) return true;
+  return false;
 };

@@ -68,23 +68,6 @@ const StyledForumReplies = styled.div`
     width: 15px;
   }
 
-  .replier-progress {
-    padding: 8px 10px;
-    border-radius: 10px;
-    margin-left: 5px;
-  }
-  .replier-progress-ahead {
-    color: white;
-    background-color: darkred;
-  }
-  .replier-progress-same {
-    color: blueviolet;
-  }
-  .replier-progress-behind {
-    color: white;
-    background-color: black;
-  }
-
   .reply-btn:hover {
     border: none;
   }
