@@ -4,11 +4,16 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:3001';
 
+const createHeaders = (token: string) => {
+  return {
+    Authorization: `Bearer ${token}`,
+  };
+};
+
 export const loginUser = async (
   user: Omit<DBUser, 'avatar' | 'displayName'>
 ) => {
   const newUser = await axios.post(`${BASE_URL}/login`, user);
-  console.log(newUser);
 
   return newUser.data;
 };
