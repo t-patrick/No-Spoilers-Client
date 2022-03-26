@@ -2,26 +2,22 @@ import styled from 'styled-components';
 
 const StyledProfile = styled.div`
   color: white;
-  
+
   .profile-layout {
     display: flex;
-    // border: 1px solid red;
     justify-content: space-between;
     margin-top: 30px;
     height: 90vh;
   }
 
-  
   .avatar-container {
     display: flex;
     display: center;
     align-items: center;
     flex-direction: column;
     flex: 1;
-
     padding-top: 200px;
   }
-  
 
   .current-avatar {
     margin-top: 30px;
@@ -32,24 +28,18 @@ const StyledProfile = styled.div`
     width: 100%;
   }
 
-
   .input-container {
     flex: 2;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-  
-
 
   .heading-row {
     font-size: 40px;
     line-height: 60px;
     font-weight: 300;
-    
     padding-left: 13%;
-
     flex: 2;
   }
 
@@ -57,8 +47,6 @@ const StyledProfile = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-
-    
     flex: 2;
   }
 
@@ -66,11 +54,8 @@ const StyledProfile = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-
     flex: 2;
   }
-
-
 
   .save-change {
     background-color: #4a5568;
@@ -81,9 +66,7 @@ const StyledProfile = styled.div`
     padding: 15px 70px;
   }
 
-
-
-  .save-change: hover {
+  .save-change:hover {
     cursor: pointer;
     outline: none;
     padding: 14px 69px;
@@ -95,8 +78,6 @@ const StyledProfile = styled.div`
     align-items: flex-start;
     justify-content: center;
     margin-top: 10px;
-
-
     flex: 2;
   }
 
@@ -106,21 +87,12 @@ const StyledProfile = styled.div`
     border-color: transparent;
     width: 367px;
     margin-top: 20px;
-    padding: 15px 10px
-    
+    padding: 15px 10px;
   }
 
-  .input-area: focus {
+  .input-area:focus {
     border: 2px solid var(--sharp-purple);
   }
-
-
-
-  // .row {
-  //   border: 1px solid white;
-  // }
-
-
-`
+`;
 
 export default StyledProfile;

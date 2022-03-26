@@ -3,20 +3,21 @@ import styled from 'styled-components';
 const StyledAvatarReel = styled.div`
   color: white;
   display: flex;
-  // overflow: scroll;
   width: 300px;
-  // border: 1px solid red;
   overflow-y: hidden;
-  overflow-x: auto;
+  overflow-x: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
   flex-wrap: nowrap;
 
-  .avatar-container {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .avatar-container-internal {
     padding: 0;
     width: 70px;
     margin: 3px;
-
   }
 
   img {
@@ -24,11 +25,10 @@ const StyledAvatarReel = styled.div`
     cursor: pointer;
   }
 
-  img: hover {
+  img:hover {
     width: 80px;
     transition: 1s;
   }
-
-`
+`;
 
 export default StyledAvatarReel;
