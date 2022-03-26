@@ -9,6 +9,7 @@ import { checkEmail, checkPassword } from './formHelpers';
 import blackLogo from './images/black-logo.png';
 import spidermanImage from './images/spiderman.jpeg'
 import StyledRegister from './Register.styled';
+import Tooltip from '@mui/material/Tooltip';
 
 
 
@@ -75,16 +76,13 @@ function Register({ setLoginOrRegister }: LoginProps) {
             </div>
 
             <div className='blacklogo avatar-container'>
-              <button onClick={(e: SyntheticEvent) => {
-                e.preventDefault();
-                setAvatarRegister('https://avatars.dicebear.com/api/' + getRandomString());
-
-                }
-                }>
-              Pick your avatar
-              </button>
               <div className="current-avatar">
-                <img src={avatarRegister} />
+                <Tooltip title="CLICK ME!" arrow>
+                  <img src={avatarRegister} onClick={(e: SyntheticEvent) => {
+                  e.preventDefault();
+                  setAvatarRegister('https://avatars.dicebear.com/api/' + getRandomString());
+                  }} />
+                </Tooltip>
               </div>
             </div>
 
