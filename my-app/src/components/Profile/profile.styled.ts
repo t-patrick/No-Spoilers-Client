@@ -114,6 +114,8 @@ const StyledProfile = styled.div`
     border: 2px solid var(--sharp-purple);
   }
 
+
+
   // .row {
   //   border: 1px solid white;
   // }

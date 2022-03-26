@@ -24,7 +24,6 @@ const StyledHome = styled.div`
   }
 
   .row {
-    // border: 1px solid red;
     margin: 20px;
   }
 

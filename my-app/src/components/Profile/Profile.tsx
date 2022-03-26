@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
+import AvatarReel from './AvatarReel';
 import StyledProfile from './profile.styled';
 
 function Profile() {
@@ -30,6 +31,9 @@ function Profile() {
             <img
               src={`https://avatars.dicebear.com/api/male/${user.avatar}.svg`}
             />
+          </div>
+          <div className='new-avatar'>
+            <AvatarReel/>
           </div>
         </div>
 
