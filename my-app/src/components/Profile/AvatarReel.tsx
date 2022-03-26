@@ -5,11 +5,6 @@ import { AvatarPropType } from '../../proptypes';
 
 
 function AvatarReel({setAvatar}: AvatarPropType) {
-  
-  const person = {
-    male: ['https://avatars.dicebear.com/api/male/1.svg', 'https://avatars.dicebear.com/api/male/10.svg', 'https://avatars.dicebear.com/api/male/11.svg', 'https://avatars.dicebear.com/api/male/2.svg', 'https://avatars.dicebear.com/api/male/14.svg', 'https://avatars.dicebear.com/api/male/15.svg'],
-    female: ['https://avatars.dicebear.com/api/female/1.svg', 'https://avatars.dicebear.com/api/female/10.svg', 'https://avatars.dicebear.com/api/female/11.svg', 'https://avatars.dicebear.com/api/female/2.svg', 'https://avatars.dicebear.com/api/female/14.svg', 'https://avatars.dicebear.com/api/female/15.svg']
-  }
 
   return (
     <StyledAvatarReel>
