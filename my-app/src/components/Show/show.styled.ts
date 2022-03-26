@@ -39,7 +39,7 @@ const StyledShow = styled.div`
   }
 
   .progress {
-    background-color: #777700;
+    background-color: #1b2530;
     border-radius: 10px;
     padding: 15px;
     text-align: center;

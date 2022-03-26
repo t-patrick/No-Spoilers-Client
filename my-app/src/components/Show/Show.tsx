@@ -71,9 +71,9 @@ function Show() {
   useEffect(() => {
     if (show.seasons) {
       setCurrentEpisode(getEpisodeFromEpisodeCode(userTVShow.episodeCodeUpTo));
+      if (show && userTVShow)
+        setPercentComplete(calculatePercentComplete(userTVShow, show));
     }
-
-    if (show && userTVShow) setPercentComplete(calculatePercentComplete());
   }, [show]);
 
   useEffect(() => {
@@ -82,6 +82,8 @@ function Show() {
         userTVShow.current_poster_path || userTVShow.poster_path
       );
     }
+    if (show && userTVShow)
+      setPercentComplete(calculatePercentComplete(userTVShow, show));
   }, [userTVShow]);
 
   const spinnerStyle = {
@@ -103,13 +105,16 @@ function Show() {
     zIndex: 40,
   };
 
-  const calculatePercentComplete = () => {
-    const totalWatched = userTVShow.episodesWatchedSoFar;
-    const numberOfEpisodesTotal = show.seasons.reduce(
-      (total, season) => (season.numberOfEpisodes as number) + total,
-      0
-    );
-    return Math.floor((totalWatched / numberOfEpisodesTotal) * 100);
+  const calculatePercentComplete = (userShow: UserTVShow, details: TVShow) => {
+    if (details.seasons) {
+      const totalWatched = userShow.episodesWatchedSoFar;
+      const numberOfEpisodesTotal = details.seasons.reduce(
+        (total, season) => (season.numberOfEpisodes as number) + total,
+        0
+      );
+      return Math.floor((totalWatched / numberOfEpisodesTotal) * 100);
+    }
+    return 0;
   };
 
   const getEpisodeFromEpisodeCode = (episodeCode: string): Episode => {
