@@ -16,9 +16,12 @@ function Profile() {
   const [password, setPassword] = useState<string>('');
   const [passwordVerify, setPasswordVerify] = useState<string>('');
 
+  const [avatar, setAvatar] = useState<string>(user.avatar);
+
   const updateUser = () => {
     const newUser = {};
   };
+
 
   return (
     <StyledProfile>
@@ -26,14 +29,15 @@ function Profile() {
 
       <div className="profile-layout">
         <div className="avatar-container">
-          <h1 className="current-user-name">Bruce Wayne</h1>
+          <h1 className="current-user-name"> Bruce Wayne</h1>
           <div className="current-avatar">
             <img
-              src={`https://avatars.dicebear.com/api/male/${user.avatar}.svg`}
+              src={avatar}
+              // src={`https://avatars.dicebear.com/api/male/${user.avatar}.svg`} 
             />
           </div>
           <div className='new-avatar'>
-            <AvatarReel/>
+            <AvatarReel setAvatar={setAvatar}/>
           </div>
         </div>
 

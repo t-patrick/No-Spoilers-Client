@@ -61,3 +61,7 @@ export type CurrentShowContextType = {
   userTVShow: UserTVShow;
   setUserTVShow: Dispatch<SetStateAction<UserTVShow>>;
 };
+
+export type AvatarPropType = {
+  setAvatar: Dispatch<SetStateAction<string>>
+}
