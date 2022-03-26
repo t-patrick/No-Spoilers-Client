@@ -18,6 +18,7 @@ const userReducer = (state = defaultState, action: Action) => {
       const newState = { ...state };
       newState.user = {};
       newState.isLoggedIn = false;
+      localStorage.removeItem('token');
       return newState;
     }
     case ActionType.UPDATE_USER: {

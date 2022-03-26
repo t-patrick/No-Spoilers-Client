@@ -28,6 +28,7 @@ type User = {
   displayName: string;
   avatar: string;
   userTVInfo: Array<UserTVShow>;
+  token?: string;
 };
 
 type BasicUserInfo = Omit<User, 'userTVInfo'>;
@@ -40,6 +41,7 @@ type DBUser = {
   displayName: string;
   password: string;
   avatar: string;
+  token?: string;
 };
 
 /**
