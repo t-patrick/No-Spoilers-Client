@@ -8,6 +8,8 @@ export const loginUser = async (
   user: Omit<DBUser, 'avatar' | 'displayName'>
 ) => {
   const newUser = await axios.post(`${BASE_URL}/login`, user);
+  console.log(newUser);
+
   return newUser.data;
 };
 
@@ -203,4 +205,10 @@ export const setShowWatched = async (TMDB_show_id: string, userId: string) => {
   );
 
   return response.data as UserTVShow;
+};
+
+export const reportTopicOrReply = async (report: Report) => {
+  const response = await axios.post(`${BASE_URL}/forum/report`, report);
+
+  return response;
 };

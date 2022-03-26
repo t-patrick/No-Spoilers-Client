@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { TopicProps, TopicsProps } from '../../proptypes';
 import StyledForumTopicList from './forumTopicList.styled';
@@ -9,8 +9,12 @@ import { ForumContext } from '../../App';
 
 function TopicBox({ topic }: TopicProps) {
   const user = useSelector<MainState>((state) => state.user.user) as User;
-  const { updateTopic } = useContext(ForumContext);
+  const { updateTopic, topics } = useContext(ForumContext);
   const [topicVisible, setTopicVisible] = useState<boolean>(!topic.isReported);
+
+  useEffect(() => {
+    setTopicVisible(!topic.isReported);
+  }, [topics]);
 
   const vote = async (vote: number) => {
     // send topic id
@@ -87,7 +91,7 @@ function TopicBox({ topic }: TopicProps) {
         </div>
       </div>
 
-      <ForumReplies topic={topic} />
+      <ForumReplies topic={topic} topicVisible={topicVisible} />
     </StyledTopicBox>
   ) : (
     <></>

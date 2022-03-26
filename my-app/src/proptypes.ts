@@ -36,6 +36,7 @@ export interface TopicsProps extends ForumProps {
 }
 export interface TopicProps {
   topic: UserTopic;
+  topicVisible?: boolean;
 }
 
 export type BackintimeProps = {

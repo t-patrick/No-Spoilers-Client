@@ -25,6 +25,8 @@ function Show() {
   const handleClose = () => setOpen(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPosterPath, setCurrentPosterPath] = useState<string>('');
+  const [currentEpisode, setCurrentEpisode] = useState<Episode>({} as Episode);
+  const [percentComplete, setPercentComplete] = useState<number>(0);
 
   const style = {
     position: 'absolute' as 'absolute',
@@ -67,6 +69,14 @@ function Show() {
   }, []);
 
   useEffect(() => {
+    if (show.seasons) {
+      setCurrentEpisode(getEpisodeFromEpisodeCode(userTVShow.episodeCodeUpTo));
+    }
+
+    if (show && userTVShow) setPercentComplete(calculatePercentComplete());
+  }, [show]);
+
+  useEffect(() => {
     if (userTVShow) {
       setCurrentPosterPath(
         userTVShow.current_poster_path || userTVShow.poster_path
@@ -91,6 +101,25 @@ function Show() {
     right: 0,
     backgroundColor: 'rgba(0,0,0,0.7)',
     zIndex: 40,
+  };
+
+  const calculatePercentComplete = () => {
+    const totalWatched = userTVShow.episodesWatchedSoFar;
+    const numberOfEpisodesTotal = show.seasons.reduce(
+      (total, season) => (season.numberOfEpisodes as number) + total,
+      0
+    );
+    return Math.floor((totalWatched / numberOfEpisodesTotal) * 100);
+  };
+
+  const getEpisodeFromEpisodeCode = (episodeCode: string): Episode => {
+    console.log(episodeCode);
+
+    const [seasonIndex, episodeIndex] = episodeCode
+      .slice(1)
+      .split('e')
+      .map((n) => parseInt(n));
+    return show.seasons[seasonIndex - 1].episodes[episodeIndex - 1];
   };
 
   return (
@@ -148,15 +177,28 @@ function Show() {
               </Modal>
             </div>
           </div>
-          <div className='show-description'>
+          <div className="show-description">
             <h1>{show.name}</h1>
             <br></br>
+            {currentEpisode.name && (
+              <div className="progress">
+                <h4>{percentComplete}% complete</h4>
+                <p>
+                  You are on:{' '}
+                  <h3>
+                    Season {currentEpisode.season_number} Episode{' '}
+                    {currentEpisode.episode_number}: {currentEpisode.name}
+                  </h3>
+                </p>
+              </div>
+            )}
+            <p>First episode date: {show.first_air_date}</p>
             <p>First episode date: {show.first_air_date}</p>
             <p>Last episode date: {show.last_air_date}</p>
             <p>Total number of seasons: {show.number_of_seasons}</p>
             <p>Total number of episode: {show.number_of_episodes}</p>
             {/* italic for tagline */}
-            <p className='tagline'>{show.tagline}</p>
+            <p className="tagline">{show.tagline}</p>
           </div>
           <Backintime show={show} currentEpisode={userTVShow.episodeCodeUpTo} />
         </div>

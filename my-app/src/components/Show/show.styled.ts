@@ -37,6 +37,30 @@ const StyledShow = styled.div`
     padding: 6px;
     outline: none;
   }
+
+  .progress {
+    background-color: #777700;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+
+    p {
+      margin: 0;
+    }
+
+    h3 {
+      margin: 0;
+    }
+
+    h4 {
+      margin: 0;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+  }
+  .show-description {
+    text-align: center;
+  }
 `;
 
 export default StyledShow;

@@ -167,12 +167,13 @@ type Reply = {
 };
 
 type Report = {
-  reporterId: number;
-  offendingUserId: number;
+  reporterId: string;
+  offendingUserId: string;
   offenceType: string;
-  topicOrReply: 'Topic' | 'Reply';
-  itemId: number;
-  date: Date;
+  type: 'Topic' | 'Reply';
+  topicId: string;
+  replyId: string;
+  date?: Date;
 };
 
 interface UserTVShowUpdate extends UserTVShow {

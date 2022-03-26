@@ -3,7 +3,7 @@ import StyledForumReplies from './forumReplies.styled';
 import redFlag from './image/red-flag.png';
 import reply from './image/reply.png';
 import hide from './image/hide.png';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -13,23 +13,24 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ReplyBox from './ReplyBox';
 import { useSelector } from 'react-redux';
-import { postReply } from '../../API/user-api';
+import { postReply, reportTopicOrReply } from '../../API/user-api';
 import { CurrentShowContext, ForumContext } from '../../App';
 
-function ForumReplies({ topic }: TopicProps) {
+function ForumReplies({ topic, topicVisible }: TopicProps) {
   //// REDUX STORE
   const user = useSelector<MainState>((state) => state.user.user) as User;
 
   //// CONTEXT
   const { userTVShow } = useContext(CurrentShowContext);
 
-  const { addReply } = useContext(ForumContext);
+  const { addReply, updateTopic } = useContext(ForumContext);
 
   //// LOCAL STATE
   const [open, setOpen] = useState(false);
   const [reportFormOpen, setReportFormOpen] = useState(false);
   const [replyText, setReplyText] = useState<string>('');
   const [showReplies, setShowReplies] = useState(false);
+  const [reportText, setReportText] = useState('');
 
   const handleSendReply = async () => {
     const newReply = await postReply(
@@ -38,8 +39,10 @@ function ForumReplies({ topic }: TopicProps) {
       '' + (topic._id as number),
       replyText
     );
+    console.log('hello?', newReply);
 
     if (newReply) addReply(topic, newReply);
+    setReplyText('');
     setOpen(false);
   };
 
@@ -48,6 +51,13 @@ function ForumReplies({ topic }: TopicProps) {
     setShowReplies(!showReplies);
   };
 
+  useEffect(() => {
+    console.log('====================================');
+    console.log('topic visible changed to', topicVisible);
+    console.log('====================================');
+    if (!topicVisible) setShowReplies(false);
+  }, [topicVisible]);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -55,6 +65,30 @@ function ForumReplies({ topic }: TopicProps) {
   //modal overridding mui's style below
   const divStyle = {
     width: '600px',
+  };
+
+  const report = async () => {
+    const report: Report = {
+      reporterId: user._id.toString(),
+      offendingUserId: topic.authorUserId,
+      offenceType: reportText,
+      type: 'Topic',
+      topicId: topic._id?.toString() as string,
+      replyId: '',
+    };
+
+    const response = await reportTopicOrReply(report);
+
+    const updatedTopic = Object.assign({}, topic);
+    updatedTopic.isReported = true;
+
+    if (response.status === 200) {
+      console.log('it works');
+      updateTopic(updatedTopic);
+    }
+
+    setReportText('');
+    setReportFormOpen(false);
   };
 
   return topic.replies ? (
@@ -85,7 +119,7 @@ function ForumReplies({ topic }: TopicProps) {
         <div className="reply-box">
           <Dialog open={open} onClose={() => setOpen(true)}>
             <div style={divStyle}>
-              <DialogTitle>{topic.title}</DialogTitle>
+              <DialogTitle>Reply to {topic.authorName}</DialogTitle>
               <DialogContent>
                 <DialogContentText>
                   Reply to join the discussion!
@@ -112,7 +146,7 @@ function ForumReplies({ topic }: TopicProps) {
 
         <div className="report-box">
           <Dialog open={reportFormOpen} onClose={() => setReportFormOpen(true)}>
-            <DialogTitle>{topic.title}</DialogTitle>
+            <DialogTitle>Report</DialogTitle>
             <DialogContent>
               <DialogContentText>
                 Report a spoiler, or other unsuitable content
@@ -125,14 +159,14 @@ function ForumReplies({ topic }: TopicProps) {
                 type="text"
                 fullWidth
                 variant="standard"
-                // value={replyText}
-                // onChange={(e) => setReplyText(e.target.value)}
+                value={reportText}
+                onChange={(e) => setReportText(e.target.value)}
               />
             </DialogContent>
 
             <DialogActions>
               {/* TODO: Report button needs to send info the db */}
-              <Button onClick={() => setReportFormOpen(false)}>Report</Button>
+              <Button onClick={() => report()}>Report</Button>
               <Button onClick={() => setReportFormOpen(false)}>Cancel</Button>
             </DialogActions>
           </Dialog>

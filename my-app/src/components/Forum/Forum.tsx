@@ -48,10 +48,16 @@ function Forum() {
   };
 
   const addReply = (topicToUpdate: UserTopic, reply: Reply) => {
+    const topicCopy = Object.assign({}, topicToUpdate);
     const topicsCopy = [...topics];
-    topicsCopy
-      .find((topic) => topic._id === topicToUpdate._id)
-      ?.replies.push(reply);
+    topicCopy.replies.push(reply);
+
+    topicsCopy.splice(
+      topicsCopy.findIndex((topic) => topic._id === topicCopy._id),
+      1,
+      topicCopy
+    );
+
     setTopics(topicsCopy);
   };
 
