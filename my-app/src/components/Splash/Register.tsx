@@ -31,6 +31,9 @@ function Register({ setLoginOrRegister }: LoginProps) {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [displayName, setDisplayName] = useState('');
 
+  const [avatarRegister, setAvatarRegister] = useState<string>('');
+
+
   const fetchUser = async (userToSend: DBUser) => {
     const user = await registerUser(userToSend);
     if (user)
@@ -50,6 +53,12 @@ function Register({ setLoginOrRegister }: LoginProps) {
     }
   }
 
+  const getRandomString = (): string => {
+    let randNum = Math.floor(Math.random()*1000);
+    const rando = Math.floor(Math.random() * 100) % 2 === 0;
+    return (rando ? 'male/' : 'female/') + randNum + '.png';
+  };
+
   return (
     <StyledRegister>
       <div className='spiderman-container'>
@@ -65,9 +74,20 @@ function Register({ setLoginOrRegister }: LoginProps) {
               <div>NO SPOILERS!</div>
             </div>
 
-            <div className='blacklogo'>
-              <img src={blackLogo} />
+            <div className='blacklogo avatar-container'>
+              <button onClick={(e: SyntheticEvent) => {
+                e.preventDefault();
+                setAvatarRegister('https://avatars.dicebear.com/api/' + getRandomString());
+
+                }
+                }>
+              Pick your avatar
+              </button>
+              <div className="current-avatar">
+                <img src={avatarRegister} />
+              </div>
             </div>
+
           </header>
 
           <section>

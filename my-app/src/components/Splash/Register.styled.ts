@@ -3,7 +3,6 @@ import styled from "styled-components";
 const StyledRegister = styled.div`
   display: flex;
   justify-content: space-evenly;
-  border: 2px solid purple;
 
   .spiderman-container img  {
     width: 600px;
