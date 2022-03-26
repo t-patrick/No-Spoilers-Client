@@ -15,7 +15,6 @@ const StyledAvatarReel = styled.div`
   .avatar-container {
     padding: 0;
     width: 70px;
-    // border: 1px solid red;
     margin: 3px;
 
   }

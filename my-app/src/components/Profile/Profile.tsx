@@ -33,7 +33,6 @@ function Profile() {
           <div className="current-avatar">
             <img
               src={avatar}
-              // src={`https://avatars.dicebear.com/api/male/${user.avatar}.svg`} 
             />
           </div>
           <div className='new-avatar'>
