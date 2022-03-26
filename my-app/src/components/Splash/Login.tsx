@@ -59,12 +59,12 @@ function Login({ setLoginOrRegister }: LoginProps) {
           <section>
             <div className='user-name'>
               <div>User name</div>
-              <input type='text' value={email} onChange={e => setEmail(e.target.value)} name='user-name' placeholder='Enter your user name' />
+              <input type='text' value={email} onChange={e => setEmail(e.target.value)} name='user-name' placeholder='Enter your user name' required/>
             </div>
 
             <div className='password'>
               <div>Password</div>
-              <input type='password' value={password} onChange={e => setPassword(e.target.value)} name='password' placeholder='Enter your password' />
+              <input type='password' value={password} onChange={e => setPassword(e.target.value)} name='password' placeholder='Enter your password' required/>
             </div>
 
             <div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
+import AvatarReel from './AvatarReel';
 import StyledProfile from './profile.styled';
 
 function Profile() {
@@ -15,9 +16,12 @@ function Profile() {
   const [password, setPassword] = useState<string>('');
   const [passwordVerify, setPasswordVerify] = useState<string>('');
 
+  const [avatar, setAvatar] = useState<string>(user.avatar);
+
   const updateUser = () => {
     const newUser = {};
   };
+
 
   return (
     <StyledProfile>
@@ -25,24 +29,27 @@ function Profile() {
 
       <div className="profile-layout">
         <div className="avatar-container">
-          <h1 className="current-user-name">Bruce Wayne</h1>
+          <h1 className="current-user-name"> Bruce Wayne</h1>
           <div className="current-avatar">
             <img
-              src={`https://avatars.dicebear.com/api/male/${user.avatar}.svg`}
+              src={avatar}
             />
+          </div>
+          <div className='new-avatar'>
+            <AvatarReel setAvatar={setAvatar}/>
           </div>
         </div>
 
         <form className="input-container">
           <div className="heading-row row">
-            {/* <div>Edit User&#39;s Detail</div> */}
-            <div>Hey Bruce, you wanna change your details below?</div>
+            <div>Hey {user.displayName}, you wanna change your details below?</div>
           </div>
 
           <div className="name-email-row row">
             <div>
               <div>Username</div>
-              <input
+              <input 
+                className='input-area'
                 type="text"
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
@@ -52,6 +59,7 @@ function Profile() {
             <div>
               <div>Email</div>
               <input
+                className='input-area'
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -63,6 +71,7 @@ function Profile() {
             <div>
               <div>Password</div>
               <input
+                className='input-area'
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -71,6 +80,7 @@ function Profile() {
             <div>
               <div>Confirm Password</div>
               <input
+                className='input-area'
                 type="password"
                 value={passwordVerify}
                 onChange={(e) => setPasswordVerify(e.target.value)}

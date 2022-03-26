@@ -72,14 +72,17 @@ const StyledLogin = styled.div`
     background-color: black;
     color: white;
     padding: 20px;
+    cursor: pointer;
   }
 
   .btn-register {
     border: none;
     background-color: white;
     font-weight: 900;
+    cursor: pointer;
   }
 
+  
   footer {
     text-align: center;
     margin-top: 30%;
