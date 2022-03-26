@@ -56,6 +56,7 @@ export default function ForumNewTopic() {
     const topicRequest = constructTopic();
 
     const newTopic = await addTopic(topicRequest, userTVShow.TMDB_show_id);
+
     if (newTopic) updateTopics(newTopic);
 
     setTitle('');

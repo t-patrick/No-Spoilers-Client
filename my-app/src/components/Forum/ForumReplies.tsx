@@ -39,10 +39,10 @@ function ForumReplies({ topic, topicVisible }: TopicProps) {
       '' + (topic._id as number),
       replyText
     );
-    console.log('hello?', newReply);
 
     if (newReply) addReply(topic, newReply);
     setReplyText('');
+    setShowReplies(true);
     setOpen(false);
   };
 

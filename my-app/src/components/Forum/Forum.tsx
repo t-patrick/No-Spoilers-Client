@@ -51,7 +51,7 @@ function Forum() {
     const topicCopy = Object.assign({}, topicToUpdate);
     const topicsCopy = [...topics];
     topicCopy.replies.push(reply);
-
+    topicCopy.numberOfReplies++;
     topicsCopy.splice(
       topicsCopy.findIndex((topic) => topic._id === topicCopy._id),
       1,

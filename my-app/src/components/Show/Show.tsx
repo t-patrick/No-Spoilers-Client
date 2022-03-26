@@ -69,7 +69,7 @@ function Show() {
   }, []);
 
   useEffect(() => {
-    if (show.seasons) {
+    if (show.seasons && userTVShow.episodeCodeUpTo) {
       setCurrentEpisode(getEpisodeFromEpisodeCode(userTVShow.episodeCodeUpTo));
       if (show && userTVShow)
         setPercentComplete(calculatePercentComplete(userTVShow, show));
