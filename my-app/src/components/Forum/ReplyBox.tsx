@@ -28,6 +28,8 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
   const [reportFormOpen, setReportFormOpen] = useState(false);
   const [reportText, setReportText] = useState('');
   const [isExpanded, setIsExpanded] = useState<boolean>(true);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [editValue, setEditValue] = useState(reply.body);
 
   const Helpers = {
     isReplierFurtherAlong: () => {
@@ -72,7 +74,9 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
     };
 
     const response = await reportTopicOrReply(report);
-    const topic = topics.find((top) => top._id === reply.topicId) as UserTopic;
+    const topic = topics.find(
+      (top: UserTopic) => top._id === reply.topicId
+    ) as UserTopic;
     const updatedTopic = Object.assign({}, topic);
     (
       updatedTopic.replies.find((rep) => rep._id === reply._id) as Reply
@@ -84,6 +88,10 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
     }
 
     setReportFormOpen(false);
+  };
+
+  const handleOpenEdit = () => {
+    setIsEditing(!isEditing);
   };
 
   ////////////// RENDER
@@ -154,11 +162,17 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
 
   const renderAuthorControls = () => {
     return (
-      <div className="user-buttons">
+      <div
+        className="user-buttons"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      >
         <button className="remove-button" onClick={() => deleteReplyHandler()}>
           Delete
         </button>
-        <button className="edit-button" onClick={() => deleteReplyHandler()}>
+        <button className="edit-button" onClick={() => handleOpenEdit()}>
           Edit
         </button>
       </div>
@@ -225,6 +239,26 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
     );
   };
 
+  const renderBody = () => {
+    return !isEditing ? (
+      <p>{reply.body}</p>
+    ) : (
+      <div
+        className="edit"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      >
+        <textarea
+          className="edit-box"
+          value={editValue}
+          onChange={(e) => setEditValue(e.target.value)}
+        ></textarea>
+      </div>
+    );
+  };
+
   return (
     <StyledReplyBox>
       <Accordion
@@ -251,7 +285,7 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
           </Typography>
         </AccordionSummary>
         <AccordionDetails className="reply-content">
-          <Typography>{reply.body}</Typography>
+          <Typography>{renderBody()}</Typography>
         </AccordionDetails>
       </Accordion>
     </StyledReplyBox>

@@ -25,6 +25,12 @@ const StyledReplyBox = styled.div`
     color: white;
     background-color: black;
   }
+
+  .edit {
+  }
+
+  .edit-box {
+  }
 `;
 
 export default StyledReplyBox;
