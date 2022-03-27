@@ -56,6 +56,7 @@ export type ForumContextType = {
   addReply: (topic: UserTopic, reply: Reply) => void;
   updateTopic: (topic: UserTopic) => void;
   deleteTopic: (topic: UserTopic) => void;
+  deleteReply: (replyToDelete: Reply) => void;
 };
 
 export type CurrentShowContextType = {
@@ -65,5 +66,5 @@ export type CurrentShowContextType = {
 };
 
 export type AvatarPropType = {
-  setAvatar: Dispatch<SetStateAction<string>>
-}
+  setAvatar: Dispatch<SetStateAction<string>>;
+};

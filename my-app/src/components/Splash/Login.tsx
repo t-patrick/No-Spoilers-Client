@@ -10,6 +10,7 @@ import { loginUser } from '../../API/user-api';
 import { UserActionCreators } from '../../state/action-creators';
 import { checkEmail, checkPassword } from './formHelpers';
 import { verifyTokenAndLogin } from '../../API/user-api';
+import { setupToken } from '../../API/user-api';
 
 function Login({ setLoginOrRegister }: LoginProps) {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function Login({ setLoginOrRegister }: LoginProps) {
         if (response.status === 200) {
           setRedirect(true);
           setUserAction(response.data);
+          setupToken(token);
         }
       }
     };

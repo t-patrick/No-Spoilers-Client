@@ -70,6 +70,21 @@ function Forum() {
     setTopics(topicsCopy);
   };
 
+  const deleteReply = (replyToDelete: Reply) => {
+    const topicsCopy = [...topics];
+
+    const topic = topicsCopy.find(
+      (topic) => topic._id === replyToDelete.topicId
+    );
+
+    if (topic)
+      topic.replies.splice(
+        topic.replies.findIndex((reply) => reply._id === replyToDelete._id)
+      );
+
+    setTopics(topicsCopy);
+  };
+
   return (
     <ForumContext.Provider
       value={{
@@ -79,6 +94,7 @@ function Forum() {
         addReply: addReply,
         updateTopic,
         deleteTopic,
+        deleteReply,
       }}
     >
       <StyledForum>

@@ -23,7 +23,7 @@ import { ForumContext } from '../../App';
 
 function ReplyBox({ reply, userTVShow }: ReplyProps) {
   const user = useSelector<MainState>((state) => state.user.user) as User;
-  const { topics, updateTopic } = useContext(ForumContext);
+  const { topics, updateTopic, deleteReply } = useContext(ForumContext);
 
   const [reportFormOpen, setReportFormOpen] = useState(false);
   const [reportText, setReportText] = useState('');
@@ -50,7 +50,7 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
   const deleteReplyHandler = async () => {
     const confirm = await deleteReplies(reply);
 
-    // if (confirm) deleteTopic(topic);
+    if (confirm) deleteReply(reply);
   };
 
   const openReport = (e: SyntheticEvent) => {
@@ -156,7 +156,7 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
     return (
       <div className="user-buttons">
         <button className="remove-button" onClick={() => deleteReplyHandler()}>
-          Delete Post
+          Delete
         </button>
         <button className="edit-button" onClick={() => deleteReplyHandler()}>
           Edit
