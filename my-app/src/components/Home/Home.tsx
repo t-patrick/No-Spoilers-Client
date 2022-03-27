@@ -19,8 +19,6 @@ function Home() {
   const [currentSearch, setCurrentSearch] = useState('');
 
   useEffect(() => {
-    console.log('in home', userShows);
-
     setWatched(defaultWatched);
     setOnTheGo(defaultOnTheGo);
     filterMovies(currentSearch);

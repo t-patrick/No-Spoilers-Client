@@ -80,7 +80,6 @@ function ForumReplies({ topic, topicVisible }: TopicProps) {
     updatedTopic.isReported = true;
 
     if (response.status === 200) {
-      console.log('it works');
       updateTopic(updatedTopic);
     }
 

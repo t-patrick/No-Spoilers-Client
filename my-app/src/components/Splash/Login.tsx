@@ -26,7 +26,6 @@ function Login({ setLoginOrRegister }: LoginProps) {
   useEffect(() => {
     const verify = async () => {
       const token = localStorage.getItem('token');
-      console.log(token);
       if (token) {
         const response = await verifyTokenAndLogin(token);
         if (response.status === 200) {

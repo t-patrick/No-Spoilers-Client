@@ -3,7 +3,7 @@ import ForumNewTopic from './ForumNewTopic';
 import ForumTopicList from './ForumTopicList';
 import StyledForum from './forum.styled';
 import { useSelector } from 'react-redux';
-import { fetchTopics } from '../../API/user-api';
+import { fetchTopics, postUpdateReply } from '../../API/user-api';
 import { CurrentShowContext, ForumContext } from '../../App';
 
 function Forum() {
@@ -85,6 +85,18 @@ function Forum() {
     setTopics(topicsCopy);
   };
 
+  const updateReply = async (reply: Reply, newBody: string) => {
+    reply.body = newBody;
+    const topicsCopy = [...topics];
+    setTopics(topicsCopy);
+  };
+
+  const updateTopicBody = async (topic: UserTopic, newBody: string) => {
+    topic.body = newBody;
+    const topicsCopy = [...topics];
+    setTopics(topicsCopy);
+  };
+
   return (
     <ForumContext.Provider
       value={{
@@ -95,6 +107,8 @@ function Forum() {
         updateTopic,
         deleteTopic,
         deleteReply,
+        updateReply,
+        updateTopicBody,
       }}
     >
       <StyledForum>

@@ -1,16 +1,23 @@
 import React, { SyntheticEvent, useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { TopicProps, TopicsProps } from '../../proptypes';
-import StyledForumTopicList from './forumTopicList.styled';
 import StyledTopicBox from './topicbox.styled';
 import ForumReplies from './ForumReplies';
-import { deleteTopics, downVotePost, upVotePost } from '../../API/user-api';
+import {
+  deleteTopics,
+  downVotePost,
+  postUpdateTopic,
+  upVotePost,
+} from '../../API/user-api';
 import { ForumContext } from '../../App';
 
 function TopicBox({ topic }: TopicProps) {
   const user = useSelector<MainState>((state) => state.user.user) as User;
-  const { updateTopic, topics, deleteTopic } = useContext(ForumContext);
+  const { updateTopic, topics, deleteTopic, updateTopicBody } =
+    useContext(ForumContext);
   const [topicVisible, setTopicVisible] = useState<boolean>(!topic.isReported);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [editValue, setEditValue] = useState(topic.body);
 
   useEffect(() => {
     setTopicVisible(!topic.isReported);
@@ -41,10 +48,49 @@ function TopicBox({ topic }: TopicProps) {
     }
   };
 
+  const handleOpenEdit = () => {
+    if (isEditing) setEditValue(topic.body);
+    setIsEditing(!isEditing);
+  };
+
   const deleteTopicHandler = async () => {
     const confirm = await deleteTopics(topic);
 
     if (confirm) deleteTopic(topic);
+  };
+
+  const renderBody = () => {
+    return !isEditing ? (
+      <p>{topic.body}</p>
+    ) : (
+      <div
+        className="edit"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      >
+        <textarea
+          className="edit-box"
+          value={editValue}
+          onChange={(e) => setEditValue(e.target.value)}
+        ></textarea>
+        <button className="button" onClick={handleUpdateTopic}>
+          Update
+        </button>
+      </div>
+    );
+  };
+
+  const handleUpdateTopic = async () => {
+    const success = await postUpdateTopic(
+      topic._id?.toString() as string,
+      topic.title,
+      editValue
+    );
+
+    if (success) updateTopicBody(topic, editValue);
+    setIsEditing(false);
   };
 
   return topic ? (
@@ -80,7 +126,13 @@ function TopicBox({ topic }: TopicProps) {
                   (Posting about {topic.episodeCode})
                 </h3>
                 {topic.authorUserId === user._id.toString() && (
-                  <div className="user-buttons">
+                  <div
+                    className="user-buttons"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                  >
                     <button
                       className="remove-button"
                       onClick={() => deleteTopicHandler()}
@@ -89,7 +141,7 @@ function TopicBox({ topic }: TopicProps) {
                     </button>
                     <button
                       className="edit-button"
-                      onClick={() => deleteTopicHandler()}
+                      onClick={() => handleOpenEdit()}
                     >
                       Edit
                     </button>
@@ -112,9 +164,7 @@ function TopicBox({ topic }: TopicProps) {
                 <div>{topic.authorName}</div>
               </div>
 
-              <div className="topic-content">
-                <div>{topic.body}</div>
-              </div>
+              <div className="topic-content">{renderBody()}</div>
             </div>
           </div>
         </div>

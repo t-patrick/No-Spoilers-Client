@@ -16,14 +16,19 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import TextField from '@mui/material/TextField';
-import { deleteReplies, reportTopicOrReply } from '../../API/user-api';
+import {
+  deleteReplies,
+  postUpdateReply,
+  reportTopicOrReply,
+} from '../../API/user-api';
 import { ForumContext } from '../../App';
 
 // Needs the conditional
 
 function ReplyBox({ reply, userTVShow }: ReplyProps) {
   const user = useSelector<MainState>((state) => state.user.user) as User;
-  const { topics, updateTopic, deleteReply } = useContext(ForumContext);
+  const { topics, updateTopic, deleteReply, updateReply } =
+    useContext(ForumContext);
 
   const [reportFormOpen, setReportFormOpen] = useState(false);
   const [reportText, setReportText] = useState('');
@@ -83,7 +88,6 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
     ).isReported = true;
 
     if (response.status === 200) {
-      console.log('it works');
       updateTopic(updatedTopic);
     }
 
@@ -91,9 +95,20 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
   };
 
   const handleOpenEdit = () => {
+    if (isEditing) setEditValue(reply.body);
     setIsEditing(!isEditing);
   };
 
+  const handleUpdateReply = async () => {
+    const success = await postUpdateReply(
+      reply.topicId.toString(),
+      reply._id.toString(),
+      editValue
+    );
+
+    if (success) updateReply(reply, editValue);
+    setIsEditing(false);
+  };
   ////////////// RENDER
 
   const renderReplierProgress = () => {
@@ -255,6 +270,7 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
           value={editValue}
           onChange={(e) => setEditValue(e.target.value)}
         ></textarea>
+        <button onClick={handleUpdateReply}>Update</button>
       </div>
     );
   };

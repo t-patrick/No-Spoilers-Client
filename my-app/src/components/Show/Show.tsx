@@ -118,8 +118,6 @@ function Show() {
   };
 
   const getEpisodeFromEpisodeCode = (episodeCode: string): Episode => {
-    console.log(episodeCode);
-
     const [seasonIndex, episodeIndex] = episodeCode
       .slice(1)
       .split('e')

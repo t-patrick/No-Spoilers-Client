@@ -86,7 +86,7 @@ const StyledForumTopicList = styled.div`
     flex: 1;
   }
 
-  .topic-content button {
+  .topic-content > button {
     margin-left: 90%;
     margin-top: 16px;
     background-color: var(--chatbox-color);

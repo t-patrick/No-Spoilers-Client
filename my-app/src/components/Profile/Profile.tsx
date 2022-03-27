@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { updateUserAvatar } from '../../API/user-api';
+import { UserActionCreators } from '../../state/action-creators';
 import Navbar from '../Navbar/Navbar';
 import AvatarReel from './AvatarReel';
 import StyledProfile from './profile.styled';
 
 function Profile() {
+  const dispatch = useDispatch();
   const user = useSelector<MainState>((state) => state.user.user) as User;
+  const { updateUserAction } = bindActionCreators(UserActionCreators, dispatch);
 
   const [userName, setUserName] = useState<string>(user.displayName);
   const [email, setEmail] = useState<string>(user.email);
@@ -13,10 +18,31 @@ function Profile() {
   const [password, setPassword] = useState<string>('');
   const [passwordVerify, setPasswordVerify] = useState<string>('');
 
-  const [avatar, setAvatar] = useState<string>(user.avatar + '.svg');
+  const [avatar, setAvatar] = useState<string>(user.avatar);
 
-  const updateUser = () => {
-    const newUser = {};
+  const updateAvatar = async () => {
+    console.log('in updateAvatar', avatar);
+    const response = await updateUserAvatar(avatar);
+
+    if (response) {
+      const newUser: User = {
+        userTVInfo: user.userTVInfo,
+        ...response,
+      };
+      updateUserAction(newUser);
+    }
+  };
+
+  useEffect(() => {
+    console.log('user avatar on load', user.avatar);
+  }, []);
+
+  const updateUser = (e: SyntheticEvent) => {
+    e.preventDefault();
+    if (email === user.email && userName === user.displayName) {
+      if (avatar !== user.avatar) updateAvatar();
+      return;
+    }
   };
 
   const getRandomString = (): string => {
@@ -29,7 +55,7 @@ function Profile() {
 
     const rando = Math.floor(Math.random() * 100) % 2 === 0;
 
-    return (rando ? 'male/' : 'female/') + result + '.png';
+    return (rando ? 'male/' : 'female/') + result + '.svg';
   };
 
   return (
@@ -46,7 +72,11 @@ function Profile() {
           <button
             className="save-change"
             style={{ marginTop: 15 }}
-            onClick={() => setAvatar(getRandomString())}
+            onClick={() => {
+              const random = getRandomString();
+              setAvatar(random);
+              console.log('random string', random);
+            }}
           >
             Random Avatar
           </button>
@@ -103,7 +133,11 @@ function Profile() {
           </div>
 
           <div className="btn-row row">
-            <button className="save-change" type="submit" onClick={updateUser}>
+            <button
+              className="save-change"
+              type="submit"
+              onClick={(e) => updateUser(e)}
+            >
               SAVE CHANGES
             </button>
           </div>

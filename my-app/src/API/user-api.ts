@@ -222,3 +222,42 @@ export const deleteReplies = async (reply: Reply) => {
 };
 
 export const updateUser = (user: DBUser) => {};
+
+export const postUpdateReply = async (
+  topicId: string,
+  replyId: string,
+  body: string
+) => {
+  const response = await axios.patch(`${BASE_URL}/forum/reply/edit`, {
+    topicId,
+    replyId,
+    body,
+  });
+
+  if (response.status === 200) return true;
+  return false;
+};
+
+export const postUpdateTopic = async (
+  topicId: string,
+  body: string,
+  title: string
+) => {
+  const response = await axios.patch(`${BASE_URL}/forum/topic/edit`, {
+    topicId,
+    title,
+    body,
+  });
+
+  if (response.status === 200) return true;
+  return false;
+};
+
+export const updateUserAvatar = async (avatar: string) => {
+  const response = await axios.patch(`${BASE_URL}/profile/avatar`, {
+    avatar,
+  });
+
+  if (response.status === 200) return response.data;
+  return false;
+};

@@ -157,7 +157,7 @@ interface TopicRequest {
 }
 
 type Reply = {
-  _id?: number;
+  _id: number;
   topicId: number;
   authorUserId: number;
   authorName: string;

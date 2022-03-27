@@ -55,6 +55,31 @@ const StyledTopicBox = styled.div`
     gap: 10px;
     align-items: center;
   }
+  .edit {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    width: 300px;
+
+    .button {
+      align-self: flex-end;
+      border-radius: 10px;
+      padding: 8px 12px;
+      border: 0;
+      min-width: 80px;
+      max-width: 80px;
+      color: white;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+      background-color: black;
+    }
+  }
+
+  .edit-box {
+    font-family: 'Inter', sans-serif;
+    resize: none;
+    height: 100px;
+    width: 200px;
+  }
 `;
 
 export default StyledTopicBox;

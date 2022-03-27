@@ -57,6 +57,8 @@ export type ForumContextType = {
   updateTopic: (topic: UserTopic) => void;
   deleteTopic: (topic: UserTopic) => void;
   deleteReply: (replyToDelete: Reply) => void;
+  updateReply: (reply: Reply, newBody: string) => void;
+  updateTopicBody: (topic: UserTopic, newBody: string) => void;
 };
 
 export type CurrentShowContextType = {

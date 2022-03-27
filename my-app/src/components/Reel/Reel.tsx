@@ -21,9 +21,7 @@ function Reel({ userTVShows, isCompleted }: ReelProps) {
     dispatch
   );
 
-  useEffect(() => {
-    console.log('in useEffect', userTVShows);
-  }, [userTVShows]);
+  // useEffect(() => {}, [userTVShows]);
 
   // TODO: Implement.
   const markComplete = async (show: UserTVShow) => {
@@ -45,7 +43,6 @@ function Reel({ userTVShows, isCompleted }: ReelProps) {
   return (
     <div className="poster-container">
       {userTVShows.map((show, index) => {
-        console.log(userTVShows);
         return (
           <div key={index}>
             <img
