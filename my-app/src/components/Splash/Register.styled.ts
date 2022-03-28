@@ -23,11 +23,38 @@ const StyledRegister = styled.div`
     justify-content: space-between;
   }
 
-  .blacklogo img {
-    width: 150px;
-    padding-top: 10%;
-    padding-right: 20px;
+  // .blacklogo img {
+  //   width: 150px;
+  //   padding-top: 10%;
+  //   padding-right: 20px;
+  //   border: 1px solid red;
+  // }
+
+  .avatar-container {
+    width: 250px;
+    margin-left: 50px;
+    // border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
   }
+
+  .current-avatar img {
+    width: 175px;
+  }
+
+  // .btn-avatar {
+  //   margin-top: 5%;
+  //   width: 80px;
+  //   background-color: white;
+  //   font-size: 10px;
+  //   color: black;
+  //   padding: 5px; 
+  //   cursor: pointer;
+  //   outline: none;
+  //   border: none;
+  // }
 
   header .text-container {
     padding-top: 16px;
@@ -46,7 +73,7 @@ const StyledRegister = styled.div`
 
   section {
     margin: 5% auto;
-    margin-top: 30px;
+    margin-top: 10px;
   }
 
   section .email {
@@ -88,7 +115,6 @@ const StyledRegister = styled.div`
   section button {
     margin-top: 4%;
     width: 100%;
-    border: none;
     background-color: black;
     color: white;
     padding: 20px; 

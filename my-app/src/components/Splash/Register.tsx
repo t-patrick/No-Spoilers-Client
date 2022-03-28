@@ -77,11 +77,14 @@ function Register({ setLoginOrRegister }: LoginProps) {
 
             <div className='blacklogo avatar-container'>
               <div className="current-avatar">
-                <Tooltip title="CLICK ME!" arrow>
-                  <img src={avatarRegister} onClick={(e: SyntheticEvent) => {
-                  e.preventDefault();
-                  setAvatarRegister('https://avatars.dicebear.com/api/' + getRandomString());
-                  }} />
+                <Tooltip title='CLICK ME!' arrow>
+                  <img 
+                      onClick={(e: SyntheticEvent) => {
+                      e.preventDefault();
+                      setAvatarRegister('https://avatars.dicebear.com/api/' + getRandomString());
+                      }}
+                      src={avatarRegister || blackLogo || 'https://avatars.dicebear.com/api/male/1.png' } 
+                  />
                 </Tooltip>
               </div>
             </div>
