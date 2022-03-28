@@ -61,7 +61,7 @@ const StyledForumReplies = styled.div`
   }
 
   .reply-btn img {
-    width: 10px;
+    width: 15px;
   }
 
   .report-btn img {

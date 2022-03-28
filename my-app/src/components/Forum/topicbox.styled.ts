@@ -8,6 +8,7 @@ const StyledTopicBox = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    overflow: scroll;
   }
 
   .num-of-replies {

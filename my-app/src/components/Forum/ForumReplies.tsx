@@ -15,6 +15,7 @@ import ReplyBox from './ReplyBox';
 import { useSelector } from 'react-redux';
 import { postReply, reportTopicOrReply } from '../../API/user-api';
 import { CurrentShowContext, ForumContext } from '../../App';
+import Tooltip from '@mui/material/Tooltip';
 
 function ForumReplies({ topic, topicVisible }: TopicProps) {
   //// REDUX STORE
@@ -101,16 +102,20 @@ function ForumReplies({ topic, topicVisible }: TopicProps) {
                 topic.numberOfReplies === 1 ? 'reply' : 'replies'
               }`}
         </Button>
-        <Button
-          className="reply-btn"
-          variant="outlined"
-          onClick={handleClickOpen}
-        >
-          <img src={reply} style={{ transform: 'scale(2)' }} />
-        </Button>
-        <Button className="report-btn" onClick={() => setReportFormOpen(true)}>
-          <img src={redFlag} style={{ transform: 'scale(2)' }} />
-        </Button>
+        <Tooltip title='Reply' arrow>
+          <Button
+            className="reply-btn"
+            variant="outlined"
+            onClick={handleClickOpen}
+          >
+            <img src={reply} style={{ transform: 'scale(2)' }} />
+          </Button>
+        </Tooltip>
+        <Tooltip title='Report' arrow>
+          <Button className="report-btn" onClick={() => setReportFormOpen(true)}>
+            <img src={redFlag} style={{ transform: 'scale(2)' }} />
+          </Button>
+        </Tooltip>
 
         <div className="reply-box">
           <Dialog open={open} onClose={() => setOpen(true)}>
