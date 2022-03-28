@@ -9,7 +9,7 @@ const StyledForumReplies = styled.div`
   .reply-modal {
     display: flex;
     justify-content: flex-end;
-    margin-top: -50px;
+    margin-top: -45px;
 
     // border: 1px solid blue;
 
@@ -31,7 +31,9 @@ const StyledForumReplies = styled.div`
     background-color: var(--chatbox-border);
     font-family: var(--main-font);
     color: var(--chatbox-wrd);
+    border-radius: 3px 3px 0 0;
   }
+
 
   .reply-content {
     background-color: #dee2e7;
@@ -61,11 +63,11 @@ const StyledForumReplies = styled.div`
   }
 
   .reply-btn img {
-    width: 15px;
+    width: 10px;
   }
 
   .report-btn img {
-    width: 15px;
+    width: 10px;
   }
 
   .reply-btn:hover {

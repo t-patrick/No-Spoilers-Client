@@ -96,9 +96,9 @@ function Profile() {
 
       <div className="profile-layout">
         <div className="avatar-container">
-          <h1 className="current-user-name">Pick an avatar</h1>
+          <h1 className="current-user-name">Pick your avatar</h1>
           <div className="current-avatar">
-            <img src={'https://avatars.dicebear.com/api/' + avatar} />
+            <img src={'https://avatars.dicebear.com/api/' + avatar || 'https://avatars.dicebear.com/api/male/1.png' } />
           </div>
           <AvatarReel setAvatar={setAvatar} />
           <button
@@ -116,7 +116,7 @@ function Profile() {
         <form className="input-container">
           <div className="heading-row row">
             <div>
-              Hey {user.displayName}, you wanna change your details below?
+              Hey {user.displayName || 'buddy'}, you wanna change your details below?
             </div>
           </div>
 

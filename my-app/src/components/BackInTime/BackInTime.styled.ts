@@ -70,6 +70,7 @@ const StyledBackInTime = styled.div`
     border-radius: 5px;
     margin-top: 3px;
     width: 90.5%;
+
   }
 
   input {
@@ -89,8 +90,12 @@ const StyledBackInTime = styled.div`
     border-radius: 5px;
     background: transparent;
     margin-top: 15px;
-    color: white;
+    color: grey;
     cursor: pointer;
+  }
+
+  form button: hover {
+    text-decoration: underline;
   }
 
   .dropdown-content a:hover {

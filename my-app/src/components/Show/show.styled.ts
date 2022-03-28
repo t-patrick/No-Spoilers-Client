@@ -52,8 +52,9 @@ const StyledShow = styled.div`
     margin-top: 16px;
   }
 
-  .button-containerButton:hover {
-    border: 2px solid var(--sharp-purple);
+  .button-container Button:hover {
+    border: 1px solid var(--sharp-purple);
+    // border-color: var(--sharp-purple);
     margin-top: 16px;
     padding: 6px;
     outline: none;

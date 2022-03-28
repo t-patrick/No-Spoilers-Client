@@ -22,6 +22,8 @@ const StyledTopicBox = styled.div`
   .title-and-date {
     padding: 10px 15px;
     align-self: center;
+    // border: 1px solid red;
+    border-radius: 10px;
     h3 {
       margin: 3px 0px 5px 0px;
     }
@@ -79,6 +81,14 @@ const StyledTopicBox = styled.div`
     resize: none;
     height: 100px;
     width: 200px;
+    background-color: #d4d4d8;
+    border-radius: 10px;
+    padding: 5px;
+  }
+
+  .edit-box: focus {
+    outline: none;
+    border-color: var(--sharp-purple);
   }
 `;
 
