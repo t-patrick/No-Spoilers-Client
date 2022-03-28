@@ -15,6 +15,7 @@ import { CurrentShowContextType, ForumContextType } from './proptypes';
 import Profile from './components/Profile/Profile';
 import { verifyTokenAndLogin } from './API/user-api';
 import { UserActionCreators } from './state/action-creators';
+import { io, Socket } from 'socket.io-client';
 
 const store = createStore(reducers, composeWithDevTools());
 
@@ -27,6 +28,15 @@ export const ForumContext = createContext<ForumContextType>(
 );
 
 function App() {
+  const [socket, setSocket] = useState<Socket>({} as Socket);
+
+  useEffect(() => {
+    console.log('in useEffect');
+    const newSocket = io('http://localhost:3001');
+    newSocket.connect();
+    setSocket(newSocket);
+  }, []);
+
   return (
     <Provider store={store}>
       <Fragment>
@@ -35,7 +45,7 @@ function App() {
           <Router>
             <Routes>
               <Route path="home" element={<Home />} />
-              <Route path="show/:id" element={<Show />} />
+              <Route path="show/:id" element={<Show socket={socket} />} />
               <Route path="search" element={<Search />} />
               <Route path="/" element={<Splash />} />
               <Route path="/profile" element={<Profile />} />

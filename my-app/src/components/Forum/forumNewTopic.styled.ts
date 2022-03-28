@@ -8,8 +8,8 @@ const StyledForumNewTopic = styled.div`
   border-radius: 10px;
   margin-bottom: 50px;
   margin-top: 30px;
-  min-height: 430px;
-  max-height: 430px;
+  min-height: 450px;
+  max-height: 450px;
 
   .title {
     padding-top: 2.5%;
@@ -37,20 +37,19 @@ const StyledForumNewTopic = styled.div`
 
     border: 2px solid var(--chatbox-border);
     margin-top: 10px;
-
   }
 
   .btn {
     text-align: center;
     padding-bottom: 16px;
   }
-  
+
   textarea: focus {
     outline: none;
     border: 2px solid var(--light-purple);
     transition: 0.5s;
   }
-  
+
   .btn button {
     margin-: 50px;
   }

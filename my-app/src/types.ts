@@ -186,3 +186,34 @@ type UserWayback = {
   name: string;
   waybackUrl: string;
 };
+
+type ChatRequest = {
+  socket_id?: string;
+  userId: string;
+  show_Id: number;
+  episodeId: number;
+  displayName: string;
+  avatar: string;
+};
+
+// Other people
+type ChatResponse = {
+  socket_id: string;
+  avatar: string;
+  displayName: string;
+};
+
+/* 
+waiting = Array<ChatRequest>
+*/
+
+/* 
+
+emit('request', ChatRequest)
+
+on('subscribed', Array<ChatResponse>) => Add to sidebar in own little box.
+
+on('found', ChatResponse) => Add to ChatResponses
+
+
+*/

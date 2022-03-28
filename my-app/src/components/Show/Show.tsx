@@ -15,8 +15,9 @@ import { useParams } from 'react-router-dom';
 import { getShowDetail } from '../../API/user-api';
 import { TailSpin } from 'react-loader-spinner';
 import { CurrentShowContext } from '../../App';
+import { Socket } from 'socket.io-client';
 
-function Show() {
+function Show({ socket }: { socket: Socket }) {
   const { id } = useParams();
   const [show, setShow] = useState<TVShow>({} as TVShow);
   const [userTVShow, setUserTVShow] = useState<UserTVShow>({} as UserTVShow);
