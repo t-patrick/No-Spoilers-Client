@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
@@ -48,13 +49,20 @@ function Home() {
     filterMovies(value);
   };
 
+  const [sidebar, setSidebar] = useState(false);
+  const showSidebar = () => {
+    setSidebar(!sidebar);
+    console.log('heyy');
+  }
+
   return (
     <StyledHome>
         <div className='sidebar'>
-          <Sidebar/>
+          {sidebar && < Sidebar/>}
         </div>
         <div className='non-sidebar'>
           <Navbar showSearch={true} />
+          <Button onClick={showSidebar}>Open</Button>
           <div>
             <div className="filter">
               <input

@@ -4,7 +4,10 @@ import StyledSidebar from './sidebar.styled';
 function Sidebar() {
   return (
     <StyledSidebar>
-      THIS IS A SIDE BAR
+      <a href='#'>X</a>
+      <a href='#'>Friend 1</a>
+      <a href='#'>Friend 2</a>
+      <a href='#'>Friend 3</a>
     </StyledSidebar>
   )
 }
