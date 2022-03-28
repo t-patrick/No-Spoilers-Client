@@ -158,7 +158,7 @@ function TopicBox({ topic }: TopicProps) {
               <div className="user-info">
                 <div className="avatar">
                   <img
-                    src={`https://avatars.dicebear.com/api/male/${topic.avatar}.svg`}
+                    src={`https://avatars.dicebear.com/api/${topic.avatar}`}
                   ></img>
                 </div>
                 <div>{topic.authorName}</div>

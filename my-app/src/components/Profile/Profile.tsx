@@ -17,6 +17,10 @@ function Profile() {
   const [oldPassword, setOldPassword] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [passwordVerify, setPasswordVerify] = useState<string>('');
+  const [buttonActive, setButtonActive] = useState<boolean>(true);
+  const [buttonText, setButtonText] = useState<'Save Changes' | 'Saved'>(
+    'Save Changes'
+  );
 
   const [avatar, setAvatar] = useState<string>(user.avatar);
 
@@ -41,7 +45,35 @@ function Profile() {
     e.preventDefault();
     if (email === user.email && userName === user.displayName) {
       if (avatar !== user.avatar) updateAvatar();
+      setButtonActive(false);
+      setButtonText('Saved');
       return;
+    }
+  };
+
+  const changeHandler = (
+    field: 'username' | 'password' | 'verifypassword' | 'avatar' | 'email',
+    value: string
+  ) => {
+    setButtonActive(true);
+    setButtonText('Save Changes');
+
+    switch (field) {
+      case 'username':
+        setUserName(value);
+        break;
+      case 'password':
+        setPassword(value);
+        break;
+      case 'verifypassword':
+        setPasswordVerify(value);
+        break;
+      case 'avatar':
+        setAvatar(value);
+        break;
+      case 'email':
+        setEmail(value);
+        break;
     }
   };
 
@@ -74,8 +106,7 @@ function Profile() {
             style={{ marginTop: 15 }}
             onClick={() => {
               const random = getRandomString();
-              setAvatar(random);
-              console.log('random string', random);
+              changeHandler('avatar', random);
             }}
           >
             Random Avatar
@@ -96,7 +127,7 @@ function Profile() {
                 className="input-area"
                 type="text"
                 value={userName}
-                onChange={(e) => setUserName(e.target.value)}
+                onChange={(e) => changeHandler('username', e.target.value)}
               />
             </div>
 
@@ -106,7 +137,7 @@ function Profile() {
                 className="input-area"
                 type="text"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => changeHandler('email', e.target.value)}
               />
             </div>
           </div>
@@ -118,7 +149,7 @@ function Profile() {
                 className="input-area"
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => changeHandler('password', e.target.value)}
               />
             </div>
             <div>
@@ -127,18 +158,21 @@ function Profile() {
                 className="input-area"
                 type="password"
                 value={passwordVerify}
-                onChange={(e) => setPasswordVerify(e.target.value)}
+                onChange={(e) =>
+                  changeHandler('verifypassword', e.target.value)
+                }
               />
             </div>
           </div>
 
           <div className="btn-row row">
             <button
+              disabled={!buttonActive}
               className="save-change"
               type="submit"
               onClick={(e) => updateUser(e)}
             >
-              SAVE CHANGES
+              {buttonText}
             </button>
           </div>
         </form>

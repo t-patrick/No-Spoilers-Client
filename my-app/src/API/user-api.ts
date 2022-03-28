@@ -174,9 +174,9 @@ export const deleteUserShow = async (TMDB_show_id: string, userId: string) => {
 };
 
 export const upVotePost = async (userId: string, topicId: string) => {
-  const response = await axios.delete(
-    `${BASE_URL}/forum/topic/upvote${topicId}`
-  );
+  const response = await axios.patch(`${BASE_URL}/forum/topic/upvote`, {
+    topicId,
+  });
   return response;
 };
 
