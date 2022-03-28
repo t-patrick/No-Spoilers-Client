@@ -7,6 +7,8 @@ const StyledLogin = styled.div`
 
   .spiderman-container img {
     width: 600px;
+    margin: 2%;
+    padding-top: 5%;
   }
 
   .form-container {
@@ -23,9 +25,10 @@ const StyledLogin = styled.div`
   }
 
   .blacklogo img {
-    width: 150px;
-    padding-top: 10%;
-    padding-right: 20px;
+    width: 175px;
+    // padding-top: 5%;
+    padding-top: 5px;
+    padding-right: 40px;
   }
 
   header .text-container {
@@ -49,7 +52,6 @@ const StyledLogin = styled.div`
   }
 
   section .user-name {
-    // padding-top: 20%;
     padding-bottom: 5%;
   }
 

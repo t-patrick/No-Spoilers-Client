@@ -9,6 +9,7 @@ import { checkEmail, checkPassword } from './formHelpers';
 import blackLogo from './images/black-logo.png';
 import spidermanImage from './images/spiderman.jpeg'
 import StyledRegister from './Register.styled';
+import Tooltip from '@mui/material/Tooltip';
 
 
 
@@ -31,6 +32,9 @@ function Register({ setLoginOrRegister }: LoginProps) {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [displayName, setDisplayName] = useState('');
 
+  const [avatarRegister, setAvatarRegister] = useState<string>('');
+
+
   const fetchUser = async (userToSend: DBUser) => {
     const user = await registerUser(userToSend);
     if (user)
@@ -50,6 +54,12 @@ function Register({ setLoginOrRegister }: LoginProps) {
     }
   }
 
+  const getRandomString = (): string => {
+    let randNum = Math.floor(Math.random()*1000);
+    const rando = Math.floor(Math.random() * 100) % 2 === 0;
+    return (rando ? 'male/' : 'female/') + randNum + '.png';
+  };
+
   return (
     <StyledRegister>
       <div className='spiderman-container'>
@@ -65,9 +75,20 @@ function Register({ setLoginOrRegister }: LoginProps) {
               <div>NO SPOILERS!</div>
             </div>
 
-            <div className='blacklogo'>
-              <img src={blackLogo} />
+            <div className='blacklogo avatar-container'>
+              <div className="current-avatar">
+                <Tooltip title='CLICK ME!' arrow>
+                  <img 
+                      onClick={(e: SyntheticEvent) => {
+                      e.preventDefault();
+                      setAvatarRegister('https://avatars.dicebear.com/api/' + getRandomString());
+                      }}
+                      src={avatarRegister || blackLogo || 'https://avatars.dicebear.com/api/male/1.png' } 
+                  />
+                </Tooltip>
+              </div>
             </div>
+
           </header>
 
           <section>
