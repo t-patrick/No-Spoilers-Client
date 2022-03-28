@@ -62,7 +62,7 @@ function Home() {
         </div>
         <div className='non-sidebar'>
           <Navbar showSearch={true} />
-          <Button onClick={showSidebar}>Open</Button>
+          
           <div>
             <div className="filter">
               <input
@@ -74,7 +74,7 @@ function Home() {
             </div>
 
             <div className="row ">
-              <div className="heading">On the go</div>
+              <div className="heading">On the go<Button onClick={showSidebar}>Open</Button></div>
               {onTheGo && <Reel userTVShows={onTheGo} isCompleted={false} />}
             </div>
 
