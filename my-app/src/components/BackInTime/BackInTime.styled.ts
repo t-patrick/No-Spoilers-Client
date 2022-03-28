@@ -15,11 +15,14 @@ const StyledBackInTime = styled.div`
     text-align: left;
     display: flex;
     justify-content: space-between;
+
+    img {
+      width: 5%;
+      margin-left: 2px;
+    }
+
   }
 
-  .dropdown img {
-    width: 5%;
-  }
 
   .dropdown-content {
     overflow-x: hidden;
@@ -84,6 +87,7 @@ const StyledBackInTime = styled.div`
   input: focus {
     outline: none;
   }
+
 
   form button {
     border: 2px solid grey;
