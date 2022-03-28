@@ -197,10 +197,20 @@ type ChatRequest = {
 };
 
 // Other people
-type ChatResponse = {
+type Chatter = {
   socket_id: string;
   avatar: string;
   displayName: string;
+  userId: string;
+};
+
+type Message = {
+  recieverId: string;
+  displayName: string;
+  avatar: string;
+  message: string;
+  senderId: string;
+  showId: string;
 };
 
 /* 

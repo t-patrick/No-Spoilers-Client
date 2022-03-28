@@ -29,12 +29,26 @@ export const ForumContext = createContext<ForumContextType>(
 
 function App() {
   const [socket, setSocket] = useState<Socket>({} as Socket);
+  const [chatters, setChatters] = useState<Array<Chatter>>([]);
 
   useEffect(() => {
-    console.log('in useEffect');
     const newSocket = io('http://localhost:3001');
     newSocket.connect();
     setSocket(newSocket);
+
+    newSocket.on('subscribed', (payload) => {
+      console.log('subscribed', payload);
+      setChatters(payload);
+    });
+
+    newSocket.on('found', (resp) => {
+      console.log('someone connected', resp);
+      setChatters([...chatters, resp]);
+    });
+
+    newSocket.on('receive-message', (msg) => {
+      console.log('message!', msg);
+    });
   }, []);
 
   return (
@@ -45,7 +59,16 @@ function App() {
           <Router>
             <Routes>
               <Route path="home" element={<Home />} />
-              <Route path="show/:id" element={<Show socket={socket} />} />
+              <Route
+                path="show/:id"
+                element={
+                  <Show
+                    socket={socket}
+                    chatters={chatters}
+                    setChatters={setChatters}
+                  />
+                }
+              />
               <Route path="search" element={<Search />} />
               <Route path="/" element={<Splash />} />
               <Route path="/profile" element={<Profile />} />

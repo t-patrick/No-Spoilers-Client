@@ -1,4 +1,10 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 import Episodechooser from '../EpisodeChooser/Episodechooser';
 import Forum from '../Forum/Forum';
 import Backintime from '../BackInTime/Backintime';
@@ -17,7 +23,15 @@ import { TailSpin } from 'react-loader-spinner';
 import { CurrentShowContext } from '../../App';
 import { Socket } from 'socket.io-client';
 
-function Show({ socket }: { socket: Socket }) {
+function Show({
+  socket,
+  chatters,
+  setChatters,
+}: {
+  socket: Socket;
+  chatters: Array<Chatter>;
+  setChatters: Dispatch<SetStateAction<Array<Chatter>>>;
+}) {
   const { id } = useParams();
   const [show, setShow] = useState<TVShow>({} as TVShow);
   const [userTVShow, setUserTVShow] = useState<UserTVShow>({} as UserTVShow);
@@ -206,7 +220,33 @@ function Show({ socket }: { socket: Socket }) {
           </div>
           <Backintime show={show} currentEpisode={userTVShow.episodeCodeUpTo} />
         </div>
-
+        <button
+          onClick={() => {
+            socket.emit('request', {
+              userId: user._id,
+              showId: show.TMDB_show_id,
+              episodeId: 1234,
+              displayName: user.displayName,
+              avatar: user.avatar,
+            });
+          }}
+        >
+          Join for this ep
+        </button>
+        <button
+          onClick={() => {
+            socket.emit('message', {
+              receiverId: chatters[0].userId,
+              displayName: user.displayName,
+              avatar: user.avatar,
+              senderId: user._id,
+              showId: show.TMDB_show_id,
+              message: 'Hello......',
+            });
+          }}
+        >
+          Send message
+        </button>
         <Episodechooser seasons={show.seasons} />
         <Forum />
       </StyledShow>
