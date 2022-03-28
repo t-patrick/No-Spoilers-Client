@@ -7,6 +7,8 @@ const StyledLogin = styled.div`
 
   .spiderman-container img {
     width: 600px;
+    margin: 2%;
+    padding-top: 5%;
   }
 
   .form-container {

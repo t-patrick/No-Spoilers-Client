@@ -33,10 +33,8 @@ const StyledRegister = styled.div`
   .avatar-container {
     width: 250px;
     margin-left: 50px;
-    // border: 1px solid red;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     align-items: center;
   }
 
@@ -44,17 +42,7 @@ const StyledRegister = styled.div`
     width: 175px;
   }
 
-  // .btn-avatar {
-  //   margin-top: 5%;
-  //   width: 80px;
-  //   background-color: white;
-  //   font-size: 10px;
-  //   color: black;
-  //   padding: 5px; 
-  //   cursor: pointer;
-  //   outline: none;
-  //   border: none;
-  // }
+
 
   header .text-container {
     padding-top: 16px;
