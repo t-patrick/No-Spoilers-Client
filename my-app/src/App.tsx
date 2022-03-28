@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Search from './components/search/Search';
 import GlobalStyles from './theme/global-style';
-import Navbar from './components/Navbar/Navbar';
 import { bindActionCreators, createStore } from 'redux';
 import reducers from './state/reducers';
 import { Provider } from 'react-redux';
@@ -15,6 +14,7 @@ import { CurrentShowContextType, ForumContextType } from './proptypes';
 import Profile from './components/Profile/Profile';
 import { verifyTokenAndLogin } from './API/user-api';
 import { UserActionCreators } from './state/action-creators';
+import Sidebar from '../src/components/Sidebar/Sidebar';
 
 const store = createStore(reducers, composeWithDevTools());
 

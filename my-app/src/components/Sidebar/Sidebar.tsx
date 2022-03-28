@@ -3,7 +3,9 @@ import StyledSidebar from './sidebar.styled';
 
 function Sidebar() {
   return (
-    <StyledSidebar>Sidebar</StyledSidebar>
+    <StyledSidebar>
+      THIS IS A SIDE BAR
+    </StyledSidebar>
   )
 }
 

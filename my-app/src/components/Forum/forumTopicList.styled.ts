@@ -54,7 +54,6 @@ const StyledForumTopicList = styled.div`
   .topic-header {
     background-color: #4a5568;
     border-radius: 10px;
-    /* padding: 15px 15px 15px; */
     width: 100%;
   }
 

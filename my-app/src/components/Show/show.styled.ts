@@ -2,6 +2,15 @@ import styled from 'styled-components';
 
 const StyledShow = styled.div`
   color: white;
+  display: flex;
+
+  .sidebar {
+    flex: 0.5;
+  }
+
+  .non-sidebar {
+    flex: 10;
+  }
 
   .show-view {
     display: flex;
@@ -56,7 +65,7 @@ const StyledShow = styled.div`
   .button-container Button:hover {
     border: 1px solid var(--sharp-purple);
     margin-top: 16px;
-    padding: 6px;
+    padding: 7px;
     outline: none;
   }
 

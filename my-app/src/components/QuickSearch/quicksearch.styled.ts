@@ -3,6 +3,11 @@ import styled from 'styled-components';
 const StyledQuickSearch = styled.div`
   // Our styles
 
+
+  .select-search__input {
+    margin-top: 0;
+  }
+
   position: relative;
   padding: 10px;
   .option {

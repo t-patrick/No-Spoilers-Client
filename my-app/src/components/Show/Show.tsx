@@ -5,16 +5,16 @@ import Backintime from '../BackInTime/Backintime';
 import { useSelector } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
 import StyledShow from './show.styled';
+import Sidebar from '../Sidebar/Sidebar';
+import { getShowDetail } from '../../API/user-api';
+import { TailSpin } from 'react-loader-spinner';
+import { CurrentShowContext } from '../../App';
 // mui library below
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useParams } from 'react-router-dom';
-
-import { getShowDetail } from '../../API/user-api';
-import { TailSpin } from 'react-loader-spinner';
-import { CurrentShowContext } from '../../App';
 
 function Show() {
   const { id } = useParams();
@@ -141,74 +141,80 @@ function Show() {
         </div>
       )}
       <StyledShow>
-        <Navbar showSearch={false} />
-        <div className="show-view">
-          <div className="image-button-container">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${
-                currentPosterPath || userTVShow.poster_path
-              }`}
-            />
-            {/* modal */}
-            <div className="button-container">
-              <Button>LINK ME UP!</Button>
-              <Button onClick={handleOpen}>Show Details</Button>
-              <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <Typography
-                    id="modal-modal-title"
-                    variant="h6"
-                    component="h3"
-                  >
-                    {show.tagline && <>&quot;{show.tagline}&quot;</>}
-                  </Typography>
-                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    <p>
-                      <span style={{ fontWeight: 800 }}> Description:</span>{' '}
-                      {show.overview}
-                    </p>
-                    <p>
-                      Release year:{' '}
-                      <span>{new Date(show.first_air_date).getFullYear()}</span>
-                    </p>
-                  </Typography>
-                </Box>
-              </Modal>
-            </div>
-          </div>
-          <div className="show-description">
-            <h1>{show.name}</h1>
-            <br></br>
-            {currentEpisode.name && (
-              <div className="progress">
-                <h4>{percentComplete}% complete</h4>
-                <p>
-                  You are on:{' '}
-                  <h3>
-                    Season {currentEpisode.season_number} Episode{' '}
-                    {currentEpisode.episode_number}: {currentEpisode.name}
-                  </h3>
-                </p>
-              </div>
-            )}
-            <div className='display-details'>
-              <div><span>First Episode Date: &emsp;&emsp;&emsp;</span>{show.first_air_date}</div>
-              <div><span>Last Episode Date: &emsp;&emsp;&emsp;</span>{show.last_air_date}</div>
-              <div><span>Total Number of Seasons: &emsp;&emsp;&emsp;</span>{show.number_of_seasons}</div>
-              <div><span>Total Number of Episode: &emsp;&emsp;&emsp;</span>{show.number_of_episodes}</div>
-              <div className="tagline">{show.tagline}</div>
-            </div>
-          </div>
-          <Backintime show={show} currentEpisode={userTVShow.episodeCodeUpTo} />
+        <div className='sidebar'>
+          <Sidebar/>
         </div>
+        <div className='non-sidebar'>
+          <Navbar showSearch={false} />
+          <div className="show-view">
+            <div className="image-button-container">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${
+                  currentPosterPath || userTVShow.poster_path
+                }`}
+              />
+              {/* modal */}
+              <div className="button-container">
+                <Button>LINK ME UP!</Button>
+                <Button onClick={handleOpen}>Show Details</Button>
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                    <Typography
+                      id="modal-modal-title"
+                      variant="h6"
+                      component="h3"
+                    >
+                      {show.tagline && <>&quot;{show.tagline}&quot;</>}
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                      <p>
+                        <span style={{ fontWeight: 800 }}> Description:</span>{' '}
+                        {show.overview}
+                      </p>
+                      <p>
+                        Release year:{' '}
+                        <span>{new Date(show.first_air_date).getFullYear()}</span>
+                      </p>
+                    </Typography>
+                  </Box>
+                </Modal>
+              </div>
+            </div>
+            <div className="show-description">
+              <h1>{show.name}</h1>
+              <br></br>
+              {currentEpisode.name && (
+                <div className="progress">
+                  <h4>{percentComplete}% complete</h4>
+                  <p>
+                    You are on:{' '}
+                    <h3>
+                      Season {currentEpisode.season_number} Episode{' '}
+                      {currentEpisode.episode_number}: {currentEpisode.name}
+                    </h3>
+                  </p>
+                </div>
+              )}
+              <div className='display-details'>
+                <div><span>First Episode Date: &emsp;&emsp;&emsp;</span>{show.first_air_date}</div>
+                <div><span>Last Episode Date: &emsp;&emsp;&emsp;</span>{show.last_air_date}</div>
+                <div><span>Total Number of Seasons: &emsp;&emsp;&emsp;</span>{show.number_of_seasons}</div>
+                <div><span>Total Number of Episode: &emsp;&emsp;&emsp;</span>{show.number_of_episodes}</div>
+                <div className="tagline">{show.tagline}</div>
+              </div>
+            </div>
+            <Backintime show={show} currentEpisode={userTVShow.episodeCodeUpTo} />
+          </div>
 
-        <Episodechooser seasons={show.seasons} />
-        <Forum />
+          <Episodechooser seasons={show.seasons} />
+          <Forum />
+
+        </div>
       </StyledShow>
     </CurrentShowContext.Provider>
   );

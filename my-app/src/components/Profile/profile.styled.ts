@@ -2,6 +2,17 @@ import styled from 'styled-components';
 
 const StyledProfile = styled.div`
   color: white;
+  display: flex;
+
+  .sidebar {
+    flex: 0.5;
+  }
+
+  .non-sidebar {
+    flex: 10;
+    // position: relative;
+    // width: 80%;
+  }
 
   .profile-layout {
     display: flex;

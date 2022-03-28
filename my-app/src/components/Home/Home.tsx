@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
 import Reel from '../Reel/Reel';
+import Sidebar from '../Sidebar/Sidebar';
 import StyledHome from './home.styled';
 
 function Home() {
@@ -49,27 +50,32 @@ function Home() {
 
   return (
     <StyledHome>
-      <Navbar showSearch={true} />
-      <div>
-        <div className="filter">
-          <input
-            type="text"
-            placeholder="Filter the lists below..."
-            value={currentSearch}
-            onChange={(e) => updateSearch(e.target.value)}
-          />
+        <div className='sidebar'>
+          <Sidebar/>
         </div>
+        <div className='non-sidebar'>
+          <Navbar showSearch={true} />
+          <div>
+            <div className="filter">
+              <input
+                type="text"
+                placeholder="Filter the lists below..."
+                value={currentSearch}
+                onChange={(e) => updateSearch(e.target.value)}
+              />
+            </div>
 
-        <div className="row ">
-          <div className="heading">On the go</div>
-          {onTheGo && <Reel userTVShows={onTheGo} isCompleted={false} />}
-        </div>
+            <div className="row ">
+              <div className="heading">On the go</div>
+              {onTheGo && <Reel userTVShows={onTheGo} isCompleted={false} />}
+            </div>
 
-        <div className="row ">
-          <div className="heading">Completed</div>
-          {watched && <Reel userTVShows={watched} isCompleted={true} />}
+            <div className="row ">
+              <div className="heading">Completed</div>
+              {watched && <Reel userTVShows={watched} isCompleted={true} />}
+            </div>
+          </div>
         </div>
-      </div>
     </StyledHome>
   );
 }

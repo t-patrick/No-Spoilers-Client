@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { updateUserAvatar } from '../../API/user-api';
 import { UserActionCreators } from '../../state/action-creators';
 import Navbar from '../Navbar/Navbar';
+import Sidebar from '../Sidebar/Sidebar';
 import AvatarReel from './AvatarReel';
 import StyledProfile from './profile.styled';
 
@@ -92,90 +93,94 @@ function Profile() {
 
   return (
     <StyledProfile>
-      <Navbar showSearch={true} />
-
-      <div className="profile-layout">
-        <div className="avatar-container">
-          <h1 className="current-user-name">Pick your avatar</h1>
-          <div className="current-avatar">
-            <img src={'https://avatars.dicebear.com/api/' + avatar || 'https://avatars.dicebear.com/api/male/1.png' } />
-          </div>
-          <AvatarReel setAvatar={setAvatar} />
-          <button
-            className="save-change"
-            style={{ marginTop: 15 }}
-            onClick={() => {
-              const random = getRandomString();
-              changeHandler('avatar', random);
-            }}
-          >
-            Random Avatar
-          </button>
-        </div>
-
-        <form className="input-container">
-          <div className="heading-row row">
-            <div>
-              Hey {user.displayName || 'buddy'}, you wanna change your details below?
+      <div className='sidebar'>
+        <Sidebar/>
+      </div>
+      <div className='non-sidebar'>
+        <Navbar showSearch={true} />
+        <div className="profile-layout">
+          <div className="avatar-container">
+            <h1 className="current-user-name">Pick your avatar</h1>
+            <div className="current-avatar">
+              <img src={'https://avatars.dicebear.com/api/' + avatar || 'https://avatars.dicebear.com/api/male/1.png' } />
             </div>
-          </div>
-
-          <div className="name-email-row row">
-            <div>
-              <div>Username</div>
-              <input
-                className="input-area"
-                type="text"
-                value={userName}
-                onChange={(e) => changeHandler('username', e.target.value)}
-              />
-            </div>
-
-            <div>
-              <div>Email</div>
-              <input
-                className="input-area"
-                type="text"
-                value={email}
-                onChange={(e) => changeHandler('email', e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div className="pwd-row row">
-            <div>
-              <div>Password</div>
-              <input
-                className="input-area"
-                type="password"
-                value={password}
-                onChange={(e) => changeHandler('password', e.target.value)}
-              />
-            </div>
-            <div>
-              <div>Confirm Password</div>
-              <input
-                className="input-area"
-                type="password"
-                value={passwordVerify}
-                onChange={(e) =>
-                  changeHandler('verifypassword', e.target.value)
-                }
-              />
-            </div>
-          </div>
-
-          <div className="btn-row row">
+            <AvatarReel setAvatar={setAvatar} />
             <button
-              disabled={!buttonActive}
               className="save-change"
-              type="submit"
-              onClick={(e) => updateUser(e)}
+              style={{ marginTop: 15 }}
+              onClick={() => {
+                const random = getRandomString();
+                changeHandler('avatar', random);
+              }}
             >
-              {buttonText}
+              Random Avatar
             </button>
           </div>
-        </form>
+
+          <form className="input-container">
+            <div className="heading-row row">
+              <div>
+                Hey {user.displayName || 'buddy'}, you wanna change your details below?
+              </div>
+            </div>
+
+            <div className="name-email-row row">
+              <div>
+                <div>Username</div>
+                <input
+                  className="input-area"
+                  type="text"
+                  value={userName}
+                  onChange={(e) => changeHandler('username', e.target.value)}
+                />
+              </div>
+
+              <div>
+                <div>Email</div>
+                <input
+                  className="input-area"
+                  type="text"
+                  value={email}
+                  onChange={(e) => changeHandler('email', e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="pwd-row row">
+              <div>
+                <div>Password</div>
+                <input
+                  className="input-area"
+                  type="password"
+                  value={password}
+                  onChange={(e) => changeHandler('password', e.target.value)}
+                />
+              </div>
+              <div>
+                <div>Confirm Password</div>
+                <input
+                  className="input-area"
+                  type="password"
+                  value={passwordVerify}
+                  onChange={(e) =>
+                    changeHandler('verifypassword', e.target.value)
+                  }
+                />
+              </div>
+            </div>
+
+            <div className="btn-row row">
+              <button
+                disabled={!buttonActive}
+                className="save-change"
+                type="submit"
+                onClick={(e) => updateUser(e)}
+              >
+                {buttonText}
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </StyledProfile>
   );

@@ -2,6 +2,18 @@ import styled from 'styled-components';
 
 const StyledHome = styled.div`
   color: white;
+  display: flex;
+
+  .sidebar {
+    flex: 0.5;
+  }
+
+  .non-sidebar {
+    flex: 10;
+    position: relative;
+    width: 80%;
+  }
+
 
   .filter {
     text-align: center;
