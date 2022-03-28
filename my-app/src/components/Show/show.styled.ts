@@ -36,7 +36,8 @@ const StyledShow = styled.div`
   }
 
   .button-container {
-    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
   }
 
   .image-button-container img {
@@ -54,7 +55,6 @@ const StyledShow = styled.div`
 
   .button-container Button:hover {
     border: 1px solid var(--sharp-purple);
-    // border-color: var(--sharp-purple);
     margin-top: 16px;
     padding: 6px;
     outline: none;

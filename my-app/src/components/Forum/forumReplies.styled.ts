@@ -18,8 +18,6 @@ const StyledForumReplies = styled.div`
   }
 
   .replies {
-    // width: 98%;
-    // margin-right: 1%;
     margin-left: 15%;
     margin-top: 20px;
     display: flex;

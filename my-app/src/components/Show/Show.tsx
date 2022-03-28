@@ -151,6 +151,7 @@ function Show() {
             />
             {/* modal */}
             <div className="button-container">
+              <Button>LINK ME UP!</Button>
               <Button onClick={handleOpen}>Show Details</Button>
               <Modal
                 open={open}
