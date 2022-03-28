@@ -112,9 +112,7 @@ function Forum() {
       }}
     >
       <StyledForum>
-        <h2>
-          {showDetail.name}: Next Episode: {userTVShow.episodeCodeNext}
-        </h2>
+
         <ForumNewTopic />
         <ForumTopicList />
       </StyledForum>

@@ -195,13 +195,13 @@ function Show() {
                 </p>
               </div>
             )}
-            <p>First episode date: {show.first_air_date}</p>
-            <p>First episode date: {show.first_air_date}</p>
-            <p>Last episode date: {show.last_air_date}</p>
-            <p>Total number of seasons: {show.number_of_seasons}</p>
-            <p>Total number of episode: {show.number_of_episodes}</p>
-            {/* italic for tagline */}
-            <p className="tagline">{show.tagline}</p>
+            <div className='display-details'>
+              <div><span>First Episode Date: &emsp;&emsp;&emsp;</span>{show.first_air_date}</div>
+              <div><span>Last Episode Date: &emsp;&emsp;&emsp;</span>{show.last_air_date}</div>
+              <div><span>Total Number of Seasons: &emsp;&emsp;&emsp;</span>{show.number_of_seasons}</div>
+              <div><span>Total Number of Episode: &emsp;&emsp;&emsp;</span>{show.number_of_episodes}</div>
+              <div className="tagline">{show.tagline}</div>
+            </div>
           </div>
           <Backintime show={show} currentEpisode={userTVShow.episodeCodeUpTo} />
         </div>
