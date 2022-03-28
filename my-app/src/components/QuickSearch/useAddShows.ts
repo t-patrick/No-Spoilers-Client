@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addTVShow } from '../../API/user-api';
+import { MainState } from '../../proptypes';
 import { UserActionCreators } from '../../state/action-creators';
 
 /**

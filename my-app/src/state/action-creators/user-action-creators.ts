@@ -1,3 +1,4 @@
+import { Socket } from 'socket.io-client';
 import { ActionType } from '../action-types';
 
 export const setUserAction = (payload: User) => {
@@ -45,3 +46,4 @@ export const removeUserShowAction = (payload: number) => {
     payload,
   };
 };
+

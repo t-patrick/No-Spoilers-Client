@@ -7,7 +7,7 @@ import {
   getWaybackUrls,
   updateUserWayback,
 } from '../../API/user-api';
-import { BackintimeProps } from '../../proptypes';
+import { BackintimeProps, MainState } from '../../proptypes';
 import StyledBackInTime from './BackInTime.styled';
 import downArrow from './image/down.png';
 import WikiLogo from '../../images/imdb.png';

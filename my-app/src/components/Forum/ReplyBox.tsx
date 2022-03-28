@@ -5,7 +5,7 @@ import {
   AccordionDetails,
 } from '@mui/material';
 import React, { SyntheticEvent, useContext, useEffect, useState } from 'react';
-import { ReplyProps } from '../../proptypes';
+import { MainState, ReplyProps } from '../../proptypes';
 import { useSelector } from 'react-redux';
 import StyledReplyBox from './reply-box.styled';
 import Reply from '@material-ui/icons/Reply';

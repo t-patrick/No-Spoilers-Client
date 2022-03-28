@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { TopicProps, TopicsProps } from '../../proptypes';
+import { MainState, TopicProps, TopicsProps } from '../../proptypes';
 import StyledTopicBox from './topicbox.styled';
 import ForumReplies from './ForumReplies';
 import {

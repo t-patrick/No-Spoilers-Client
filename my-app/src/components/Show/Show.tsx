@@ -8,7 +8,7 @@ import React, {
 import Episodechooser from '../EpisodeChooser/Episodechooser';
 import Forum from '../Forum/Forum';
 import Backintime from '../BackInTime/Backintime';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
 import StyledShow from './show.styled';
 // mui library below
@@ -22,16 +22,11 @@ import { getShowDetail } from '../../API/user-api';
 import { TailSpin } from 'react-loader-spinner';
 import { CurrentShowContext } from '../../App';
 import { Socket } from 'socket.io-client';
+import { bindActionCreators } from 'redux';
+import { ChatActionCreators } from '../../state/action-creators';
+import { MainState } from '../../proptypes';
 
-function Show({
-  socket,
-  chatters,
-  setChatters,
-}: {
-  socket: Socket;
-  chatters: Array<Chatter>;
-  setChatters: Dispatch<SetStateAction<Array<Chatter>>>;
-}) {
+function Show() {
   const { id } = useParams();
   const [show, setShow] = useState<TVShow>({} as TVShow);
   const [userTVShow, setUserTVShow] = useState<UserTVShow>({} as UserTVShow);
@@ -42,6 +37,8 @@ function Show({
   const [currentPosterPath, setCurrentPosterPath] = useState<string>('');
   const [currentEpisode, setCurrentEpisode] = useState<Episode>({} as Episode);
   const [percentComplete, setPercentComplete] = useState<number>(0);
+
+  const socket = useSelector<MainState>((state) => state.chat.socket) as Socket;
 
   const style = {
     position: 'absolute' as 'absolute',
@@ -56,6 +53,11 @@ function Show({
   };
 
   const user = useSelector<MainState>((state) => state.user.user) as User;
+  const dispatch = useDispatch();
+  const { addShowChatsAction } = bindActionCreators(
+    ChatActionCreators,
+    dispatch
+  );
 
   useEffect(() => {
     setIsLoading(true);
@@ -74,6 +76,12 @@ function Show({
         setCurrentPosterPath(
           userShow.current_poster_path || userShow.poster_path
         );
+
+        if (socket.connected) {
+          socket.on('subscribed', (payload) => {
+            subscribeToTVShowChats(payload, detail.TMDB_show_id.toString());
+          });
+        }
       } else {
         console.log('====================================');
         console.log('in Show, id param or user is undefined');
@@ -91,6 +99,18 @@ function Show({
     }
   }, [show]);
 
+  const requestChat = () => {
+    if (socket.connected) {
+      socket.emit('request', {
+        userId: user._id,
+        showId: show.TMDB_show_id,
+        episodeId: currentEpisode.TMDB_episode_id,
+        displayName: user.displayName,
+        avatar: user.avatar,
+      });
+    }
+  };
+
   useEffect(() => {
     if (userTVShow) {
       setCurrentPosterPath(
@@ -100,6 +120,31 @@ function Show({
     if (show && userTVShow)
       setPercentComplete(calculatePercentComplete(userTVShow, show));
   }, [userTVShow]);
+
+  const subscribeToTVShowChats = (chatters: Array<Chatter>, showId: string) => {
+    console.log('chatters', chatters);
+
+    console.log('are you joking?', userTVShow);
+    if (userTVShow.TMDB_show_id) {
+      const tvShowChats: TVShowChats = {
+        showId: showId,
+        showName: show.name,
+        chats: chatters.length
+          ? chatters.map((chatter) => {
+              return {
+                chatterId: chatter.userId,
+                displayName: chatter.displayName,
+                showId: chatter.showId,
+                avatar: chatter.avatar,
+                messages: [],
+              };
+            })
+          : [],
+      };
+
+      addShowChatsAction(tvShowChats);
+    }
+  };
 
   const spinnerStyle = {
     position: 'absolute' as 'absolute' | 'relative' | 'fixed',
@@ -220,6 +265,17 @@ function Show({
           </div>
           <Backintime show={show} currentEpisode={userTVShow.episodeCodeUpTo} />
         </div>
+        <button onClick={requestChat}>Request</button>
+        <Episodechooser seasons={show.seasons} />
+        <Forum />
+      </StyledShow>
+    </CurrentShowContext.Provider>
+  );
+}
+
+export default Show;
+
+/* 
         <button
           onClick={() => {
             socket.emit('request', {
@@ -233,6 +289,7 @@ function Show({
         >
           Join for this ep
         </button>
+        
         <button
           onClick={() => {
             socket.emit('message', {
@@ -247,11 +304,5 @@ function Show({
         >
           Send message
         </button>
-        <Episodechooser seasons={show.seasons} />
-        <Forum />
-      </StyledShow>
-    </CurrentShowContext.Provider>
-  );
-}
 
-export default Show;
+*/

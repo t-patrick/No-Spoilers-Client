@@ -13,15 +13,6 @@
  *  - combines DBUser and UserTVShow from db.
  */
 
-type UserState = {
-  isLoggedIn: boolean;
-  user: User | {};
-};
-
-type MainState = {
-  user: UserState;
-};
-
 type User = {
   _id: number;
   email: string;
@@ -202,15 +193,30 @@ type Chatter = {
   avatar: string;
   displayName: string;
   userId: string;
+  showId: string;
 };
 
 type Message = {
-  recieverId: string;
+  receiverId: string;
   displayName: string;
   avatar: string;
   message: string;
   senderId: string;
   showId: string;
+};
+
+type TVShowChats = {
+  showId: string;
+  showName: string;
+  chats: Array<Chat>;
+};
+
+type Chat = {
+  chatterId: string;
+  displayName: string;
+  avatar: string;
+  showId: string;
+  messages: Array<Message>;
 };
 
 /* 

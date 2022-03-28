@@ -13,9 +13,8 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { CurrentShowContextType, ForumContextType } from './proptypes';
 import Profile from './components/Profile/Profile';
-import { verifyTokenAndLogin } from './API/user-api';
-import { UserActionCreators } from './state/action-creators';
 import { io, Socket } from 'socket.io-client';
+import { ChatActionCreators } from './state/action-creators';
 
 const store = createStore(reducers, composeWithDevTools());
 
@@ -28,22 +27,21 @@ export const ForumContext = createContext<ForumContextType>(
 );
 
 function App() {
-  const [socket, setSocket] = useState<Socket>({} as Socket);
-  const [chatters, setChatters] = useState<Array<Chatter>>([]);
+  const { setSocketAction } = bindActionCreators(
+    ChatActionCreators,
+    store.dispatch
+  );
+
+  // const receiveNewChatter = (chatter: Chatter) => {};
 
   useEffect(() => {
     const newSocket = io('http://localhost:3001');
     newSocket.connect();
-    setSocket(newSocket);
-
-    newSocket.on('subscribed', (payload) => {
-      console.log('subscribed', payload);
-      setChatters(payload);
-    });
+    setSocketAction(newSocket);
 
     newSocket.on('found', (resp) => {
       console.log('someone connected', resp);
-      setChatters([...chatters, resp]);
+      // receiveNewChatter(resp);
     });
 
     newSocket.on('receive-message', (msg) => {
@@ -59,16 +57,7 @@ function App() {
           <Router>
             <Routes>
               <Route path="home" element={<Home />} />
-              <Route
-                path="show/:id"
-                element={
-                  <Show
-                    socket={socket}
-                    chatters={chatters}
-                    setChatters={setChatters}
-                  />
-                }
-              />
+              <Route path="show/:id" element={<Show />} />
               <Route path="search" element={<Search />} />
               <Route path="/" element={<Splash />} />
               <Route path="/profile" element={<Profile />} />

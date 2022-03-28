@@ -1,3 +1,4 @@
+import { UserState } from '../../proptypes';
 import { ActionType } from '../action-types';
 import { Action } from '../actions';
 

@@ -9,3 +9,17 @@ export enum ActionType {
   REMOVE_USER_SHOW = 'remove_user_show',
   UPDATE_SHOW_EPISODE = 'update_show_episode',
 }
+
+export enum ChatActionType {
+  ADD_SHOW_CHATS = 'add_show_chats',
+  REMOVE_SHOW_CHATS = 'remove_chatter',
+  SET_SHOW_CHATS = 'set_show_chats',
+  PAUSE_CHATS = 'pause_chats',
+  ADD_MESSAGE = 'add_message',
+  SET_MESSAGES = 'set_messages',
+  REMOVE_ALL = 'remove_all',
+  ADD_CHAT = 'add_chat',
+  REMOVE_CHAT = 'remove_chat',
+  SET_CHATS = 'set_chats',
+  SET_SOCKET = 'set_socket',
+}

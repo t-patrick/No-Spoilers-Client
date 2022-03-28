@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { NavbarProps } from '../../proptypes';
+import { MainState, NavbarProps } from '../../proptypes';
 import { UserActionCreators } from '../../state/action-creators';
 import QuickSearch from '../QuickSearch/quick-search';
 import StyledNavbar from './navbar.styled';

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateEpisode, updateUserWayback } from '../../API/user-api';
 import { CurrentShowContext } from '../../App';
+import { MainState } from '../../proptypes';
 import { UserActionCreators } from '../../state/action-creators';
 
 function useEpisodeUpTo() {

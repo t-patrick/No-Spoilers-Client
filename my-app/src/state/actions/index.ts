@@ -1,4 +1,5 @@
-import { ActionType } from '../action-types';
+import { Socket } from 'socket.io-client';
+import { ActionType, ChatActionType } from '../action-types';
 
 /**
  * On Login, all user info and shows
@@ -58,6 +59,66 @@ export type Action =
   | LogoutAction
   | RemoveUserShowAction
   | AddUserShowAction;
+
+interface AddShowChatsAction {
+  type: ChatActionType.ADD_SHOW_CHATS;
+  payload: TVShowChats;
+}
+
+interface RemoveShowChatsAction {
+  type: ChatActionType.REMOVE_SHOW_CHATS;
+  payload: TVShowChats;
+}
+
+interface RemoveAllChatsAction {
+  type: ChatActionType.REMOVE_ALL;
+}
+
+interface SetShowChatsAction {
+  type: ChatActionType.SET_SHOW_CHATS;
+  payload: Array<TVShowChats>;
+}
+
+interface AddMessageAction {
+  type: ChatActionType.ADD_MESSAGE;
+  payload: Message;
+}
+
+interface SetMessagesAction {
+  type: ChatActionType.SET_MESSAGES;
+  payload: Array<Message>;
+}
+
+interface PauseChatsAction {
+  type: ChatActionType.PAUSE_CHATS;
+}
+
+interface AddChatAction {
+  type: ChatActionType.ADD_CHAT;
+  payload: Chat;
+}
+
+interface RemoveChatAction {
+  type: ChatActionType.REMOVE_CHAT;
+  payload: Chat;
+}
+
+interface SetSocketAction {
+  type: ChatActionType.SET_SOCKET;
+  payload: Socket;
+}
+
+export type ChatAction =
+  | AddShowChatsAction
+  | RemoveShowChatsAction
+  | RemoveAllChatsAction
+  | SetShowChatsAction
+  | AddMessageAction
+  | SetMessagesAction
+  | PauseChatsAction
+  | AddChatAction
+  | RemoveChatAction
+  | SetSocketAction;
 
 /* 
 

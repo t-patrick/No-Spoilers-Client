@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { io, Socket } from 'socket.io-client';
+import { MainState } from '../../proptypes';
 import Navbar from '../Navbar/Navbar';
 import Reel from '../Reel/Reel';
 import StyledHome from './home.styled';

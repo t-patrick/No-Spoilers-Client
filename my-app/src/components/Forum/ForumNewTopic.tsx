@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { addTopic } from '../../API/user-api';
 
 import { CurrentShowContext, ForumContext } from '../../App';
+import { MainState } from '../../proptypes';
 import StyledForumNewTopic from './forumNewTopic.styled';
 
 export default function ForumNewTopic() {

@@ -5,6 +5,7 @@ import StyledForum from './forum.styled';
 import { useSelector } from 'react-redux';
 import { fetchTopics, postUpdateReply } from '../../API/user-api';
 import { CurrentShowContext, ForumContext } from '../../App';
+import { MainState } from '../../proptypes';
 
 function Forum() {
   const user = useSelector<MainState>((state) => state.user.user) as User;

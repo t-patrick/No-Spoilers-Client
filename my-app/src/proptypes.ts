@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { Socket } from 'socket.io-client';
 import Episodechooser from './components/EpisodeChooser/Episodechooser';
 
 /**
@@ -69,4 +70,20 @@ export type CurrentShowContextType = {
 
 export type AvatarPropType = {
   setAvatar: Dispatch<SetStateAction<string>>;
+};
+
+export type ChatState = {
+  isPaused: boolean;
+  chatsCollection: Array<TVShowChats>;
+  socket: Socket;
+};
+
+export type UserState = {
+  isLoggedIn: boolean;
+  user: User | {};
+};
+
+export type MainState = {
+  user: UserState;
+  chat: ChatState;
 };

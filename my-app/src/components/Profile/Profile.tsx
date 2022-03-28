@@ -2,6 +2,7 @@ import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateUserAvatar } from '../../API/user-api';
+import { MainState } from '../../proptypes';
 import { UserActionCreators } from '../../state/action-creators';
 import Navbar from '../Navbar/Navbar';
 import AvatarReel from './AvatarReel';

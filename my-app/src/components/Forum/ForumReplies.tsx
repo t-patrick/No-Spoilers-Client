@@ -1,4 +1,4 @@
-import { TopicProps } from '../../proptypes';
+import { MainState, TopicProps } from '../../proptypes';
 import StyledForumReplies from './forumReplies.styled';
 import redFlag from './image/red-flag.png';
 import reply from './image/reply.png';

@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import blackLogo from './images/black-logo.png';
 import { StyledLogin } from './Login.styled';
 import spidermanImage from './images/spiderman.png';
-import { LoginProps } from '../../proptypes';
+import { LoginProps, MainState } from '../../proptypes';
 import { loginUser } from '../../API/user-api';
 import { UserActionCreators } from '../../state/action-creators';
 import { checkEmail, checkPassword } from './formHelpers';
