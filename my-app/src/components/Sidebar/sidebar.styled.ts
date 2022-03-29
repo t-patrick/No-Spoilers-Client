@@ -38,10 +38,12 @@ const StyledSidebar = styled.nav<Props>`
       padding: 12px;
       background-color: black;
       font-family: 'Poppins', sans-serif;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 500;
       cursor: pointer;
       border: 1px solid transparent;
+      border-radius: 15px;
+      letter-spacing: 1.3px;
     }
     .item:hover {
       box-sizing: border-box;

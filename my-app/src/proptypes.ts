@@ -76,6 +76,7 @@ export type ChatProps = {
   currentChat: Chat;
   toggleChat: () => void;
   showName: string;
+  isChatOpen: boolean;
 };
 //
 // export type ShowSidebarPropType = {

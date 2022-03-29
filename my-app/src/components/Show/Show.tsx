@@ -41,6 +41,9 @@ function Show() {
 
   const socket = useSelector<MainState>((state) => state.chat.socket) as Socket;
   const chat = useSelector<MainState>((state) => state.chat) as ChatState;
+  const [chatRequested, setChatRequested] = useState<boolean>(
+    chat.chatsCollection.findIndex((coll) => coll.showId === id) !== -1 || false
+  );
 
   const style = {
     position: 'absolute' as 'absolute',
@@ -112,7 +115,7 @@ function Show() {
   }, [show]);
 
   const requestChat = () => {
-    if (socket.connected) {
+    if (socket.connected && !chatRequested) {
       socket.emit('request', {
         userId: user._id,
         showId: show.TMDB_show_id,
@@ -120,6 +123,7 @@ function Show() {
         displayName: user.displayName,
         avatar: user.avatar,
       });
+      setChatRequested(true);
     }
   };
 
@@ -272,8 +276,11 @@ function Show() {
             <p>Total number of seasons: {show.number_of_seasons}</p>
             <p>Total number of episode: {show.number_of_episodes}</p>
             {/* italic for tagline */}
-            <p className="tagline">{show.tagline}</p>
-            <button onClick={requestChat}>Request</button>
+            <button onClick={requestChat} className="request-button">
+              {!chatRequested
+                ? 'Chat about the Latest Episode'
+                : 'TV show added to chat bar'}
+            </button>
           </div>
           <Backintime show={show} currentEpisode={userTVShow.episodeCodeUpTo} />
         </div>

@@ -18,6 +18,21 @@ const StyledChatList = styled.div`
   .chat-list {
   }
 
+  .chatter-pane {
+    color: white;
+  }
+
+  .chatter-list {
+    margin-top: 0;
+  }
+
+  h2 {
+    color: white;
+    text-align: left;
+    margin-left: 10px;
+    font-size: 16px;
+  }
+
   .chat-box {
     border: 3px solid var(--chatbox-border);
     display: block;
