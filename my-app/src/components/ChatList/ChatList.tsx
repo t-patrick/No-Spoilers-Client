@@ -1,3 +1,4 @@
+import { SouthWest } from '@mui/icons-material';
 import {
   FormControl,
   InputLabel,
@@ -68,8 +69,8 @@ function ChatList() {
   const chat = useSelector<MainState>((state) => state.chat) as ChatState;
   const user = useSelector<MainState>((state) => state.user.user) as User;
   const [shows, setShows] = useState(mockShows); // Will get this from redux instead of mocks
-  const [currentShowChats, setCurrentShowChats] = useState<CurrentShowChats>(
-    {} as CurrentShowChats
+  const [currentShowChats, setCurrentShowChats] = useState<TVShowChats>(
+    {} as TVShowChats
   );
   const [currentChatter, setCurrentChatter] = useState<Chat>();
 
@@ -86,8 +87,8 @@ function ChatList() {
   const renderList = () => {
     return (
       <div className="show-list">
-        {currentShowChats.name &&
-          currentShowChats.chatters.map((chats, index) => {
+        {currentShowChats.showName &&
+          currentShowChats.chats.map((chats, index) => {
             return (
               <div key={index} className="show-item">
                 <section className="show-header">
@@ -102,31 +103,12 @@ function ChatList() {
     );
   };
 
-  const sendMessage = (
-    receiver: string,
-    messageText: string,
-    showId: string,
-    showName: string
-  ) => {
-    const message: Message = {
-      senderId: user._id.toString(),
-      displayName: user.displayName,
-      avatar: user.avatar,
-      message: messageText,
-      receiverId: receiver,
-      showId,
-      showName,
-    };
-    addMessageAction(message);
-
-    chat.socket.emit('message', message);
-  };
-
   const updateShow = (name: string) => {
-    console.log(name);
-    setCurrentShowChats(
-      mockShows.find((chatter) => chatter.name === name) as CurrentShowChats
+    const collection = chat.chatsCollection.find(
+      (show) => show.showName === name
     );
+
+    if (collection) setCurrentShowChats(collection);
   };
 
   const toggleChat = () => {
@@ -137,22 +119,26 @@ function ChatList() {
     <StyledChatList>
       {/* Chat is fixed */}
       {isChatOpen && currentChatter && (
-        <Chat toggleChat={toggleChat} currentChat={currentChatter} />
+        <Chat
+          toggleChat={toggleChat}
+          showName={currentShowChats.showName}
+          currentChat={currentChatter}
+        />
       )}
       {/* Choose which show */}
-      {shows.length && (
+      {chat.chatsCollection.length && (
         <FormControl sx={{ m: 1, width: 300, backgroundColor: 'white' }}>
           <InputLabel id="demo-multiple-name-label">Show</InputLabel>
           <Select
             labelId="demo-multiple-name-label"
             id="demo-multiple-name"
-            value={currentShowChats.name || ''}
+            value={currentShowChats.showName || ''}
             onChange={(e) => updateShow(e.target.value as string)}
             input={<OutlinedInput label="Name" />}
           >
-            {shows.map((chatter, index) => (
-              <MenuItem key={index} value={chatter.name}>
-                {chatter.name}
+            {chat.chatsCollection.map((chatter, index) => (
+              <MenuItem key={index} value={chatter.showName}>
+                {chatter.showName}
               </MenuItem>
             ))}
           </Select>

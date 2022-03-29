@@ -75,6 +75,7 @@ export type AvatarPropType = {
 export type ChatProps = {
   currentChat: Chat;
   toggleChat: () => void;
+  showName: string;
 };
 
 export type ChatState = {
