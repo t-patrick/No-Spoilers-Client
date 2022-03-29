@@ -97,6 +97,7 @@ const StyledChatList = styled.div`
         border-radius: 15px;
         padding: 10px;
         border-bottom-left-radius: 0;
+        
       }
     }
   }

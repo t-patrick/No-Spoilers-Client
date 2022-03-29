@@ -62,12 +62,18 @@ function Chat({ currentChat, toggleChat, showName }: ChatProps) {
 
         <section className="chatter-messages">
           {currentChat.messages.map((message, index) => {
-            return <p key={index}>{message.message}</p>;
+            return <p key={index}>
+              <div className='message-content'>
+                {message.message}
+              </div>
+              <div className='date'>
+                {message.showName}
+              </div>
+              </p>;
           })}
         </section>
         <form onSubmit={(e) => handleSend(e)}>
           <input
-            
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
