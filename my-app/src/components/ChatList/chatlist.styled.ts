@@ -42,6 +42,7 @@ const StyledChatList = styled.div`
       }
       .user-name {
         padding-left: 5px;
+        font-size: 20px;
       }
     }
 
@@ -57,7 +58,7 @@ const StyledChatList = styled.div`
         border: 0.5px solid white;
         background-color: var(--chatbox-border);
         border-radius: 15px;
-        padding: 10px 5px;
+        padding: 10px;
         border-bottom-left-radius: 0;
       }
     }
