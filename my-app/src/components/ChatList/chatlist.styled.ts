@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 const StyledChatList = styled.div`
   .show-list {
     height: 500px;
@@ -17,17 +18,50 @@ const StyledChatList = styled.div`
   }
 
   .chat-box {
+
+    border: 3px solid var(--chatbox-border);
     display: block;
     position: fixed;
     bottom: 10px;
     left: 100px;
     width: 300px;
     height: 600px;
-    background-color: white;
     z-index: 100;
     border-radius: 10px;
-    color: black;
+    color: white;
     padding: 40px;
+
+    .chatter-info {
+      display: flex;
+      justify-content: space-between;
+      button {
+        border: none;
+        background-color: transparent;
+        color: white;
+        font-size: 20px;
+      }
+      .user-name {
+        padding-left: 5px;
+      }
+    }
+
+    .chatter-messages {
+      height: 500px;
+      border: 1px solid white;
+      border-radius: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
+      overflow: scroll;
+
+      p {
+        border: 0.5px solid white;
+        background-color: var(--chatbox-border);
+        border-radius: 15px;
+        padding: 10px 5px;
+        border-bottom-left-radius: 0;
+      }
+    }
+
   }
 
   .chat-box-min {
