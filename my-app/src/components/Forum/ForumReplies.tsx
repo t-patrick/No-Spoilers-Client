@@ -107,9 +107,11 @@ function ForumReplies({ topic, topicVisible }: TopicProps) {
           onClick={handleClickOpen}
         >
           <img src={reply} style={{ transform: 'scale(2)' }} />
+          
         </Button>
         <Button className="report-btn" onClick={() => setReportFormOpen(true)}>
-          <img src={redFlag} style={{ transform: 'scale(2)' }} />
+          {/* <img src={redFlag} style={{ transform: 'scale(2)'}} /> */}
+          REPORT
         </Button>
 
         <div className="reply-box">

@@ -44,8 +44,6 @@ const StyledForumReplies = styled.div`
   }
 
   .report-btn {
-    // padding: 3px 10px;
-    // border: 0.5px solid red;
     color: red;
   }
 

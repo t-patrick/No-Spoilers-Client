@@ -76,9 +76,9 @@ function ChatList() {
   const [currentShowChats, setCurrentShowChats] = useState<TVShowChats>(
     {} as TVShowChats
   );
-  const [currentChatter, setCurrentChatter] = useState<Chat>();
+  const [currentChatter, setCurrentChatter] = useState<Chat>(mockShows[0].chatters[0]);
 
-  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(true);
 
   const dispatch = useDispatch();
   const { addMessageAction, setCurrentShowChatAction, openSidebar } =

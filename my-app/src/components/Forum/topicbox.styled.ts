@@ -4,6 +4,14 @@ const StyledTopicBox = styled.div`
   display: flex;
   flex-direction: column;
 
+  .topic-header {
+    border-radius: 7px;
+  }
+
+  .bottom-half {
+    border-radius: 0 0 7px 7px;
+  }
+
   .topic-content {
     display: flex;
     justify-content: space-between;
@@ -54,6 +62,8 @@ const StyledTopicBox = styled.div`
     display: flex;
     gap: 10px;
     align-items: center;
+    // border-radius: 10px;
+
   }
   .edit {
     display: flex;

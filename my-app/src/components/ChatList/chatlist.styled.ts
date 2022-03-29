@@ -19,7 +19,7 @@ const StyledChatList = styled.div`
   }
 
   .chat-box {
-    border: 3px solid var(--chatbox-border);
+    border: 3px solid var(--messagebox-border);
     display: block;
     position: fixed;
     bottom: 10px;
@@ -30,6 +30,33 @@ const StyledChatList = styled.div`
     border-radius: 10px;
     color: white;
     padding: 40px;
+
+    form {
+      border: 1px solid white;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 15px;
+      input {
+        border-radius: 10px;
+        width: 65%;
+        padding: 10px;
+        margin-right: 15px;
+        border: 1px solid var(--chatbox-border);
+        background-color: transparent;
+        color: white;
+      }
+      input: focus {
+        outline: none;
+      }
+      button {
+        color: white;
+        background-color: var(--chatbox-border);
+        border-radius: 5px;
+        padding: 5px;
+        border: none;
+      }
+
+    }
 
     .chatter-info {
       display: flex;

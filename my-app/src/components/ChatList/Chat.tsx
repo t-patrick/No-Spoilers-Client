@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import { ChatProps, ChatState, MainState } from '../../proptypes';
 import { ChatActionCreators } from '../../state/action-creators';
 import spiderman from '../Splash/images/spiderman.jpeg';
+import Button from '@mui/material/Button';
+
 
 function Chat({ currentChat, toggleChat, showName }: ChatProps) {
   const [isMinimised, setIsMinimised] = useState(false);
@@ -65,6 +67,7 @@ function Chat({ currentChat, toggleChat, showName }: ChatProps) {
         </section>
         <form onSubmit={(e) => handleSend(e)}>
           <input
+            
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
