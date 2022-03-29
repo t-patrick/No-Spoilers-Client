@@ -6,7 +6,7 @@ import {
   OutlinedInput,
   Select,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { MouseEventHandler, SyntheticEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ChatState, MainState } from '../../proptypes';
@@ -77,7 +77,10 @@ function ChatList() {
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   const dispatch = useDispatch();
-  const { addMessageAction } = bindActionCreators(ChatActionCreators, dispatch);
+  const { addMessageAction, setCurrentShowChatAction } = bindActionCreators(
+    ChatActionCreators,
+    dispatch
+  );
 
   const setChatOpen = (chats: Chat) => {
     setCurrentChatter(chats);
@@ -86,17 +89,11 @@ function ChatList() {
 
   const renderList = () => {
     return (
-      <div className="show-list">
-        {currentShowChats.showName &&
-          currentShowChats.chats.map((chats, index) => {
+      <div className="chatter-list">
+        {chat.currentShowChat.showName &&
+          chat.currentShowChat.chats.map((chat, index) => {
             return (
-              <div key={index} className="show-item">
-                <section className="show-header">
-                  <button onClick={() => setChatOpen(chats)}>
-                    {chats.displayName}
-                  </button>
-                </section>
-              </div>
+              <ChatterPane key={index} setChatOpen={setChatOpen} chat={chat} />
             );
           })}
       </div>
@@ -108,7 +105,7 @@ function ChatList() {
       (show) => show.showName === name
     );
 
-    if (collection) setCurrentShowChats(collection);
+    if (collection) setCurrentShowChatAction(collection);
   };
 
   const toggleChat = () => {
@@ -128,11 +125,10 @@ function ChatList() {
       {/* Choose which show */}
       {chat.chatsCollection.length && (
         <FormControl sx={{ m: 1, width: 300, backgroundColor: 'white' }}>
-          <InputLabel id="demo-multiple-name-label">Show</InputLabel>
           <Select
             labelId="demo-multiple-name-label"
             id="demo-multiple-name"
-            value={currentShowChats.showName || ''}
+            value={chat.currentShowChat.showName || ''}
             onChange={(e) => updateShow(e.target.value as string)}
             input={<OutlinedInput label="Name" />}
           >
@@ -145,9 +141,27 @@ function ChatList() {
         </FormControl>
       )}
       {/* List of chatters connected to that show */}
-      {currentShowChats && renderList()}
+      {chat.currentShowChat && renderList()}
     </StyledChatList>
   );
 }
 
 export default ChatList;
+
+const ChatterPane = ({
+  chat,
+  setChatOpen,
+}: {
+  chat: Chat;
+  setChatOpen: (chats: Chat) => void;
+}) => {
+  return (
+    <div className="chatter-pane" onClick={() => setChatOpen(chat)}>
+      <img
+        src={`https://avatars.dicebear.com/api/${chat.avatar}`}
+        className="avatar"
+      />
+      <h2>{chat.displayName}</h2>
+    </div>
+  );
+};

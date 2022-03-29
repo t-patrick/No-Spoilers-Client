@@ -86,6 +86,8 @@ export type ChatState = {
   isPaused: boolean;
   chatsCollection: Array<TVShowChats>;
   socket: Socket;
+  sidebarOpen: boolean;
+  currentShowChat: TVShowChats;
 };
 
 export type UserState = {

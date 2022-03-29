@@ -1,3 +1,7 @@
+import {
+  openSidebar,
+  setCurrentShowChatAction,
+} from './../action-creators/chat-action-creators';
 import { Socket } from 'socket.io-client';
 import { ActionType, ChatActionType } from '../action-types';
 
@@ -108,6 +112,19 @@ interface SetSocketAction {
   payload: Socket;
 }
 
+interface OpenSidebarAction {
+  type: ChatActionType.OPEN_SIDEBAR;
+  payload: number | undefined;
+}
+
+interface CloseSidebarAction {
+  type: ChatActionType.CLOSE_SIDEBAR;
+}
+
+interface SetCurrentShowChatAction {
+  type: ChatActionType.SET_CURRENT_SHOW_CHAT;
+  payload: TVShowChats;
+}
 export type ChatAction =
   | AddShowChatsAction
   | RemoveShowChatsAction
@@ -118,7 +135,10 @@ export type ChatAction =
   | PauseChatsAction
   | AddChatAction
   | RemoveChatAction
-  | SetSocketAction;
+  | SetSocketAction
+  | OpenSidebarAction
+  | CloseSidebarAction
+  | SetCurrentShowChatAction;
 
 /* 
 

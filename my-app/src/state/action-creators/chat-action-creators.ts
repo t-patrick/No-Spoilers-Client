@@ -68,3 +68,23 @@ export const setSocketAction = (socket: Socket) => {
     payload: socket,
   };
 };
+
+export const openSidebar = (showId: string | undefined) => {
+  return {
+    type: ChatActionType.OPEN_SIDEBAR,
+    payload: showId,
+  };
+};
+
+export const closeSidebar = () => {
+  return {
+    type: ChatActionType.CLOSE_SIDEBAR,
+  };
+};
+
+export const setCurrentShowChatAction = (showChat: TVShowChats) => {
+  return {
+    type: ChatActionType.SET_CURRENT_SHOW_CHAT,
+    payload: showChat,
+  };
+};

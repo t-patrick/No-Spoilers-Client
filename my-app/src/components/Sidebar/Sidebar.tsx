@@ -1,16 +1,30 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ChatState, MainState } from '../../proptypes';
+import { ChatActionCreators } from '../../state/action-creators';
 import ChatList from '../ChatList/ChatList';
 import StyledSidebar from './sidebar.styled';
 
 function Sidebar() {
-  const [expanded, setExpanded] = useState(false);
+  const chat = useSelector<MainState>((state) => state.chat) as ChatState;
+  const dispatch = useDispatch();
+  const { openSidebar, closeSidebar } = bindActionCreators(
+    ChatActionCreators,
+    dispatch
+  );
 
-  if (expanded) {
+  const toggleExpanded = () => {
+    console.log(chat.sidebarOpen);
+    !chat.sidebarOpen ? openSidebar(undefined) : closeSidebar();
+  };
+
+  if (chat.sidebarOpen) {
     return (
-      <StyledSidebar expanded={expanded}>
+      <StyledSidebar expanded={chat.sidebarOpen}>
         <div className="top">
           <h1>Chats</h1>
-          <button onClick={() => setExpanded(!expanded)}>Expand</button>
+          <button onClick={() => toggleExpanded()}>Expand</button>
         </div>
         <ChatList />
       </StyledSidebar>
@@ -18,13 +32,43 @@ function Sidebar() {
   }
 
   return (
-    <StyledSidebar expanded={expanded}>
+    <StyledSidebar expanded={chat.sidebarOpen}>
       <div className="top">
         <h1>Chats</h1>
-        <button onClick={() => setExpanded(!expanded)}>Expand</button>
+        <button onClick={() => toggleExpanded()}>Expand</button>
       </div>
+      <MiniChatList />
     </StyledSidebar>
   );
 }
 
 export default Sidebar;
+
+function MiniChatList() {
+  const chat = useSelector<MainState>((state) => state.chat) as ChatState;
+  const dispatch = useDispatch();
+  const { openSidebar, closeSidebar } = bindActionCreators(
+    ChatActionCreators,
+    dispatch
+  );
+
+  const openChatCollection = (collection: TVShowChats) => {
+    openSidebar(collection.showId);
+  };
+
+  return (
+    <div className="mini">
+      {chat.chatsCollection.map((collection, index) => {
+        return (
+          <div
+            key={index}
+            className="item"
+            onClick={() => openChatCollection(collection)}
+          >
+            {collection.showName} ({collection.chats.length})
+          </div>
+        );
+      })}
+    </div>
+  );
+}

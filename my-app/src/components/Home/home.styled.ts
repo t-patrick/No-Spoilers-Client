@@ -3,9 +3,12 @@ import styled from 'styled-components';
 const StyledHome = styled.div`
   color: white;
 
-
   .filter {
     text-align: center;
+  }
+
+  .show-boxes {
+    padding: 20px 8%;
   }
 
   .filter input {

@@ -1,12 +1,14 @@
+import { ChatActionType } from './../action-types';
+import { ChatAction } from './../actions/index';
 import { Socket } from 'socket.io-client';
 import { ChatState } from '../../proptypes';
-import { ChatActionType } from '../action-types';
-import { ChatAction } from '../actions';
 
 const defaultState = {
   isPaused: false,
   socket: {} as Socket,
   chatsCollection: [],
+  sidebarOpen: false,
+  currentShowChat: {} as TVShowChats,
 };
 
 const chatReducer = (state: ChatState = defaultState, action: ChatAction) => {
@@ -94,6 +96,27 @@ const chatReducer = (state: ChatState = defaultState, action: ChatAction) => {
     case ChatActionType.SET_SOCKET: {
       const newState = { ...state };
       newState.socket = action.payload;
+      return newState;
+    }
+    case ChatActionType.OPEN_SIDEBAR: {
+      const newState = { ...state };
+      newState.sidebarOpen = true;
+      if (action.payload) {
+        const chat = newState.chatsCollection.find(
+          (show) => show.showId === (action.payload as number).toString()
+        ) as TVShowChats;
+        newState.currentShowChat = chat;
+      }
+      return newState;
+    }
+    case ChatActionType.CLOSE_SIDEBAR: {
+      const newState = { ...state };
+      newState.sidebarOpen = false;
+      return newState;
+    }
+    case ChatActionType.SET_CURRENT_SHOW_CHAT: {
+      const newState = { ...state };
+      newState.currentShowChat = action.payload;
       return newState;
     }
     default:

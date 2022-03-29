@@ -11,6 +11,7 @@ export enum ActionType {
 }
 
 export enum ChatActionType {
+  SET_CURRENT_SHOW_CHAT = 'set_current_show_chat',
   ADD_SHOW_CHATS = 'add_show_chats',
   REMOVE_SHOW_CHATS = 'remove_chatter',
   SET_SHOW_CHATS = 'set_show_chats',
@@ -22,4 +23,6 @@ export enum ChatActionType {
   REMOVE_CHAT = 'remove_chat',
   SET_CHATS = 'set_chats',
   SET_SOCKET = 'set_socket',
+  OPEN_SIDEBAR = 'open_sidebar',
+  CLOSE_SIDEBAR = 'close_sidebar',
 }

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const StyledChatList = styled.div`
+  text-align: center;
+
   .show-list {
     height: 500px;
     width: 500px;

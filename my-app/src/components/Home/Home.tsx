@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { io, Socket } from 'socket.io-client';
 import { MainState } from '../../proptypes';
-import ChatList from '../ChatList/ChatList';
 import Navbar from '../Navbar/Navbar';
 import Reel from '../Reel/Reel';
 import StyledHome from './home.styled';
@@ -22,12 +21,9 @@ function Home() {
   const [onTheGo, setOnTheGo] = useState(defaultOnTheGo);
   const [currentSearch, setCurrentSearch] = useState('');
 
-
-  const [sidebar, setSidebar] = useState<boolean>(false);
   // const showSidebar = () => {
   //   setSidebar(!sidebar);
   // }
-
 
   useEffect(() => {
     setWatched(defaultWatched);
@@ -58,13 +54,11 @@ function Home() {
     filterMovies(value);
   };
 
-
   return (
-    <StyledHome>
-      {sidebar && <Sidebar/>}
-      <Navbar showSearch={true}/>
-      <ChatList />
-      <div>
+    <>
+      <Sidebar />
+      <StyledHome>
+        <Navbar showSearch={true} />
         <div className="filter">
           <input
             type="text"
@@ -73,17 +67,19 @@ function Home() {
             onChange={(e) => updateSearch(e.target.value)}
           />
         </div>
-        <div className="row ">
-          <div className="heading">On the go</div>
-          {onTheGo && <Reel userTVShows={onTheGo} isCompleted={false} />}
-        </div>
+        <div className="show-boxes">
+          <div className="row">
+            <div className="heading">On the go</div>
+            {onTheGo && <Reel userTVShows={onTheGo} isCompleted={false} />}
+          </div>
 
-        <div className="row ">
-          <div className="heading">Completed</div>
-          {watched && <Reel userTVShows={watched} isCompleted={true} />}
+          <div className="row ">
+            <div className="heading">Completed</div>
+            {watched && <Reel userTVShows={watched} isCompleted={true} />}
+          </div>
         </div>
-      </div>
-    </StyledHome>
+      </StyledHome>
+    </>
   );
 }
 
