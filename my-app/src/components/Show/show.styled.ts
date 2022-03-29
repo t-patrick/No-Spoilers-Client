@@ -10,8 +10,21 @@ const StyledShow = styled.div`
     margin-bottom: 2.5%;
   }
 
+  .show-details {
+    text-align: left;
+    p {
+      margin-top: 30px;
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+
   .tagline {
+    text-align: right;
     font-style: italic;
+    text-transform: uppercase;
+
   }
 
   .button-container {
@@ -31,10 +44,10 @@ const StyledShow = styled.div`
     margin-top: 16px;
   }
 
-  .button-containerButton:hover {
-    border: 2px solid var(--sharp-purple);
+  .button-container Button:hover {
+    border: 1px solid var(--sharp-purple);
     margin-top: 16px;
-    padding: 6px;
+    padding: 7px;
     outline: none;
   }
 
@@ -46,10 +59,14 @@ const StyledShow = styled.div`
 
     p {
       margin: 0;
+      padding-top: 15px;
+
     }
 
     h3 {
       margin: 0;
+      padding-top: 10px;
+
     }
 
     h4 {

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ChatProps, ChatState, MainState } from '../../proptypes';
 import { ChatActionCreators } from '../../state/action-creators';
+import spiderman from '../Splash/images/spiderman.jpeg';
 
 function Chat({ currentChat, toggleChat, showName }: ChatProps) {
   const [isMinimised, setIsMinimised] = useState(false);
@@ -40,13 +41,23 @@ function Chat({ currentChat, toggleChat, showName }: ChatProps) {
 
   if (!isMinimised) {
     return (
-      <div className="chat-box">
-        <section>
-          {currentChat.displayName}
-          <button onClick={() => setIsMinimised(true)}>Minimise</button>
-          <button onClick={toggleChat}>Close</button>
+      <div
+        className="chat-box"
+        style={{
+          backgroundImage: `url(${spiderman})`,
+        }}
+      >
+        <section className="chatter-info">
+          <div className="user-name">{currentChat.displayName}</div>
+          <div className="aux-btn">
+            <button onClick={() => setIsMinimised(true)}>&#8211;</button>
+            <button onClick={toggleChat}>X</button>
+          </div>
         </section>
-        <section>
+
+        <hr></hr>
+
+        <section className="chatter-messages">
           {currentChat.messages.map((message, index) => {
             return <p key={index}>{message.message}</p>;
           })}
@@ -64,8 +75,11 @@ function Chat({ currentChat, toggleChat, showName }: ChatProps) {
   } else {
     return (
       <div className="chat-box-minimised">
-        <button onClick={() => setIsMinimised(false)}>Open</button>
-        <section>{currentChat.displayName}</section>
+        <div className="mini-box">
+          <button onClick={() => setIsMinimised(false)}>
+            <section>{currentChat.displayName}</section>
+          </button>
+        </div>
       </div>
     );
   }
