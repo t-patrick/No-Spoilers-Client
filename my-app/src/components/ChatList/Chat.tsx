@@ -6,8 +6,9 @@ import { ChatActionCreators } from '../../state/action-creators';
 import spiderman from '../Splash/images/spiderman.jpeg';
 import Button from '@mui/material/Button';
 
+import { Motion, spring } from 'react-motion';
 
-function Chat({ currentChat, toggleChat, showName }: ChatProps) {
+function Chat({ currentChat, toggleChat, showName, isChatOpen }: ChatProps) {
   const [isMinimised, setIsMinimised] = useState(false);
   const [message, setMessage] = useState<string>('');
   const dispatch = useDispatch();
@@ -44,37 +45,51 @@ function Chat({ currentChat, toggleChat, showName }: ChatProps) {
 
   if (!isMinimised) {
     return (
-      <div
-        className="chat-box"
+      <Motion
+        defaultStyle={{ y: 200, opacity: 0 }}
         style={{
-          backgroundImage: `url(${spiderman})`,
+          y: spring(isChatOpen ? 0 : 300, {
+            damping: 6,
+            stiffness: 120,
+          }),
+          opacity: isChatOpen ? 1 : 0,
         }}
       >
-        <section className="chatter-info">
-          <div className="user-name">{currentChat.displayName}</div>
-          <div className="aux-btn">
-            <button onClick={() => setIsMinimised(true)}>&#8211;</button>
-            <button onClick={toggleChat}>X</button>
+        {(style) => (
+          <div
+            className="chat-box"
+            style={{
+              backgroundImage: `url(${spiderman})`,
+              opacity: style.opacity,
+              transform: `translateY(${style.y}px)`,
+            }}
+          >
+            <section className="chatter-info">
+              <div className="user-name">{currentChat.displayName}</div>
+              <div className="aux-btn">
+                <button onClick={() => setIsMinimised(true)}>&#8211;</button>
+                <button onClick={toggleChat}>X</button>
+              </div>
+            </section>
+
+            <hr></hr>
+
+            <section className="chatter-messages">
+              {currentChat.messages.map((message, index) => {
+                return <p key={index}>{message.message}</p>;
+              })}
+            </section>
+            <form onSubmit={(e) => handleSend(e)}>
+              <input
+                type="text"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+              <button type="submit">Send</button>
+            </form>
           </div>
-        </section>
-
-        <hr></hr>
-
-        <section className="chatter-messages">
-          {currentChat.messages.map((message, index) => {
-            return <p key={index}>{message.message}</p>;
-          })}
-        </section>
-        <form onSubmit={(e) => handleSend(e)}>
-          <input
-            
-            type="text"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-          <button type="submit">Send</button>
-        </form>
-      </div>
+        )}
+      </Motion>
     );
   } else {
     return (

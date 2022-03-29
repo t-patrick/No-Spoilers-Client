@@ -128,17 +128,37 @@ function ChatList() {
             toggleChat={toggleChat}
             showName={currentShowChats.showName}
             currentChat={currentChatter}
+            isChatOpen={isChatOpen}
           />
         )}
         {/* Choose which show */}
         {chat.chatsCollection.length && (
-          <FormControl sx={{ m: 1, width: 300, backgroundColor: 'white' }}>
+          <FormControl
+            sx={{
+              m: 1,
+              width: 300,
+              backgroundColor: '#c6cbd2',
+              borderRadius: '10px',
+              boxShadow: '2px 2px 2px rgba(255, 255, 255, 0.4)',
+              marginBottom: 5,
+            }}
+          >
             <Select
               labelId="demo-multiple-name-label"
               id="demo-multiple-name"
               value={chat.currentShowChat.showName || ''}
               onChange={(e) => updateShow(e.target.value as string)}
-              input={<OutlinedInput label="Name" />}
+              input={
+                <OutlinedInput
+                  sx={{
+                    color: 'grey',
+                    fontSize: 20,
+                    letterSpacing: 1,
+                    fontWeight: 500,
+                  }}
+                  label="Name"
+                />
+              }
             >
               {chat.chatsCollection.map((chatter, index) => (
                 <MenuItem key={index} value={chatter.showName}>
@@ -149,6 +169,7 @@ function ChatList() {
           </FormControl>
         )}
         {/* List of chatters connected to that show */}
+        <h2>Currently Online:</h2>
         {chat.currentShowChat && renderList()}
       </StyledChatList>
     );
@@ -165,6 +186,7 @@ function ChatList() {
           toggleChat={toggleChat}
           showName={currentShowChats.showName}
           currentChat={currentChatter}
+          isChatOpen={isChatOpen}
         />
       )}
       {chat.chatsCollection.map((collection, index) => {
@@ -174,7 +196,7 @@ function ChatList() {
             className="item"
             onClick={() => openChatCollection(collection)}
           >
-            {collection.showName} ({collection.chats.length})
+            {collection.showName} <span>({collection.chats.length})</span>
           </div>
         );
       })}

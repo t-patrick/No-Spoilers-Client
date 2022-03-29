@@ -13,6 +13,22 @@ const StyledShow = styled.div`
     margin-right: 10%;
   }
 
+  .request-button {
+    background: rgba(39, 128, 54, 1);
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    font-size: 24px;
+    color: white;
+    letter-spacing: 1.5px;
+    margin-top: 50px;
+    border: 1px solid transparent;
+
+    :hover {
+    }
+  }
+
   .show-details {
     text-align: left;
     p {
