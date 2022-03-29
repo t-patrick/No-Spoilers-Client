@@ -131,9 +131,6 @@ function Show() {
     showId: string,
     showName: string
   ) => {
-    console.log('chatters', chatters);
-
-    console.log('are you joking?', userTVShow);
     const tvShowChats: TVShowChats = {
       showId: showId,
       showName: showName,
@@ -208,7 +205,7 @@ function Show() {
         </div>
       )}
       <StyledShow>
-        <Sidebar/>
+        <Sidebar />
         <Navbar showSearch={false} />
         <div className="show-view">
           <div className="image-button-container">
@@ -269,10 +266,10 @@ function Show() {
             <p>Total number of episode: {show.number_of_episodes}</p>
             {/* italic for tagline */}
             <p className="tagline">{show.tagline}</p>
+            <button onClick={requestChat}>Request</button>
           </div>
           <Backintime show={show} currentEpisode={userTVShow.episodeCodeUpTo} />
         </div>
-        <button onClick={requestChat}>Request</button>
         <Episodechooser seasons={show.seasons} />
         <Forum />
       </StyledShow>
