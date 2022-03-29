@@ -33,6 +33,7 @@ const mockShows: Array<CurrentShowChats> = [
             message: 'Hello',
             showId: '123',
             showName: 'Breaking Bad',
+            date: new Date(),
           },
           {
             avatar: 'asdf',
@@ -42,6 +43,7 @@ const mockShows: Array<CurrentShowChats> = [
             message: 'Hi Hank',
             showId: '123',
             showName: 'Breaking Bad',
+            date: new Date(),
           },
         ],
       },
@@ -59,6 +61,7 @@ const mockShows: Array<CurrentShowChats> = [
             message: 'HUH',
             showId: '123',
             showName: 'Breaking Bad',
+            date: new Date(),
           },
         ],
       },

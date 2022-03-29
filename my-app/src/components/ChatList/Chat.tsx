@@ -27,6 +27,7 @@ function Chat({ currentChat, toggleChat, showName }: ChatProps) {
       receiverId: receiver,
       showId,
       showName,
+      date: new Date(Date.now()),
     };
     addMessageAction(message);
 

@@ -204,6 +204,7 @@ type Message = {
   senderId: string;
   showId: string;
   showName: string;
+  date: Date;
 };
 
 type TVShowChats = {
