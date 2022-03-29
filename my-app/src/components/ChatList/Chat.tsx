@@ -63,11 +63,15 @@ function Chat({ currentChat, toggleChat, showName }: ChatProps) {
         <section className="chatter-messages">
           {currentChat.messages.map((message, index) => {
             return <p key={index}>
+              <div className='sender-name'>
+                {message.displayName}
+              </div>
               <div className='message-content'>
-                {message.message}
+                {message.message}{message.message}
               </div>
               <div className='date'>
-                {message.showName}
+                {/* Date to be replaced */}
+                29-10-22
               </div>
               </p>;
           })}

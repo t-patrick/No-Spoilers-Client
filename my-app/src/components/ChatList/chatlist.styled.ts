@@ -77,6 +77,7 @@ const StyledChatList = styled.div`
     }
 
     .chatter-messages {
+
       height: 500px;
       border: 1px solid white;
       border-radius: 10px;
@@ -90,14 +91,29 @@ const StyledChatList = styled.div`
       ::-webkit-scrollbar {
         display: none;
       }
-
       p {
         border: 0.5px solid white;
         background-color: var(--chatbox-border);
         border-radius: 15px;
         padding: 10px;
         border-bottom-left-radius: 0;
-        
+      }
+      .sender-name {
+        font-size: 10px;
+        color: var(--chatbox-color);
+        text-align: left;
+        font-weight: bold;
+      }
+      
+      .message-content {
+        margin-top: 5px;
+        text-align: left;
+      }
+
+      .date {
+        font-size: 10px;
+        min-width: 37px;
+        text-align: right;
       }
     }
   }
