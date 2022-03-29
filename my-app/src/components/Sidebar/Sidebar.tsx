@@ -5,6 +5,8 @@ import { ChatState, MainState } from '../../proptypes';
 import { ChatActionCreators } from '../../state/action-creators';
 import ChatList from '../ChatList/ChatList';
 import StyledSidebar from './sidebar.styled';
+import Button from '@mui/material/Button';
+
 
 function Sidebar() {
   const chat = useSelector<MainState>((state) => state.chat) as ChatState;
@@ -24,7 +26,8 @@ function Sidebar() {
       <StyledSidebar expanded={chat.sidebarOpen}>
         <div className="top">
           <h1>Chats</h1>
-          <button onClick={() => toggleExpanded()}>Expand</button>
+          <Button onClick={() => toggleExpanded()}>&lt;&lt;&lt;</Button>
+          {/* <button onClick={() => toggleExpanded()}>Close</button> */}
         </div>
         <ChatList />
       </StyledSidebar>
@@ -35,7 +38,8 @@ function Sidebar() {
     <StyledSidebar expanded={chat.sidebarOpen}>
       <div className="top">
         <h1>Chats</h1>
-        <button onClick={() => toggleExpanded()}>Expand</button>
+        <Button onClick={() => toggleExpanded()}>&gt;&gt;&gt;</Button>
+        {/* <button onClick={() => toggleExpanded()}>Expand</button> */}
       </div>
       <MiniChatList />
     </StyledSidebar>

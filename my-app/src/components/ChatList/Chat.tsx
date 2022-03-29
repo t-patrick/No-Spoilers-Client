@@ -76,7 +76,17 @@ function Chat({ currentChat, toggleChat, showName, isChatOpen }: ChatProps) {
 
             <section className="chatter-messages">
               {currentChat.messages.map((message, index) => {
-                return <p key={index}>{message.message}</p>;
+                console.log(message.date);
+                return (
+                  <p key={index}>
+                    <div className="sender-name">{message.displayName}</div>
+                    <div className="message-content">{message.message}</div>
+                    <div className="date">
+                      {/* Date to be replaced */}
+                      {message.date && new Date(message.date).toDateString()}
+                    </div>
+                  </p>
+                );
               })}
             </section>
             <form onSubmit={(e) => handleSend(e)}>
