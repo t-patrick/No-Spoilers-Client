@@ -3,6 +3,10 @@ import styled from 'styled-components';
 const StyledQuickSearch = styled.div`
   // Our styles
 
+  .select-search input{
+    margin-top: 0%;
+  }
+
   position: relative;
   padding: 10px;
   .option {
@@ -80,6 +84,7 @@ const StyledQuickSearch = styled.div`
     position: relative;
     font-family: 'Nunito Sans', sans-serif;
     box-sizing: border-box;
+    margin-top: 0px important!;
   }
 
   .select-search *,

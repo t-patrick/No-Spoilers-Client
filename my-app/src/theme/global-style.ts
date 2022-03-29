@@ -28,7 +28,7 @@ const GlobalStyles = createGlobalStyle`
     --sharp-purple: #7B61ff;
     --chatlist-wrd: #c6cbd2;
     --score-font: 'Inter', sans-serif;
-    --chatbox-border: #162b2e;
+    --messagebox-border: #162b2e;
   }
 `;
 
