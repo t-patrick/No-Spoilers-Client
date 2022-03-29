@@ -70,3 +70,7 @@ export type CurrentShowContextType = {
 export type AvatarPropType = {
   setAvatar: Dispatch<SetStateAction<string>>;
 };
+
+export type SidebarProps = {
+  showSidebar?: boolean;
+};

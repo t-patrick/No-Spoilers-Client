@@ -52,15 +52,14 @@ function Home() {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => {
     setSidebar(!sidebar);
-    console.log('heyy');
   }
 
   return (
     <StyledHome>
-        <div className='sidebar'>
-          {sidebar && < Sidebar/>}
-        </div>
         <div className='non-sidebar'>
+          <div className='sidebar'>
+            {sidebar && < Sidebar />}
+          </div>
           <Navbar showSearch={true} />
           
           <div>
