@@ -53,7 +53,7 @@ function Home() {
   return (
     <StyledHome>
       <Navbar showSearch={true} />
-      {/* <ChatList /> */}
+      <ChatList />
       <div>
         <div className="filter">
           <input

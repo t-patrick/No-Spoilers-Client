@@ -40,15 +40,17 @@ const chatReducer = (state: ChatState = defaultState, action: ChatAction) => {
 
     case ChatActionType.ADD_MESSAGE: {
       const newState = { ...state };
-      console.log(action.payload);
+      console.log('payload', action.payload);
+      console.log('chatsCollection', newState.chatsCollection);
       const show = newState.chatsCollection.find(
-        (show) => show.showId === action.payload.showId.toString()
+        (show) => show.showId.toString() === action.payload.showId.toString()
       ) as TVShowChats;
       console.log('show', show);
       const chatter = show?.chats.find(
-        (chat) => chat.chatterId === action.payload.senderId.toString()
+        (chat) =>
+          chat.chatterId === action.payload.senderId.toString() ||
+          chat.chatterId === action.payload.receiverId
       ) as Chat;
-      console.log('chatter', chatter);
       chatter.messages.push(action.payload);
       return newState;
     }

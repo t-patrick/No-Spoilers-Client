@@ -271,7 +271,7 @@ function Show() {
           </div>
           <Backintime show={show} currentEpisode={userTVShow.episodeCodeUpTo} />
         </div>
-        {/* <button onClick={requestChat}>Request</button> */}
+        <button onClick={requestChat}>Request</button>
         <Episodechooser seasons={show.seasons} />
         <Forum />
       </StyledShow>
