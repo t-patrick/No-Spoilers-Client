@@ -55,7 +55,6 @@ const StyledChatList = styled.div`
         padding: 5px;
         border: none;
       }
-
     }
 
     .chatter-info {
@@ -77,7 +76,6 @@ const StyledChatList = styled.div`
     }
 
     .chatter-messages {
-
       height: 500px;
       border: 1px solid white;
       border-radius: 10px;
@@ -91,6 +89,7 @@ const StyledChatList = styled.div`
       ::-webkit-scrollbar {
         display: none;
       }
+
       p {
         border: 0.5px solid white;
         background-color: var(--chatbox-border);
@@ -136,27 +135,24 @@ const StyledChatList = styled.div`
     display: block;
     position: fixed;
     bottom: 10px;
-    left: 100px;
-    width: 150px;
-    height: 80px;
+    left: 10px;
+    width: 320px;
+    height: 10px;
     background-color: #204246;
     opacity: 0.5;
     z-index: 100;
     border-radius: 10px;
     color: black;
-    padding: 20px;
-    border: 3px solid white;
+    padding: 10px 20px 20px 20px;
+    border: 2px solid white;
 
     .mini-box {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      padding-bottom: 100px;
       button {
         border: none;
         color: white;
         background-color: transparent;
-        font-size: 25px;
+        font-size: 20px;
       }
     }
   }

@@ -71,7 +71,7 @@ function Chat({ currentChat, toggleChat, showName }: ChatProps) {
               </div>
               <div className='date'>
                 {/* Date to be replaced */}
-                29-10-22
+                mock date: 29-10-22
               </div>
               </p>;
           })}
@@ -91,7 +91,7 @@ function Chat({ currentChat, toggleChat, showName }: ChatProps) {
       <div className="chat-box-minimised">
         <div className="mini-box">
           <button onClick={() => setIsMinimised(false)}>
-            <section>{currentChat.displayName}</section>
+            <section>{currentChat.displayName} - Breaking Bad</section>
           </button>
         </div>
       </div>
