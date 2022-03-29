@@ -189,7 +189,7 @@ type ChatRequest = {
 
 // Other people
 type Chatter = {
-  socket_id: string;
+  socketId: string;
   avatar: string;
   displayName: string;
   userId: string;
@@ -218,6 +218,11 @@ type Chat = {
   avatar: string;
   showId: string;
   messages: Array<Message>;
+};
+
+type CurrentShowChats = {
+  name: string;
+  chatters: Array<Chat>;
 };
 
 /* 

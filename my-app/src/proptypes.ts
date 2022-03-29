@@ -72,6 +72,11 @@ export type AvatarPropType = {
   setAvatar: Dispatch<SetStateAction<string>>;
 };
 
+export type ChatProps = {
+  currentChat: Chat;
+  toggleChat: () => void;
+};
+
 export type ChatState = {
   isPaused: boolean;
   chatsCollection: Array<TVShowChats>;
