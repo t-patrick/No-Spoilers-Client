@@ -77,6 +77,10 @@ export type ChatProps = {
   toggleChat: () => void;
   showName: string;
 };
+//
+// export type ShowSidebarPropType = {
+//   setSidebar: Dispatch<SetStateAction<boolean>>;
+// };
 
 export type ChatState = {
   isPaused: boolean;

@@ -6,6 +6,7 @@ import ChatList from '../ChatList/ChatList';
 import Navbar from '../Navbar/Navbar';
 import Reel from '../Reel/Reel';
 import StyledHome from './home.styled';
+import Sidebar from '../Sidebar/Sidebar';
 
 function Home() {
   const state = useSelector<MainState>((state) => state);
@@ -20,6 +21,13 @@ function Home() {
   const [watched, setWatched] = useState(defaultWatched);
   const [onTheGo, setOnTheGo] = useState(defaultOnTheGo);
   const [currentSearch, setCurrentSearch] = useState('');
+
+
+  const [sidebar, setSidebar] = useState<boolean>(false);
+  // const showSidebar = () => {
+  //   setSidebar(!sidebar);
+  // }
+
 
   useEffect(() => {
     setWatched(defaultWatched);
@@ -50,9 +58,11 @@ function Home() {
     filterMovies(value);
   };
 
+
   return (
     <StyledHome>
-      <Navbar showSearch={true} />
+      {sidebar && <Sidebar/>}
+      <Navbar showSearch={true}/>
       <ChatList />
       <div>
         <div className="filter">
@@ -63,7 +73,6 @@ function Home() {
             onChange={(e) => updateSearch(e.target.value)}
           />
         </div>
-
         <div className="row ">
           <div className="heading">On the go</div>
           {onTheGo && <Reel userTVShows={onTheGo} isCompleted={false} />}

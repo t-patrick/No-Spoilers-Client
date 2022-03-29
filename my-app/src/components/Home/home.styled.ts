@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const StyledHome = styled.div`
   color: white;
 
+
   .filter {
     text-align: center;
   }
