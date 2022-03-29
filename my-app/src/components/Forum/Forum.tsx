@@ -113,9 +113,9 @@ function Forum() {
       }}
     >
       <StyledForum>
-        <h2>
+        {/* <h2>
           {showDetail.name}: Next Episode: {userTVShow.episodeCodeNext}
-        </h2>
+        </h2> */}
         <ForumNewTopic />
         <ForumTopicList />
       </StyledForum>

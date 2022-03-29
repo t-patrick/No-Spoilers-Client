@@ -37,6 +37,7 @@ const StyledForumNewTopic = styled.div`
 
     border: 2px solid var(--chatbox-border);
     margin-top: 10px;
+
   }
 
   .btn {
