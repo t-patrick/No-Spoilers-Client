@@ -25,6 +25,7 @@ import { Socket } from 'socket.io-client';
 import { bindActionCreators } from 'redux';
 import { ChatActionCreators } from '../../state/action-creators';
 import { MainState } from '../../proptypes';
+import Sidebar from '../Sidebar/Sidebar';
 
 function Show() {
   const { id } = useParams();
@@ -207,6 +208,7 @@ function Show() {
         </div>
       )}
       <StyledShow>
+        <Sidebar/>
         <Navbar showSearch={false} />
         <div className="show-view">
           <div className="image-button-container">
@@ -261,7 +263,6 @@ function Show() {
                 </p>
               </div>
             )}
-            <p>First episode date: {show.first_air_date}</p>
             <p>First episode date: {show.first_air_date}</p>
             <p>Last episode date: {show.last_air_date}</p>
             <p>Total number of seasons: {show.number_of_seasons}</p>

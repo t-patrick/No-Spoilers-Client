@@ -7,6 +7,7 @@ import { UserActionCreators } from '../../state/action-creators';
 import Navbar from '../Navbar/Navbar';
 import AvatarReel from './AvatarReel';
 import StyledProfile from './profile.styled';
+import Sidebar from '../Sidebar/Sidebar';
 
 function Profile() {
   const dispatch = useDispatch();
@@ -93,6 +94,7 @@ function Profile() {
 
   return (
     <StyledProfile>
+      {false && <Sidebar/>}
       <Navbar showSearch={true} />
 
       <div className="profile-layout">

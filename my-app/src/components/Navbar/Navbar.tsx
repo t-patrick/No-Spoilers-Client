@@ -21,9 +21,17 @@ function Navbar({ showSearch }: NavbarProps) {
     navigate('/');
   };
 
+  // const showSidebar = () => {
+  //   setSidebar(false); 
+  // }
+
   return (
     <StyledNavbar>
+
       <div className="links">
+        <button>
+          OPEN
+        </button>
         <button
           onClick={() => {
             navigate('/home');

@@ -8,7 +8,6 @@ function Sidebar() {
       <div>b</div>
       <div>c</div>
     </StyledSidebar>
-
   )
 }
 

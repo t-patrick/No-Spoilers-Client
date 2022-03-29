@@ -72,6 +72,11 @@ export type AvatarPropType = {
   setAvatar: Dispatch<SetStateAction<string>>;
 };
 
+//
+// export type ShowSidebarPropType = {
+//   setSidebar: Dispatch<SetStateAction<boolean>>;
+// };
+
 export type ChatState = {
   isPaused: boolean;
   chatsCollection: Array<TVShowChats>;
