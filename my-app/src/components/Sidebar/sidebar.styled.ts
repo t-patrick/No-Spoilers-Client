@@ -17,12 +17,28 @@ const StyledSidebar = styled.nav<Props>`
 
   .top {
     display: flex;
-    gap: 10px;
+    // gap: 10px;
     align-items: center;
     padding: 15px;
 
-    button {
-      height: 50%;
+    // button {
+    //   height: 50%;
+    // }
+
+    Button {
+      margin-bottom: 15px;
+      color: var(--sharp-purple);
+      font-family: var(--main-font);
+      background-color: var(--navbar-color);
+      padding: 8px;
+      border-radius: 8px;
+      margin-top: 16px;
+      font-size: 20px;
+    }
+  
+    Button:hover {
+
+      outline: none;
     }
   }
 
