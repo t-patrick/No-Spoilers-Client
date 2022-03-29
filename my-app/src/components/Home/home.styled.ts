@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const StyledHome = styled.div`
   color: white;
+  margin-left: 180px;
 
   .filter {
     text-align: center;

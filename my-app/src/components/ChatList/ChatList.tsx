@@ -9,6 +9,7 @@ import {
 import React, { MouseEventHandler, SyntheticEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { convertToObject } from 'typescript/lib/tsserverlibrary';
 import { ChatState, MainState } from '../../proptypes';
 import { ChatActionCreators } from '../../state/action-creators';
 import Chat from './Chat';
@@ -77,12 +78,15 @@ function ChatList() {
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   const dispatch = useDispatch();
-  const { addMessageAction, setCurrentShowChatAction } = bindActionCreators(
-    ChatActionCreators,
-    dispatch
-  );
+  const { addMessageAction, setCurrentShowChatAction, openSidebar } =
+    bindActionCreators(ChatActionCreators, dispatch);
 
-  const setChatOpen = (chats: Chat) => {
+  const setChatOpen = (chats: Chat, e: SyntheticEvent) => {
+    console.log(e);
+    if (isChatOpen) {
+      setIsChatOpen(false);
+      return;
+    }
     setCurrentChatter(chats);
     setIsChatOpen(true);
   };
@@ -112,9 +116,47 @@ function ChatList() {
     setIsChatOpen(!isChatOpen);
   };
 
+  if (chat.sidebarOpen) {
+    return (
+      <StyledChatList>
+        {/* Chat is fixed */}
+        {isChatOpen && currentChatter && (
+          <Chat
+            toggleChat={toggleChat}
+            showName={currentShowChats.showName}
+            currentChat={currentChatter}
+          />
+        )}
+        {/* Choose which show */}
+        {chat.chatsCollection.length && (
+          <FormControl sx={{ m: 1, width: 300, backgroundColor: 'white' }}>
+            <Select
+              labelId="demo-multiple-name-label"
+              id="demo-multiple-name"
+              value={chat.currentShowChat.showName || ''}
+              onChange={(e) => updateShow(e.target.value as string)}
+              input={<OutlinedInput label="Name" />}
+            >
+              {chat.chatsCollection.map((chatter, index) => (
+                <MenuItem key={index} value={chatter.showName}>
+                  {chatter.showName}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        )}
+        {/* List of chatters connected to that show */}
+        {chat.currentShowChat && renderList()}
+      </StyledChatList>
+    );
+  }
+
+  const openChatCollection = (collection: TVShowChats) => {
+    openSidebar(collection.showId);
+  };
+
   return (
-    <StyledChatList>
-      {/* Chat is fixed */}
+    <div className="mini">
       {isChatOpen && currentChatter && (
         <Chat
           toggleChat={toggleChat}
@@ -122,27 +164,18 @@ function ChatList() {
           currentChat={currentChatter}
         />
       )}
-      {/* Choose which show */}
-      {chat.chatsCollection.length && (
-        <FormControl sx={{ m: 1, width: 300, backgroundColor: 'white' }}>
-          <Select
-            labelId="demo-multiple-name-label"
-            id="demo-multiple-name"
-            value={chat.currentShowChat.showName || ''}
-            onChange={(e) => updateShow(e.target.value as string)}
-            input={<OutlinedInput label="Name" />}
+      {chat.chatsCollection.map((collection, index) => {
+        return (
+          <div
+            key={index}
+            className="item"
+            onClick={() => openChatCollection(collection)}
           >
-            {chat.chatsCollection.map((chatter, index) => (
-              <MenuItem key={index} value={chatter.showName}>
-                {chatter.showName}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      )}
-      {/* List of chatters connected to that show */}
-      {chat.currentShowChat && renderList()}
-    </StyledChatList>
+            {collection.showName} ({collection.chats.length})
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
@@ -153,10 +186,10 @@ const ChatterPane = ({
   setChatOpen,
 }: {
   chat: Chat;
-  setChatOpen: (chats: Chat) => void;
+  setChatOpen: (chats: Chat, e: SyntheticEvent) => void;
 }) => {
   return (
-    <div className="chatter-pane" onClick={() => setChatOpen(chat)}>
+    <div className="chatter-pane" onClick={(e) => setChatOpen(chat, e)}>
       <img
         src={`https://avatars.dicebear.com/api/${chat.avatar}`}
         className="avatar"

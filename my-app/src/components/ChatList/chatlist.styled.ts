@@ -23,7 +23,7 @@ const StyledChatList = styled.div`
     display: block;
     position: fixed;
     bottom: 10px;
-    left: 100px;
+    left: 420px;
     width: 300px;
     height: 600px;
     z-index: 100;

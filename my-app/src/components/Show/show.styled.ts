@@ -2,12 +2,15 @@ import styled from 'styled-components';
 
 const StyledShow = styled.div`
   color: white;
+  margin-left: 180px;
 
   .show-view {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 2.5%;
     margin-bottom: 2.5%;
+    margin-left: 10%;
+    margin-right: 10%;
   }
 
   .show-details {
@@ -24,7 +27,6 @@ const StyledShow = styled.div`
     text-align: right;
     font-style: italic;
     text-transform: uppercase;
-
   }
 
   .button-container {
@@ -60,13 +62,11 @@ const StyledShow = styled.div`
     p {
       margin: 0;
       padding-top: 15px;
-
     }
 
     h3 {
       margin: 0;
       padding-top: 10px;
-
     }
 
     h4 {

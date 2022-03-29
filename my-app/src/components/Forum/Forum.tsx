@@ -28,9 +28,7 @@ function Forum() {
       };
       getTopics();
     } else {
-      console.log('====================================');
-      console.log('in forum, userTV or id is not defined');
-      console.log('====================================');
+      console.error('in forum, userTV or id is not defined');
     }
   }, [userTVShow]);
 
@@ -113,9 +111,7 @@ function Forum() {
       }}
     >
       <StyledForum>
-        <h2>
-          {showDetail.name}: Next Episode: {userTVShow.episodeCodeNext}
-        </h2>
+        <h2>Discussion up to and including this episode</h2>
         <ForumNewTopic />
         <ForumTopicList />
       </StyledForum>

@@ -1,5 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
-
+import styled, { createGlobalStyle } from 'styled-components';
 
 /**
  * Hi Boys, let's keep global variables in here!
@@ -30,6 +29,7 @@ const GlobalStyles = createGlobalStyle`
     --score-font: 'Inter', sans-serif;
     --chatbox-border: #162b2e;
   }
+
 `;
 
 export default GlobalStyles;

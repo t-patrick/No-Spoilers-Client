@@ -87,7 +87,7 @@ const StyledEpisodeChooser = styled.div`
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 10px;
-    width: fit-content;
+    width: 730px;
   }
   .episode {
     color: white;
@@ -101,7 +101,7 @@ const StyledEpisodeChooser = styled.div`
     font-size: 22px;
     letter-spacing: 1px;
     transition: transform 0.5s;
-
+    cursor: pointer;
     span {
       font-size: 10px;
     }

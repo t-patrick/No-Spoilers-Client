@@ -22,7 +22,6 @@ const StyledNavbar = styled.nav`
     display: flex;
     gap: 10px;
     margin: 10px;
-    margin-left: 7%;
   }
 `;
 

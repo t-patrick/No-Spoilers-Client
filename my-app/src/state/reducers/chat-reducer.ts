@@ -15,7 +15,13 @@ const chatReducer = (state: ChatState = defaultState, action: ChatAction) => {
   switch (action.type) {
     case ChatActionType.ADD_SHOW_CHATS: {
       const newState = { ...state };
-      newState.chatsCollection.push(action.payload);
+      if (
+        newState.chatsCollection.findIndex(
+          (coll) => coll.showId === action.payload.showId
+        ) === -1
+      ) {
+        newState.chatsCollection.push(action.payload);
+      }
       return newState;
     }
 

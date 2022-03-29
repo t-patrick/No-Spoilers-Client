@@ -24,7 +24,7 @@ import { CurrentShowContext } from '../../App';
 import { Socket } from 'socket.io-client';
 import { bindActionCreators } from 'redux';
 import { ChatActionCreators } from '../../state/action-creators';
-import { MainState } from '../../proptypes';
+import { MainState, ChatState } from '../../proptypes';
 import Sidebar from '../Sidebar/Sidebar';
 
 function Show() {
@@ -40,6 +40,7 @@ function Show() {
   const [percentComplete, setPercentComplete] = useState<number>(0);
 
   const socket = useSelector<MainState>((state) => state.chat.socket) as Socket;
+  const chat = useSelector<MainState>((state) => state.chat) as ChatState;
 
   const style = {
     position: 'absolute' as 'absolute',
@@ -78,15 +79,21 @@ function Show() {
           userShow.current_poster_path || userShow.poster_path
         );
 
-        if (socket.connected) {
-          socket.on('subscribed', (payload) => {
+        socket.on('subscribed', (payload) => {
+          if (socket.connected) {
+            console.log('subscribing to', detail.name);
             subscribeToTVShowChats(
               payload,
               detail.TMDB_show_id.toString(),
               userShow.name
             );
-          });
-        }
+          }
+        });
+
+        return () => {
+          console.log('teardown');
+          socket.off('subscribed');
+        };
       } else {
         console.log('====================================');
         console.log('in Show, id param or user is undefined');
@@ -204,8 +211,8 @@ function Show() {
           </div>
         </div>
       )}
+      <Sidebar />
       <StyledShow>
-        <Sidebar />
         <Navbar showSearch={false} />
         <div className="show-view">
           <div className="image-button-container">
