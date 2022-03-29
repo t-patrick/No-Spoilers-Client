@@ -16,8 +16,8 @@ function Chat({ currentChat, toggleChat }: ChatProps) {
             {currentChat.displayName}
           </div>
           <div className='aux-btn'>
-            <button onClick={() => setIsMinimised(true)}>-</button>
-            <button onClick={toggleChat}>x</button>
+            <button onClick={() => setIsMinimised(true)}>&#8211;</button>
+            <button onClick={toggleChat}>X</button>
           </div>
         </section>
 
@@ -33,8 +33,11 @@ function Chat({ currentChat, toggleChat }: ChatProps) {
   } else {
     return (
       <div className="chat-box-minimised">
-        <button onClick={() => setIsMinimised(false)}>Open</button>
-        <section>{currentChat.displayName}</section>
+        <div className='mini-box'>
+          <button onClick={() => setIsMinimised(false)}>
+            <section>{currentChat.displayName}</section>
+          </button>
+        </div>
       </div>
     );
   }

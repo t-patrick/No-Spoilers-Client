@@ -44,6 +44,9 @@ const StyledChatList = styled.div`
         padding-left: 5px;
         font-size: 20px;
       }
+      .aux-btn {
+        margin-right: 5px;
+      }
     }
 
     .chatter-messages {
@@ -84,14 +87,30 @@ const StyledChatList = styled.div`
     position: fixed;
     bottom: 10px;
     left: 100px;
-    width: 100px;
+    width: 150px;
     height: 80px;
-    background-color: darkgrey;
+    background-color: #204246;
     opacity: 0.5;
     z-index: 100;
     border-radius: 10px;
     color: black;
     padding: 20px;
+    border: 3px solid white;
+
+
+    .mini-box {
+      display: flex;
+      flex-direction: column;
+      justify-centent: center;
+      aligns-item; center;
+      button {
+        border: none;
+        color: white;
+        background-color: transparent;
+        font-size: 25px;
+      }
+
+    }
   }
 `;
 
