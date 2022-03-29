@@ -6,6 +6,7 @@ import ChatList from '../ChatList/ChatList';
 import Navbar from '../Navbar/Navbar';
 import Reel from '../Reel/Reel';
 import StyledHome from './home.styled';
+import Sidebar from '../Sidebar/Sidebar';
 
 function Home() {
   const state = useSelector<MainState>((state) => state);
@@ -52,6 +53,7 @@ function Home() {
 
   return (
     <StyledHome>
+      <Sidebar/>
       <Navbar showSearch={true} />
       <ChatList />
       <div>
