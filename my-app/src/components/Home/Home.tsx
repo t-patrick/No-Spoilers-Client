@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { io, Socket } from 'socket.io-client';
 import { MainState } from '../../proptypes';
+import ChatList from '../ChatList/ChatList';
 import Navbar from '../Navbar/Navbar';
 import Reel from '../Reel/Reel';
 import StyledHome from './home.styled';
@@ -19,20 +20,12 @@ function Home() {
   const [watched, setWatched] = useState(defaultWatched);
   const [onTheGo, setOnTheGo] = useState(defaultOnTheGo);
   const [currentSearch, setCurrentSearch] = useState('');
-  const [socket, setSocket] = useState<Socket>({} as Socket);
 
   useEffect(() => {
     setWatched(defaultWatched);
     setOnTheGo(defaultOnTheGo);
     filterMovies(currentSearch);
   }, [state]);
-
-  useEffect(() => {
-    if (user._id) {
-      const newSocket = io(`http://localhost:3001`);
-      setSocket(newSocket);
-    }
-  }, [user]);
 
   const filterMovies = (value: string) => {
     if (value === '') {
@@ -60,6 +53,7 @@ function Home() {
   return (
     <StyledHome>
       <Navbar showSearch={true} />
+      {/* <ChatList /> */}
       <div>
         <div className="filter">
           <input

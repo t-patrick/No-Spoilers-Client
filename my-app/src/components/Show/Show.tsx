@@ -79,7 +79,11 @@ function Show() {
 
         if (socket.connected) {
           socket.on('subscribed', (payload) => {
-            subscribeToTVShowChats(payload, detail.TMDB_show_id.toString());
+            subscribeToTVShowChats(
+              payload,
+              detail.TMDB_show_id.toString(),
+              userShow.name
+            );
           });
         }
       } else {
@@ -121,29 +125,31 @@ function Show() {
       setPercentComplete(calculatePercentComplete(userTVShow, show));
   }, [userTVShow]);
 
-  const subscribeToTVShowChats = (chatters: Array<Chatter>, showId: string) => {
+  const subscribeToTVShowChats = (
+    chatters: Array<Chatter>,
+    showId: string,
+    showName: string
+  ) => {
     console.log('chatters', chatters);
 
     console.log('are you joking?', userTVShow);
-    if (userTVShow.TMDB_show_id) {
-      const tvShowChats: TVShowChats = {
-        showId: showId,
-        showName: show.name,
-        chats: chatters.length
-          ? chatters.map((chatter) => {
-              return {
-                chatterId: chatter.userId,
-                displayName: chatter.displayName,
-                showId: chatter.showId,
-                avatar: chatter.avatar,
-                messages: [],
-              };
-            })
-          : [],
-      };
+    const tvShowChats: TVShowChats = {
+      showId: showId,
+      showName: showName,
+      chats: chatters.length
+        ? chatters.map((chatter) => {
+            return {
+              chatterId: chatter.userId,
+              displayName: chatter.displayName,
+              showId: chatter.showId,
+              avatar: chatter.avatar,
+              messages: [],
+            };
+          })
+        : [],
+    };
 
-      addShowChatsAction(tvShowChats);
-    }
+    addShowChatsAction(tvShowChats);
   };
 
   const spinnerStyle = {
@@ -265,7 +271,7 @@ function Show() {
           </div>
           <Backintime show={show} currentEpisode={userTVShow.episodeCodeUpTo} />
         </div>
-        <button onClick={requestChat}>Request</button>
+        {/* <button onClick={requestChat}>Request</button> */}
         <Episodechooser seasons={show.seasons} />
         <Forum />
       </StyledShow>

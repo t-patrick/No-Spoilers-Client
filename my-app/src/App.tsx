@@ -27,26 +27,36 @@ export const ForumContext = createContext<ForumContextType>(
 );
 
 function App() {
-  const { setSocketAction } = bindActionCreators(
-    ChatActionCreators,
-    store.dispatch
-  );
+  const { setSocketAction, addChatAction, addMessageAction } =
+    bindActionCreators(ChatActionCreators, store.dispatch);
 
-  // const receiveNewChatter = (chatter: Chatter) => {};
+  const receiveNewChatter = (chatter: Chatter) => {
+    const chat: Chat = {
+      showId: chatter.showId,
+      displayName: chatter.displayName,
+      avatar: chatter.avatar,
+      chatterId: chatter.userId,
+      messages: [],
+    };
+
+    addChatAction(chat);
+  };
 
   useEffect(() => {
-    const newSocket = io('http://localhost:3001');
-    newSocket.connect();
-    setSocketAction(newSocket);
+    if (!store.getState().chat.socket.connected) {
+      const newSocket = io('http://localhost:3001');
+      setSocketAction(newSocket);
 
-    newSocket.on('found', (resp) => {
-      console.log('someone connected', resp);
-      // receiveNewChatter(resp);
-    });
+      newSocket.on('found', (resp) => {
+        console.log('someone connected', resp);
+        receiveNewChatter(resp);
+      });
 
-    newSocket.on('receive-message', (msg) => {
-      console.log('message!', msg);
-    });
+      newSocket.on('receivemessage', (msg) => {
+        console.log('message', msg);
+        addMessageAction(msg);
+      });
+    }
   }, []);
 
   return (
