@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StyledShow = styled.div`
   color: white;
-  margin-left: 180px;
+  margin-left: 140px;
 
   .show-view {
     display: flex;

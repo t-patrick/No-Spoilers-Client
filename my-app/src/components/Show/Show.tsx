@@ -112,7 +112,7 @@ function Show() {
       if (show && userTVShow)
         setPercentComplete(calculatePercentComplete(userTVShow, show));
     }
-  }, [show]);
+  }, [show, userTVShow]);
 
   const requestChat = () => {
     if (socket.connected && !chatRequested) {
@@ -279,7 +279,7 @@ function Show() {
             <button onClick={requestChat} className="request-button">
               {!chatRequested
                 ? 'Chat about the Latest Episode'
-                : 'TV show added to chat bar'}
+                : 'Added to chat bar'}
             </button>
           </div>
           <Backintime show={show} currentEpisode={userTVShow.episodeCodeUpTo} />

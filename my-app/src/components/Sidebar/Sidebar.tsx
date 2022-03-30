@@ -38,7 +38,6 @@ function Sidebar() {
       <div className="top">
         <h1>Chats</h1>
         <Button onClick={() => toggleExpanded()}>&gt;&gt;&gt;</Button>
-        {/* <button onClick={() => toggleExpanded()}>Expand</button> */}
       </div>
       <ChatList />
     </StyledSidebar>

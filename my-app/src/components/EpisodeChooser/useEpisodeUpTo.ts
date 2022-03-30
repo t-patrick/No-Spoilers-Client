@@ -35,7 +35,8 @@ function useEpisodeUpTo() {
   const updateCurrentEp = async (episode: number) => {
     const newEpisodeCode = `s${selectedTab + 1}e${episode}`;
 
-    const episodeDetail = showDetail.seasons[selectedTab].episodes[episode];
+    const episodeDetail = showDetail.seasons[selectedTab].episodes[episode - 1];
+    console.log(episodeDetail);
 
     const update = await updateEpisode(
       userTVShow.userId,

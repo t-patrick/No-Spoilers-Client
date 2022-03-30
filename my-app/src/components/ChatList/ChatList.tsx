@@ -196,7 +196,7 @@ function ChatList() {
       )}
       {chat.chatsCollection.map((collection, index) => {
         return (
-          <Button key={index}>
+          <Button key={index} onClick={() => openChatCollection(collection)}>
             {collection.showName} <br />({collection.chats.length} online)
           </Button>
         );
@@ -226,9 +226,9 @@ const ChatterPane = ({
 };
 
 const Button = styled.button`
-  width: 160px;
+  width: 120px;
   height: 86px;
-  font-size: 16px;
+  font-size: 14px;
   background: linear-gradient(
     45deg,
     transparent 5%,
@@ -239,7 +239,6 @@ const Button = styled.button`
   border: 0;
   color: #fff;
   letter-spacing: 3px;
-  line-height: 25px;
   box-shadow: 6px 0px 0px var(--sharp-purple);
   outline: transparent;
   position: relative;

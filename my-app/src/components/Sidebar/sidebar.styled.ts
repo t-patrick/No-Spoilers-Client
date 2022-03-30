@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StyledSidebar = styled.nav<Props>`
   background-color: var(--navbar-color);
-  width: ${(p) => (p.expanded ? '400px' : '180px')};
+  width: ${(p) => (p.expanded ? '400px' : '140px')};
   opacity: ${(p) => (p.expanded ? '1' : '0.8')};
   min-height: 100%;
   position: fixed;
@@ -11,19 +11,20 @@ const StyledSidebar = styled.nav<Props>`
   transition: width 0.4s ease-in-out, opacity 0.4s ease-in-out;
 
   h1 {
-    margin-top: 20px;
     color: white;
+    margin: 0px;
   }
 
   .top {
     display: flex;
     // gap: 10px;
-    align-items: center;
-    padding: 15px;
-
+    padding: 0px 15px;
+    height: 60px;
+    background-color: var(--);
     // button {
     //   height: 50%;
     // }
+    align-items: center;
 
     Button {
       margin-bottom: 15px;
@@ -35,9 +36,8 @@ const StyledSidebar = styled.nav<Props>`
       margin-top: 16px;
       font-size: 20px;
     }
-  
-    Button:hover {
 
+    Button:hover {
       outline: none;
     }
   }

@@ -107,7 +107,6 @@ function ForumReplies({ topic, topicVisible }: TopicProps) {
           onClick={handleClickOpen}
         >
           <img src={reply} style={{ transform: 'scale(2)' }} />
-          
         </Button>
         <Button className="report-btn" onClick={() => setReportFormOpen(true)}>
           {/* <img src={redFlag} style={{ transform: 'scale(2)'}} /> */}
@@ -127,11 +126,12 @@ function ForumReplies({ topic, topicVisible }: TopicProps) {
                   margin="dense"
                   id="name"
                   label="Your comment here..."
-                  type="email"
+                  type="text"
                   fullWidth
                   variant="standard"
                   value={replyText}
                   onChange={(e) => setReplyText(e.target.value)}
+                  autoComplete="none"
                 />
               </DialogContent>
             </div>
