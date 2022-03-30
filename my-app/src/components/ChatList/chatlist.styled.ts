@@ -69,7 +69,11 @@ const StyledChatList = styled.div`
         border-radius: 5px;
         padding: 5px;
         border: none;
+<<<<<<< HEAD
       } */
+=======
+      }
+>>>>>>> origin/Ben_Chatbox-styling
     }
 
     .chatter-info {
@@ -104,6 +108,7 @@ const StyledChatList = styled.div`
       ::-webkit-scrollbar {
         display: none;
       }
+
       p {
         border: 0.5px solid white;
         background-color: var(--chatbox-border);
@@ -149,18 +154,19 @@ const StyledChatList = styled.div`
     display: block;
     position: fixed;
     bottom: 10px;
-    left: 100px;
-    width: 150px;
-    height: 80px;
+    left: 10px;
+    width: 320px;
+    height: 10px;
     background-color: #204246;
     opacity: 0.5;
     z-index: 100;
     border-radius: 10px;
     color: black;
-    padding: 20px;
-    border: 3px solid white;
+    padding: 10px 20px 20px 20px;
+    border: 2px solid white;
 
     .mini-box {
+<<<<<<< HEAD
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -171,6 +177,15 @@ const StyledChatList = styled.div`
         background-color: transparent;
         font-size: 25px;
       } */
+=======
+      padding-bottom: 100px;
+      button {
+        border: none;
+        color: white;
+        background-color: transparent;
+        font-size: 20px;
+      }
+>>>>>>> origin/Ben_Chatbox-styling
     }
   }
 `;

@@ -49,6 +49,20 @@ const StyledReplyBox = styled.div`
     height: 100px;
     width: 300px;
   }
+
+  .reply-summary {
+    border-radius: 10px 10px 0 0; 
+  }
+
+  .reply-content {
+    border-radius: 10px 10px 10px 10px; 
+  }
+
+
+  #reply-box {
+    border-radius: 10px 10px 10px 10px;
+
+  }
 `;
 
 export default StyledReplyBox;
