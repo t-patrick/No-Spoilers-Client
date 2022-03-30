@@ -23,7 +23,10 @@ import { TailSpin } from 'react-loader-spinner';
 import { CurrentShowContext } from '../../App';
 import { Socket } from 'socket.io-client';
 import { bindActionCreators } from 'redux';
-import { ChatActionCreators } from '../../state/action-creators';
+import {
+  ChatActionCreators,
+  UserActionCreators,
+} from '../../state/action-creators';
 import { MainState, ChatState } from '../../proptypes';
 import Sidebar from '../Sidebar/Sidebar';
 
@@ -64,6 +67,11 @@ function Show() {
     dispatch
   );
 
+  const { changeCurrentUserTVDetailAction } = bindActionCreators(
+    UserActionCreators,
+    dispatch
+  );
+
   useEffect(() => {
     setIsLoading(true);
     const getShow = async () => {
@@ -76,22 +84,12 @@ function Show() {
 
         if (userShow) setUserTVShow(userShow);
         setShow(detail);
+        changeCurrentUserTVDetailAction(detail);
         setIsLoading(false);
 
         setCurrentPosterPath(
           userShow.current_poster_path || userShow.poster_path
         );
-
-        socket.on('subscribed', (payload) => {
-          if (socket.connected) {
-            console.log('subscribing to', detail.name);
-            subscribeToTVShowChats(
-              payload,
-              detail.TMDB_show_id.toString(),
-              userShow.name
-            );
-          }
-        });
 
         return () => {
           console.log('teardown');
@@ -136,30 +134,6 @@ function Show() {
     if (show && userTVShow)
       setPercentComplete(calculatePercentComplete(userTVShow, show));
   }, [userTVShow]);
-
-  const subscribeToTVShowChats = (
-    chatters: Array<Chatter>,
-    showId: string,
-    showName: string
-  ) => {
-    const tvShowChats: TVShowChats = {
-      showId: showId,
-      showName: showName,
-      chats: chatters.length
-        ? chatters.map((chatter) => {
-            return {
-              chatterId: chatter.userId,
-              displayName: chatter.displayName,
-              showId: chatter.showId,
-              avatar: chatter.avatar,
-              messages: [],
-            };
-          })
-        : [],
-    };
-
-    addShowChatsAction(tvShowChats);
-  };
 
   const spinnerStyle = {
     position: 'absolute' as 'absolute' | 'relative' | 'fixed',

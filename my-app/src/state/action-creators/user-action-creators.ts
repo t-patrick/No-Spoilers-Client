@@ -47,3 +47,9 @@ export const removeUserShowAction = (payload: number) => {
   };
 };
 
+export const changeCurrentUserTVDetailAction = (payload: TVShow) => {
+  return {
+    type: ActionType.CHANGE_CURRENT_USER_TV_DETAIL,
+    payload,
+  };
+};

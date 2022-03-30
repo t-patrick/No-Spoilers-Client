@@ -55,6 +55,11 @@ interface AddUserShowAction {
   payload: UserTVShow;
 }
 
+interface ChangeCurrentUserTVDetail {
+  type: ActionType.CHANGE_CURRENT_USER_TV_DETAIL;
+  payload: TVShow;
+}
+
 export type Action =
   | SetUserAction
   | UpdateUserAction
@@ -62,7 +67,8 @@ export type Action =
   | UpdateUserShowAction
   | LogoutAction
   | RemoveUserShowAction
-  | AddUserShowAction;
+  | AddUserShowAction
+  | ChangeCurrentUserTVDetail;
 
 interface AddShowChatsAction {
   type: ChatActionType.ADD_SHOW_CHATS;

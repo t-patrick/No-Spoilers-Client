@@ -5,6 +5,7 @@ import { Action } from '../actions';
 const defaultState: UserState = {
   isLoggedIn: true,
   user: {},
+  currentUserTVShowDetail: {} as TVShow,
 };
 
 const userReducer = (state = defaultState, action: Action) => {
@@ -52,6 +53,11 @@ const userReducer = (state = defaultState, action: Action) => {
       const arr = (newState.user as User).userTVInfo;
       (newState.user as User).userTVInfo[findTVShowIndex(arr, action.payload)] =
         action.payload;
+      return newState;
+    }
+    case ActionType.CHANGE_CURRENT_USER_TV_DETAIL: {
+      const newState = { ...state };
+      newState.currentUserTVShowDetail = action.payload;
       return newState;
     }
     default:

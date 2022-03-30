@@ -94,6 +94,7 @@ export type ChatState = {
 export type UserState = {
   isLoggedIn: boolean;
   user: User | {};
+  currentUserTVShowDetail: TVShow;
 };
 
 export type MainState = {

@@ -8,6 +8,7 @@ export enum ActionType {
   ADD_USER_SHOW = 'add_user_show',
   REMOVE_USER_SHOW = 'remove_user_show',
   UPDATE_SHOW_EPISODE = 'update_show_episode',
+  CHANGE_CURRENT_USER_TV_DETAIL = 'change_current_user_tv_detail',
 }
 
 export enum ChatActionType {

@@ -27,8 +27,12 @@ export const ForumContext = createContext<ForumContextType>(
 );
 
 function App() {
-  const { setSocketAction, addChatAction, addMessageAction } =
-    bindActionCreators(ChatActionCreators, store.dispatch);
+  const {
+    setSocketAction,
+    addChatAction,
+    addMessageAction,
+    addShowChatsAction,
+  } = bindActionCreators(ChatActionCreators, store.dispatch);
 
   const receiveNewChatter = (chatter: Chatter) => {
     const chat: Chat = {
@@ -43,21 +47,53 @@ function App() {
   };
 
   useEffect(() => {
-    if (!store.getState().chat.socket.connected) {
-      const newSocket = io('http://localhost:3001');
-      setSocketAction(newSocket);
+    const newSocket = io('http://localhost:3001');
+    setSocketAction(newSocket);
 
-      newSocket.on('found', (resp) => {
-        console.log('someone connected', resp);
-        receiveNewChatter(resp);
-      });
+    newSocket.on('found', (resp) => {
+      console.log('someone connected', resp);
+      receiveNewChatter(resp);
+    });
 
-      newSocket.on('receivemessage', (msg) => {
-        console.log('message', msg);
-        addMessageAction(msg);
-      });
-    }
+    newSocket.on('receivemessage', (msg) => {
+      console.log('message', msg);
+      addMessageAction(msg);
+    });
+
+    newSocket.on('subscribed', (payload) => {
+      const show = store.getState().user.currentUserTVShowDetail;
+
+      subscribeToTVShowChats(payload, show.TMDB_show_id.toString(), show.name);
+    });
+
+    return () => {
+      newSocket.disconnect();
+    };
   }, []);
+
+  const subscribeToTVShowChats = (
+    chatters: Array<Chatter>,
+    showId: string,
+    showName: string
+  ) => {
+    const tvShowChats: TVShowChats = {
+      showId: showId,
+      showName: showName,
+      chats: chatters.length
+        ? chatters.map((chatter) => {
+            return {
+              chatterId: chatter.userId,
+              displayName: chatter.displayName,
+              showId: chatter.showId,
+              avatar: chatter.avatar,
+              messages: [],
+            };
+          })
+        : [],
+    };
+
+    addShowChatsAction(tvShowChats);
+  };
 
   return (
     <Provider store={store}>
