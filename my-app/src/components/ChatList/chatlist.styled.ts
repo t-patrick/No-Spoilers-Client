@@ -3,6 +3,15 @@ import styled from 'styled-components';
 const StyledChatList = styled.div`
   text-align: center;
 
+  .send-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 15px;
+    padding: 12px 11px;
+    border: 1px solid #718096;
+    user-select: none;
+  }
+
   .show-list {
     height: 500px;
     width: 500px;
@@ -104,44 +113,45 @@ const StyledChatList = styled.div`
       ::-webkit-scrollbar {
         display: none;
       }
-  }
+    }
 
-  .chat-box-min {
-    display: block;
-    position: fixed;
-    bottom: 10px;
-    left: 100px;
-    width: 300px;
-    height: 50px;
-    background-color: white;
-    z-index: 100;
-    border-radius: 10px;
-    color: black;
-    padding: 40px;
-  }
+    .chat-box-min {
+      display: block;
+      position: fixed;
+      bottom: 10px;
+      left: 100px;
+      width: 300px;
+      height: 50px;
+      background-color: white;
+      z-index: 100;
+      border-radius: 10px;
+      color: black;
+      padding: 40px;
+    }
 
-  .chat-box-minimised {
-    display: block;
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    width: 320px;
-    height: 10px;
-    background-color: #204246;
-    opacity: 0.5;
-    z-index: 100;
-    border-radius: 10px;
-    color: black;
-    padding: 10px 20px 20px 20px;
-    border: 2px solid white;
+    .chat-box-minimised {
+      display: block;
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      width: 320px;
+      height: 10px;
+      background-color: #204246;
+      opacity: 0.5;
+      z-index: 100;
+      border-radius: 10px;
+      color: black;
+      padding: 10px 20px 20px 20px;
+      border: 2px solid white;
 
-    .mini-box {
-      padding-bottom: 100px;
-      button {
-        border: none;
-        color: white;
-        background-color: transparent;
-        font-size: 20px;
+      .mini-box {
+        padding-bottom: 100px;
+        button {
+          border: none;
+          color: white;
+          background-color: transparent;
+          font-size: 20px;
+        }
       }
     }
   }

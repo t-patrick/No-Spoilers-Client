@@ -86,7 +86,9 @@ function Chat({ currentChat, toggleChat, showName, isChatOpen }: ChatProps) {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
-              <button type="submit">Send</button>
+              <button type="submit" className="send-button">
+                Send
+              </button>
             </form>
           </div>
         )}
