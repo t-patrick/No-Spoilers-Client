@@ -10,7 +10,6 @@ import {
 import { BackintimeProps, MainState } from '../../proptypes';
 import StyledBackInTime from './BackInTime.styled';
 import downArrow from './image/down.png';
-import WikiLogo from '../../images/imdb.png';
 import { CurrentShowContext } from '../../App';
 
 function Backintime({ show, currentEpisode }: BackintimeProps) {
@@ -126,7 +125,8 @@ function Backintime({ show, currentEpisode }: BackintimeProps) {
               speedMultiplier={3}
               css={`
                 margin-top: 30px;
-                margin-left: 25%;
+                margin-left: auto;
+                margin-right: auto;
                 display: block;
                 border-color: red;
               `}
@@ -207,7 +207,7 @@ function Backintime({ show, currentEpisode }: BackintimeProps) {
               <div>
                 <input
                   type="text"
-                  placeholder="Enter your own website, perhaps a subreddit?"
+                  placeholder="Enter your own website"
                   value={currentUserWayback}
                   onChange={(e) => setCurrentUserWayback(e.target.value)}
                 />

@@ -165,9 +165,9 @@ export const postReply = async (
 };
 
 export const deleteUserShow = async (TMDB_show_id: string, userId: string) => {
-  const response = await axios.post(`${BASE_URL}/home/delete/${TMDB_show_id}`, {
-    _id: userId,
-  });
+  const response = await axios.delete(
+    `${BASE_URL}/home/delete/${TMDB_show_id}`
+  );
 
   if (response.status === 204) return true;
   return false;

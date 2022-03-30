@@ -97,10 +97,8 @@ function Chat({ currentChat, toggleChat, showName, isChatOpen }: ChatProps) {
   } else {
     return (
       <div className="chat-box-minimised">
-        <div className="mini-box">
-          <button onClick={() => setIsMinimised(false)}>
-            <section>{currentChat.displayName} - Breaking Bad</section>
-          </button>
+        <div className="mini-box" onClick={() => setIsMinimised(false)}>
+          <section>{currentChat.displayName} - Breaking Bad</section>
         </div>
       </div>
     );

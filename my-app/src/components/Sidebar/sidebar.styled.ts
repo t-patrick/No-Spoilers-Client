@@ -49,6 +49,7 @@ const StyledSidebar = styled.nav<Props>`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    background-color: var(--navbar-color);
 
     .item {
       padding: 12px;
@@ -65,6 +66,11 @@ const StyledSidebar = styled.nav<Props>`
       box-sizing: border-box;
       border: 1px solid darkgoldenrod;
     }
+  }
+
+  .arrow {
+    color: white;
+    margin-left: auto;
   }
 
   .chatter-pane {

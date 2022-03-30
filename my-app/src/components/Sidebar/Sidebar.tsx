@@ -6,6 +6,8 @@ import { ChatActionCreators } from '../../state/action-creators';
 import ChatList from '../ChatList/ChatList';
 import StyledSidebar from './sidebar.styled';
 import Button from '@mui/material/Button';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function Sidebar() {
   const chat = useSelector<MainState>((state) => state.chat) as ChatState;
@@ -20,24 +22,19 @@ function Sidebar() {
     !chat.sidebarOpen ? openSidebar(undefined) : closeSidebar();
   };
 
-  if (chat.sidebarOpen) {
-    return (
-      <StyledSidebar expanded={chat.sidebarOpen}>
-        <div className="top">
-          <h1>Chats</h1>
-          <Button onClick={() => toggleExpanded()}>&lt;&lt;&lt;</Button>
-          {/* <button onClick={() => toggleExpanded()}>Close</button> */}
-        </div>
-        <ChatList />
-      </StyledSidebar>
-    );
-  }
-
   return (
     <StyledSidebar expanded={chat.sidebarOpen}>
       <div className="top">
         <h1>Chats</h1>
-        <Button onClick={() => toggleExpanded()}>&gt;&gt;&gt;</Button>
+        {/* <Button onClick={() => toggleExpanded()}>&gt;&gt;&gt;</Button> */}
+        {chat.sidebarOpen ? (
+          <ArrowBackIcon className="arrow" onClick={() => toggleExpanded()} />
+        ) : (
+          <ArrowForwardIcon
+            className="arrow"
+            onClick={() => toggleExpanded()}
+          />
+        )}
       </div>
       <ChatList />
     </StyledSidebar>

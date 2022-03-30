@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const StyledChatList = styled.div`
   text-align: center;
+  background-color: var(--navbar-color);
 
   .send-button {
     background-color: rgba(0, 0, 0, 0.5);
