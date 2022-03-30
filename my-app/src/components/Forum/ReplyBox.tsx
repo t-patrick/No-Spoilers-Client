@@ -278,6 +278,7 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
   return (
     <StyledReplyBox>
       <Accordion
+        id='reply-box'
         expanded={isExpanded}
         onClick={(e) => {
           if (!reportFormOpen) {

@@ -67,6 +67,8 @@ const StyledForumReplies = styled.div`
   .show-hide-btn:hover {
     border: none;
   }
+
+
 `;
 
 export default StyledForumReplies;
