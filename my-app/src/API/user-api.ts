@@ -95,6 +95,8 @@ export const addUserWaybackUrl = async (
     }
   );
 
+  console.log(waybacks);
+
   return waybacks.data as UserWayback;
 };
 

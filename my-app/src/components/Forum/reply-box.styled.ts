@@ -6,6 +6,7 @@ const StyledReplyBox = styled.div`
   .replier-bar {
     display: flex;
     align-items: center;
+    width: 100%;
   }
   .replier-progress {
     padding: 8px 10px;
@@ -24,6 +25,10 @@ const StyledReplyBox = styled.div`
   .replier-progress-behind {
     color: white;
     background-color: black;
+  }
+
+  .user-buttons {
+    margin-left: auto;
   }
 
   .edit {

@@ -58,7 +58,7 @@ function Backintime({ show, currentEpisode }: BackintimeProps) {
         user._id,
         userTVShow.TMDB_show_id
       );
-      setUserWaybackUrls(userWaybacks);
+      setUserWaybackUrls(userWaybacks || []);
     };
     if (user && userTVShow.TMDB_show_id) {
       getWaybacks();

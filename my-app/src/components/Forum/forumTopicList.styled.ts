@@ -16,6 +16,7 @@ const StyledForumTopicList = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 30px;
   }
 
   .up {
@@ -73,6 +74,13 @@ const StyledForumTopicList = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 10px;
+
+    .author-name {
+      font-size: 26px;
+      letter-spacing: 1.3px;
+      margin-bottom: 5px;
+    }
   }
 
   .topic-content {
@@ -80,6 +88,7 @@ const StyledForumTopicList = styled.div`
     padding: 10px;
     display: flex;
     flex-direction: column;
+    line-height: 25px;
   }
 
   .button-cluster {

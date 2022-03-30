@@ -61,7 +61,7 @@ function TopicBox({ topic }: TopicProps) {
 
   const renderBody = () => {
     return !isEditing ? (
-      <p>{topic.body}</p>
+      <p className="topic-body-text">{topic.body}</p>
     ) : (
       <div
         className="edit"
@@ -93,6 +93,11 @@ function TopicBox({ topic }: TopicProps) {
     setIsEditing(false);
   };
 
+  const formatEpisode = (epCode: string) => {
+    const nums = epCode.slice(1).split('e');
+    return `Season ${nums[0]}, Episode ${nums[1]}`;
+  };
+
   return topic ? (
     <StyledTopicBox>
       <div className="topic-main">
@@ -119,11 +124,13 @@ function TopicBox({ topic }: TopicProps) {
           >
             <div className="title-and-date">
               <div className="top-row">
-                <h3>
+                <h3 className="title">
                   {topic.isReported
                     ? 'This topic has been reported for possible spoiler, awaiting review. Click to reveal'
                     : topic.title}{' '}
-                  (Posting about {topic.episodeCode})
+                  <span>
+                    (Posting about {formatEpisode(topic.episodeCode)})
+                  </span>
                 </h3>
                 {topic.authorUserId === user._id.toString() && (
                   <div
@@ -150,7 +157,6 @@ function TopicBox({ topic }: TopicProps) {
               </div>
               <div>{new Date(topic.date).toDateString()}</div>
             </div>
-
             <div
               style={{ display: topicVisible ? 'flex' : 'none' }}
               className="bottom-half"
@@ -161,7 +167,7 @@ function TopicBox({ topic }: TopicProps) {
                     src={`https://avatars.dicebear.com/api/${topic.avatar}`}
                   ></img>
                 </div>
-                <div>{topic.authorName}</div>
+                <div className="author-name">{topic.authorName}</div>
               </div>
 
               <div className="topic-content">{renderBody()}</div>

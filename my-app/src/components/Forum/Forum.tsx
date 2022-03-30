@@ -33,7 +33,7 @@ function Forum() {
   }, [userTVShow]);
 
   const updateTopics = (topic: UserTopic) => {
-    setTopics([...topics, topic]);
+    setTopics([topic, ...topics]);
   };
 
   const updateTopic = (topic: UserTopic) => {

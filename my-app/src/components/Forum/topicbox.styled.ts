@@ -8,6 +8,9 @@ const StyledTopicBox = styled.div`
     border-radius: 7px;
   }
 
+  .topic-body-text {
+    font-size: 20px;
+  }
   .bottom-half {
     border-radius: 0 0 7px 7px;
   }
@@ -16,6 +19,16 @@ const StyledTopicBox = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+  }
+
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    span {
+      margin-left: 5px;
+      font-weight: 500;
+    }
   }
 
   .num-of-replies {
@@ -37,7 +50,7 @@ const StyledTopicBox = styled.div`
 
   .user-buttons {
     display: flex;
-    margin: 5px 0px 0px 10px;
+    margin: 5px 0px 0px auto;
     gap: 10px;
 
     button {
@@ -63,7 +76,6 @@ const StyledTopicBox = styled.div`
     gap: 10px;
     align-items: center;
     // border-radius: 10px;
-
   }
   .edit {
     display: flex;

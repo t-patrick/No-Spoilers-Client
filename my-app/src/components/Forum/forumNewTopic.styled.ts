@@ -13,6 +13,9 @@ const StyledForumNewTopic = styled.div`
 
   .title {
     padding-top: 2.5%;
+    textarea {
+      font-size: 24px;
+    }
   }
 
   .body {
@@ -21,6 +24,7 @@ const StyledForumNewTopic = styled.div`
 
     textarea {
       height: 150px;
+      font-size: 22px;
     }
   }
 
