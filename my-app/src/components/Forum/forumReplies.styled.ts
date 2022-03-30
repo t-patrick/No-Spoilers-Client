@@ -9,17 +9,10 @@ const StyledForumReplies = styled.div`
   .reply-modal {
     display: flex;
     justify-content: flex-end;
-    margin-top: -50px;
-
-    // border: 1px solid blue;
-
-    // flex-direction: column;
-    // width: 10%;
+    margin-top: -40px;
   }
 
   .replies {
-    // width: 98%;
-    // margin-right: 1%;
     margin-left: 15%;
     margin-top: 20px;
     display: flex;
@@ -48,7 +41,6 @@ const StyledForumReplies = styled.div`
   }
 
   .show-hide-btn {
-    // color: var(--sharp-purple);
     padding-top: 5px;
     padding-bottom: 5px;
     border: none;
@@ -56,6 +48,8 @@ const StyledForumReplies = styled.div`
 
   .reply-btn {
     border: none;
+    color: var(--sharp-purple);
+    
   }
 
   .reply-btn img {

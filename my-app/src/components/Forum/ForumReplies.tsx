@@ -98,15 +98,15 @@ function ForumReplies({ topic, topicVisible }: TopicProps) {
           {showReplies
             ? 'Hide'
             : `${topic.numberOfReplies} ${
-                topic.numberOfReplies === 1 ? 'reply' : 'replies'
+                topic.numberOfReplies === 1 ? 'comment' : 'comments'
               }`}
         </Button>
         <Button
           className="reply-btn"
           variant="outlined"
           onClick={handleClickOpen}
-        >
-          <img src={reply} style={{ transform: 'scale(2)' }} />
+        > Reply
+          {/* <img src={reply} style={{ transform: 'scale(2)' }} /> */}
           
         </Button>
         <Button className="report-btn" onClick={() => setReportFormOpen(true)}>
