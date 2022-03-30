@@ -9,6 +9,7 @@ import {
 import React, { MouseEventHandler, SyntheticEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import styled from 'styled-components';
 import { convertToObject } from 'typescript/lib/tsserverlibrary';
 import { ChatState, MainState } from '../../proptypes';
 import { ChatActionCreators } from '../../state/action-creators';
@@ -132,7 +133,7 @@ function ChatList() {
           />
         )}
         {/* Choose which show */}
-        {chat.chatsCollection.length && (
+        {chat.chatsCollection.length > 0 && (
           <FormControl
             sx={{
               m: 1,
@@ -169,7 +170,11 @@ function ChatList() {
           </FormControl>
         )}
         {/* List of chatters connected to that show */}
-        <h2>Currently Online:</h2>
+        {chat.chatsCollection.length > 0 ? (
+          <h2>Currently Online:</h2>
+        ) : (
+          <h2>Add from the Show Page!</h2>
+        )}
         {chat.currentShowChat && renderList()}
       </StyledChatList>
     );
@@ -191,13 +196,9 @@ function ChatList() {
       )}
       {chat.chatsCollection.map((collection, index) => {
         return (
-          <div
-            key={index}
-            className="item"
-            onClick={() => openChatCollection(collection)}
-          >
-            {collection.showName} <span>({collection.chats.length})</span>
-          </div>
+          <Button key={index}>
+            {collection.showName} <br />({collection.chats.length} online)
+          </Button>
         );
       })}
     </div>
@@ -223,3 +224,24 @@ const ChatterPane = ({
     </div>
   );
 };
+
+const Button = styled.button`
+  width: 160px;
+  height: 86px;
+  font-size: 16px;
+  background: linear-gradient(
+    45deg,
+    transparent 5%,
+    #3a3c3e 5%,
+    #3a3c3e 30%,
+    #4d4f51
+  );
+  border: 0;
+  color: #fff;
+  letter-spacing: 3px;
+  line-height: 25px;
+  box-shadow: 6px 0px 0px var(--sharp-purple);
+  outline: transparent;
+  position: relative;
+  margin: 0px auto;
+`;

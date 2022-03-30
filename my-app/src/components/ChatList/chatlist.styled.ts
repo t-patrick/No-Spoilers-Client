@@ -63,14 +63,13 @@ const StyledChatList = styled.div`
       input: focus {
         outline: none;
       }
-      button {
+      /* button {
         color: white;
         background-color: var(--chatbox-border);
         border-radius: 5px;
         padding: 5px;
         border: none;
-      }
-
+      } */
     }
 
     .chatter-info {
@@ -92,7 +91,6 @@ const StyledChatList = styled.div`
     }
 
     .chatter-messages {
-
       height: 500px;
       border: 1px solid white;
       border-radius: 10px;
@@ -119,7 +117,7 @@ const StyledChatList = styled.div`
         text-align: left;
         font-weight: bold;
       }
-      
+
       .message-content {
         margin-top: 5px;
         text-align: left;
@@ -167,12 +165,12 @@ const StyledChatList = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      button {
+      /* button {
         border: none;
         color: white;
         background-color: transparent;
         font-size: 25px;
-      }
+      } */
     }
   }
 `;

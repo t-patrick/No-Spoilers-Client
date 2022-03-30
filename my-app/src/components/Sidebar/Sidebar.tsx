@@ -7,7 +7,6 @@ import ChatList from '../ChatList/ChatList';
 import StyledSidebar from './sidebar.styled';
 import Button from '@mui/material/Button';
 
-
 function Sidebar() {
   const chat = useSelector<MainState>((state) => state.chat) as ChatState;
   const dispatch = useDispatch();
@@ -41,7 +40,7 @@ function Sidebar() {
         <Button onClick={() => toggleExpanded()}>&gt;&gt;&gt;</Button>
         {/* <button onClick={() => toggleExpanded()}>Expand</button> */}
       </div>
-      <MiniChatList />
+      <ChatList />
     </StyledSidebar>
   );
 }
