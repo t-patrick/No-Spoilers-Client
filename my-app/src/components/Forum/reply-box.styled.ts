@@ -51,17 +51,24 @@ const StyledReplyBox = styled.div`
   }
 
   .reply-summary {
-    border-radius: 10px 10px 0 0; 
+    border-radius: 10px 10px 0 0;
   }
 
   .reply-content {
-    border-radius: 10px 10px 10px 10px; 
+    border-radius: 10px 10px 10px 10px;
   }
-
 
   #reply-box {
     border-radius: 10px 10px 10px 10px;
+  }
 
+  .reply-avatar {
+    img {
+      width: 100%;
+    }
+    height: 60px;
+    width: 60px;
+    margin: 0px 15px;
   }
 `;
 

@@ -200,8 +200,8 @@ type Message = {
   receiverId: string;
   displayName: string;
   avatar: string;
-  message: string;
   senderId: string;
+  message: string;
   showId: string;
   showName: string;
   date: Date;

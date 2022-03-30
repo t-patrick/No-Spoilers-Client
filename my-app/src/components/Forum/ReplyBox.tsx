@@ -278,7 +278,7 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
   return (
     <StyledReplyBox>
       <Accordion
-        id='reply-box'
+        id="reply-box"
         expanded={isExpanded}
         onClick={(e) => {
           if (!reportFormOpen) {
@@ -293,6 +293,9 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
         >
           <Typography className="replier-bar">
             <Reply />
+            <div className="reply-avatar">
+              <img src={`https://avatars.dicebear.com/api/${reply.avatar}`} />
+            </div>
             {Helpers.isReplierTheUser() ? 'You' : reply.authorName},{' '}
             {renderReplierProgress()}
             {reply.authorUserId !== user._id
