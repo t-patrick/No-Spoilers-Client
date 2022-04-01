@@ -8,8 +8,8 @@ import QuickSearch from '../QuickSearch/quick-search';
 import StyledNavbar from './navbar.styled';
 
 function Navbar({ showSearch }: NavbarProps) {
-  const user = useSelector<MainState>((state) => state.user);
-  const state = useSelector<MainState>((state) => state);
+  const user = useSelector<MainState>((state) => state.user) as User;
+  const state = useSelector<MainState>((state) => state) as MainState;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -46,6 +46,9 @@ function Navbar({ showSearch }: NavbarProps) {
           <button onClick={logout}>Logout</button>
         </Link>
       </div>
+      <h2 style={{ color: 'white', marginRight: '20px' }}>
+        {(state.user.user as User).displayName}
+      </h2>
       {showSearch && <QuickSearch />}
     </StyledNavbar>
   );

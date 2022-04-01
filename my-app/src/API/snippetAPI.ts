@@ -1,7 +1,4 @@
-import axios from 'axios';
-// Login
-
-const BASE_URL = 'http://localhost:3001';
+import { post } from './api-client';
 
 export const searchSnippets = async (
   query: string
@@ -9,7 +6,7 @@ export const searchSnippets = async (
   const data = {
     search: query,
   };
-  const results = await axios.post(`${BASE_URL}/quicksearch`, data);
+  const results = await post(`/quicksearch`, data);
 
   return results.data;
 };
