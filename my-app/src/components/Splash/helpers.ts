@@ -10,3 +10,9 @@ export const checkPassword = (password: string) => {
 
   return /^(?=.*[0-9])(?=.*[a-zA-Z]).+/.test(password);
 };
+
+export const getRandomString = (): string => {
+  let randNum = Math.floor(Math.random() * 1000);
+  const rando = Math.floor(Math.random() * 100) % 2 === 0;
+  return (rando ? 'male/' : 'female/') + randNum + '.png';
+};

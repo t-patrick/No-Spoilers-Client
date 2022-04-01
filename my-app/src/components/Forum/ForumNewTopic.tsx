@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useEffect, useState, useContext } from 'react';
 import { useSelector } from 'react-redux';
-import { addTopic } from '../../API/user-api';
+import ForumAPI from '../../API/forum-api';
 
 import { CurrentShowContext, ForumContext } from '../../App';
 import { MainState } from '../../proptypes';
@@ -56,7 +56,10 @@ export default function ForumNewTopic() {
 
     const topicRequest = constructTopic();
 
-    const newTopic = await addTopic(topicRequest, userTVShow.TMDB_show_id);
+    const newTopic = await ForumAPI.topic.add(
+      topicRequest,
+      userTVShow.TMDB_show_id
+    );
 
     if (newTopic) updateTopics(newTopic);
 

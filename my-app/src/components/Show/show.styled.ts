@@ -97,3 +97,34 @@ const StyledShow = styled.div`
 `;
 
 export default StyledShow;
+
+export const spinnerStyle = {
+  position: 'absolute' as 'absolute' | 'relative' | 'fixed',
+  left: '50%',
+  top: '50%',
+  transform: 'translate(-50%, -50%)',
+};
+
+export const coverStyle = {
+  position: 'absolute' as 'absolute' | 'relative' | 'fixed',
+  height: '100%',
+  width: '100%',
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0,
+  backgroundColor: 'rgba(0,0,0,0.7)',
+  zIndex: 40,
+};
+
+export const boxStyle = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};

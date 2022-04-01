@@ -1,13 +1,14 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateUserAvatar } from '../../API/user-api';
+import UserAPI from '../../API/user-api';
 import { MainState } from '../../proptypes';
 import { UserActionCreators } from '../../state/action-creators';
 import Navbar from '../Navbar/Navbar';
 import AvatarReel from './AvatarReel';
 import StyledProfile from './profile.styled';
 import Sidebar from '../Sidebar/Sidebar';
+import { getRandomString } from '../Splash/helpers';
 
 function Profile() {
   const dispatch = useDispatch();
@@ -27,8 +28,7 @@ function Profile() {
   const [avatar, setAvatar] = useState<string>(user.avatar);
 
   const updateAvatar = async () => {
-    console.log('in updateAvatar', avatar);
-    const response = await updateUserAvatar(avatar);
+    const response = await UserAPI.updateAvatar(avatar);
 
     if (response) {
       const newUser: User = {
@@ -38,10 +38,6 @@ function Profile() {
       updateUserAction(newUser);
     }
   };
-
-  useEffect(() => {
-    console.log('user avatar on load', user.avatar);
-  }, []);
 
   const updateUser = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -79,22 +75,9 @@ function Profile() {
     }
   };
 
-  const getRandomString = (): string => {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    const charactersLength = characters.length;
-    for (let i = 0; i < 10; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-
-    const rando = Math.floor(Math.random() * 100) % 2 === 0;
-
-    return (rando ? 'male/' : 'female/') + result + '.svg';
-  };
-
   return (
     <StyledProfile>
-      {false && <Sidebar/>}
+      {false && <Sidebar />}
       <Navbar showSearch={true} />
 
       <div className="profile-layout">

@@ -13,19 +13,16 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ReplyBox from './ReplyBox';
 import { useSelector } from 'react-redux';
-import { postReply, reportTopicOrReply } from '../../API/user-api';
 import { CurrentShowContext, ForumContext } from '../../App';
+import ForumAPI from '../../API/forum-api';
 
 function ForumReplies({ topic, topicVisible }: TopicProps) {
-  //// REDUX STORE
   const user = useSelector<MainState>((state) => state.user.user) as User;
 
-  //// CONTEXT
   const { userTVShow } = useContext(CurrentShowContext);
 
   const { addReply, updateTopic } = useContext(ForumContext);
 
-  //// LOCAL STATE
   const [open, setOpen] = useState(false);
   const [reportFormOpen, setReportFormOpen] = useState(false);
   const [replyText, setReplyText] = useState<string>('');
@@ -33,7 +30,7 @@ function ForumReplies({ topic, topicVisible }: TopicProps) {
   const [reportText, setReportText] = useState('');
 
   const handleSendReply = async () => {
-    const newReply = await postReply(
+    const newReply = await ForumAPI.reply.add(
       userTVShow.TMDB_show_id,
       user._id,
       '' + (topic._id as number),
@@ -74,7 +71,7 @@ function ForumReplies({ topic, topicVisible }: TopicProps) {
       replyId: '',
     };
 
-    const response = await reportTopicOrReply(report);
+    const response = await ForumAPI.reportTopicOrReply(report);
 
     const updatedTopic = Object.assign({}, topic);
     updatedTopic.isReported = true;

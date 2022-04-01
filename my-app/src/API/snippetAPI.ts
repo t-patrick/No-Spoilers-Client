@@ -10,3 +10,9 @@ export const searchSnippets = async (
 
   return results.data;
 };
+
+const SnippetAPI = {
+  search: searchSnippets,
+};
+
+export default SnippetAPI;

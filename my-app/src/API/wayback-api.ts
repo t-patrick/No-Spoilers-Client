@@ -33,3 +33,12 @@ export const updateUserWayback = async (_id: number, TMDB_show_Id: number) => {
     return false;
   }
 };
+
+const WaybackAPI = {
+  getUrls: getUserWaybackUrls,
+  getUserUrls: getUserWaybackUrls,
+  addUrl: addUserWaybackUrl,
+  updateUserWayback,
+};
+
+export default WaybackAPI;

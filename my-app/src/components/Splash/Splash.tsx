@@ -4,9 +4,6 @@ import Register from './Register';
 import StyledSplash from './Splash.styled';
 
 function Splash() {
-  const [showLogin, setShowLogin] = useState(true);
-  const [showRegister, setShowRegister] = useState(true);
-
   const [loginOrRegister, setLoginOrRegister] = useState<'login' | 'register'>(
     'login'
   );

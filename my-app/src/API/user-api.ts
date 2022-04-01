@@ -47,3 +47,11 @@ export const updateUserAvatar = async (avatar: string) => {
   if (response.status === 200) return response.data;
   return false;
 };
+
+const UserAPI = {
+  login: loginUser,
+  register: registerUser,
+  updateAvatar: updateUserAvatar,
+  addShow: addTVShow,
+};
+export default UserAPI;

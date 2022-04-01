@@ -3,21 +3,21 @@ import ForumNewTopic from './ForumNewTopic';
 import ForumTopicList from './ForumTopicList';
 import StyledForum from './forum.styled';
 import { useSelector } from 'react-redux';
-import { fetchTopics, postUpdateReply } from '../../API/user-api';
 import { CurrentShowContext, ForumContext } from '../../App';
 import { MainState } from '../../proptypes';
+import ForumAPI from '../../API/forum-api';
 
 function Forum() {
   const user = useSelector<MainState>((state) => state.user.user) as User;
 
-  const { showDetail, userTVShow } = useContext(CurrentShowContext);
+  const { userTVShow } = useContext(CurrentShowContext);
 
   const [topics, setTopics] = useState<Array<UserTopic>>([]);
 
   useEffect(() => {
     if (userTVShow && !Number.isNaN(userTVShow.TMDB_show_id)) {
       const getTopics = async () => {
-        let topics = await fetchTopics(
+        let topics = await ForumAPI.topic.index(
           '' + userTVShow.TMDB_show_id,
           '' + user._id
         );
@@ -31,6 +31,8 @@ function Forum() {
       console.error('in forum, userTV or id is not defined');
     }
   }, [userTVShow]);
+
+  // CONTEXT
 
   const updateTopics = (topic: UserTopic) => {
     setTopics([topic, ...topics]);

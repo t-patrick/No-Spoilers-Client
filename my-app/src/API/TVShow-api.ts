@@ -35,3 +35,11 @@ export const setShowWatched = async (TMDB_show_id: string, userId: string) => {
 
   return response.data as UserTVShow;
 };
+
+const TVShowAPI = {
+  single: getShowDetail,
+  updateEpisode,
+  delete: deleteUserShow,
+  setWatched: setShowWatched,
+};
+export default TVShowAPI;

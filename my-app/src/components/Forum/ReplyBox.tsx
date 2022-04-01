@@ -16,12 +16,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import TextField from '@mui/material/TextField';
-import {
-  deleteReplies,
-  postUpdateReply,
-  reportTopicOrReply,
-} from '../../API/user-api';
 import { ForumContext } from '../../App';
+import ForumAPI from '../../API/forum-api';
 
 // Needs the conditional
 
@@ -55,7 +51,7 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
   ////////////// HANDLERS
 
   const deleteReplyHandler = async () => {
-    const confirm = await deleteReplies(reply);
+    const confirm = await ForumAPI.reply.delete(reply);
 
     if (confirm) deleteReply(reply);
   };
@@ -78,7 +74,7 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
       replyId: reply._id?.toString() as string,
     };
 
-    const response = await reportTopicOrReply(report);
+    const response = await ForumAPI.reportTopicOrReply(report);
     const topic = topics.find(
       (top: UserTopic) => top._id === reply.topicId
     ) as UserTopic;
@@ -100,7 +96,7 @@ function ReplyBox({ reply, userTVShow }: ReplyProps) {
   };
 
   const handleUpdateReply = async () => {
-    const success = await postUpdateReply(
+    const success = await ForumAPI.reply.update(
       reply.topicId.toString(),
       reply._id.toString(),
       editValue

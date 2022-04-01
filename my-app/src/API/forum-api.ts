@@ -116,3 +116,22 @@ export const postUpdateTopic = async (
   if (response.status === 200) return true;
   return false;
 };
+
+const ForumAPI = {
+  topic: {
+    index: fetchTopics,
+    add: addTopic,
+    delete: deleteTopics,
+    updateTopic: postUpdateTopic,
+    upvote: upVotePost,
+    downvote: downVotePost,
+  },
+  reply: {
+    update: postUpdateReply,
+    delete: deleteReplies,
+    add: postReply,
+  },
+  reportTopicOrReply: reportTopicOrReply,
+};
+
+export default ForumAPI;

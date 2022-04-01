@@ -1,4 +1,9 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react';
+import React, {
+  SyntheticEvent,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -6,11 +11,11 @@ import blackLogo from './images/black-logo.png';
 import { StyledLogin } from './Login.styled';
 import spidermanImage from './images/spiderman.png';
 import { LoginProps, MainState } from '../../proptypes';
-import { loginUser } from '../../API/user-api';
+import UserAPI, { loginUser } from '../../API/user-api';
 import { UserActionCreators } from '../../state/action-creators';
-import { checkEmail, checkPassword } from './formHelpers';
+import { checkEmail, checkPassword } from './helpers';
 import { verifyTokenAndLogin } from '../../API/user-api';
-import { setupToken } from '../../API/user-api';
+import { setAuthHeader } from '../../API/api-client';
 
 function Login({ setLoginOrRegister }: LoginProps) {
   const dispatch = useDispatch();
@@ -23,7 +28,7 @@ function Login({ setLoginOrRegister }: LoginProps) {
   const [password, setPassword] = useState('');
   const [redirect, setRedirect] = useState<boolean>(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const verify = async () => {
       const token = localStorage.getItem('token');
       if (token) {
@@ -31,14 +36,14 @@ function Login({ setLoginOrRegister }: LoginProps) {
         if (response.status === 200) {
           setRedirect(true);
           setUserAction(response.data);
-          setupToken(token);
+          setAuthHeader(token);
         }
       }
     };
     verify();
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (state.user.isLoggedIn && redirect) {
       navigate('/home');
     }
@@ -47,15 +52,11 @@ function Login({ setLoginOrRegister }: LoginProps) {
   const fetchUser = async (
     userToSend: Omit<DBUser, 'displayName' | 'avatar'>
   ) => {
-    const user = await loginUser(userToSend);
+    const user = await UserAPI.login(userToSend);
     setUserAction(user);
     localStorage.setItem('token', user.token);
     navigate('/home');
   };
-
-  // const setToken = async (token: string) => {
-  //   sessionStorage.setItem('token', token);
-  // };
 
   const onSubmit = (e: SyntheticEvent) => {
     e.preventDefault();

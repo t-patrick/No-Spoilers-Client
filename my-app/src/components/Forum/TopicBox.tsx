@@ -3,13 +3,8 @@ import { useSelector } from 'react-redux';
 import { MainState, TopicProps, TopicsProps } from '../../proptypes';
 import StyledTopicBox from './topicbox.styled';
 import ForumReplies from './ForumReplies';
-import {
-  deleteTopics,
-  downVotePost,
-  postUpdateTopic,
-  upVotePost,
-} from '../../API/user-api';
 import { ForumContext } from '../../App';
+import ForumAPI from '../../API/forum-api';
 
 function TopicBox({ topic }: TopicProps) {
   const user = useSelector<MainState>((state) => state.user.user) as User;
@@ -30,12 +25,12 @@ function TopicBox({ topic }: TopicProps) {
     let response;
 
     if (vote === 1) {
-      response = await upVotePost(
+      response = await ForumAPI.topic.upvote(
         user._id.toString(),
         topic._id?.toString() as string
       );
     } else {
-      response = await downVotePost(
+      response = await ForumAPI.topic.downvote(
         user._id.toString(),
         topic._id?.toString() as string
       );
@@ -54,7 +49,7 @@ function TopicBox({ topic }: TopicProps) {
   };
 
   const deleteTopicHandler = async () => {
-    const confirm = await deleteTopics(topic);
+    const confirm = await ForumAPI.topic.delete(topic);
 
     if (confirm) deleteTopic(topic);
   };
@@ -83,7 +78,7 @@ function TopicBox({ topic }: TopicProps) {
   };
 
   const handleUpdateTopic = async () => {
-    const success = await postUpdateTopic(
+    const success = await ForumAPI.topic.updateTopic(
       topic._id?.toString() as string,
       topic.title,
       editValue
