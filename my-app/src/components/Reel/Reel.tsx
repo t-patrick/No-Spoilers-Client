@@ -1,15 +1,13 @@
 import { Button, Tooltip } from '@mui/material';
-import React, { SyntheticEvent, useContext, useEffect } from 'react';
+import React, { SyntheticEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { deleteUserShow, setShowWatched } from '../../API/user-api';
-import { CurrentShowContext, ForumContext } from '../../App';
+import TVShowAPI from '../../API/TVShow-api';
 import { ReelProps } from '../../proptypes';
 import { UserActionCreators } from '../../state/action-creators';
 
 function Reel({ userTVShows, isCompleted }: ReelProps) {
-  const { userTVShow } = useContext(CurrentShowContext);
   const navigate = useNavigate();
   const goToShowPage = (showId: number) => {
     navigate(`/show/${showId}`, {
@@ -23,11 +21,8 @@ function Reel({ userTVShows, isCompleted }: ReelProps) {
     dispatch
   );
 
-  // useEffect(() => {}, [userTVShows]);
-
-  // TODO: Implement.
   const markComplete = async (show: UserTVShow) => {
-    const updatedShow = await setShowWatched(
+    const updatedShow = await TVShowAPI.setWatched(
       show.TMDB_show_id.toString(),
       show.userId
     );
@@ -37,7 +32,10 @@ function Reel({ userTVShows, isCompleted }: ReelProps) {
 
   const deleteShow = async (e: SyntheticEvent, show: UserTVShow) => {
     e.preventDefault();
-    const isDeleted = await deleteUserShow('' + show.TMDB_show_id, show.userId);
+    const isDeleted = await TVShowAPI.delete(
+      '' + show.TMDB_show_id,
+      show.userId
+    );
 
     isDeleted && removeUserShowAction(show.TMDB_show_id);
   };

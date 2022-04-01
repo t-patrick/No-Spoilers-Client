@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { SelectedOption } from 'react-select-search';
 import { Socket } from 'socket.io-client';
 import Episodechooser from './components/EpisodeChooser/Episodechooser';
 
@@ -101,3 +102,9 @@ export type MainState = {
   user: UserState;
   chat: ChatState;
 };
+
+export interface WithPhoto extends SelectedOption {
+  name: string;
+  poster_path?: string;
+  first_air_date: string;
+}

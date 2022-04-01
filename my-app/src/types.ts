@@ -105,14 +105,17 @@ type TVShow = {
   overview: string;
 };
 
-type ExternalIds = {
-  imdb_id?: string;
-  facebook_id?: string;
-  instagram_id?: string;
-  twitter_id?: string;
-  wikipediaId?: string;
-  homepage?: string;
-};
+// interface ExternalIds {
+//   imdb_id?: string;
+//   facebook_id?: string;
+//   instagram_id?: string;
+//   twitter_id?: string;
+//   wikipediaId?: string;
+//   homepage?: string;
+// }
+interface ExternalIds {
+  [key: string]: number | string;
+}
 
 /**
  * Forum Stuff

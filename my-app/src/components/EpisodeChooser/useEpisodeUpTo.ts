@@ -1,13 +1,7 @@
-import {
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateEpisode, updateUserWayback } from '../../API/user-api';
+import TVShowAPI from '../../API/TVShow-api';
 import { CurrentShowContext } from '../../App';
 import { MainState } from '../../proptypes';
 import { UserActionCreators } from '../../state/action-creators';
@@ -38,7 +32,7 @@ function useEpisodeUpTo() {
     const episodeDetail = showDetail.seasons[selectedTab].episodes[episode - 1];
     console.log(episodeDetail);
 
-    const update = await updateEpisode(
+    const update = await TVShowAPI.updateEpisode(
       userTVShow.userId,
       newEpisodeCode,
       episodeDetail.TMDB_episode_id.toString(),

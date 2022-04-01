@@ -8,7 +8,6 @@ import QuickSearch from '../QuickSearch/quick-search';
 import StyledNavbar from './navbar.styled';
 
 function Navbar({ showSearch }: NavbarProps) {
-  const user = useSelector<MainState>((state) => state.user) as User;
   const state = useSelector<MainState>((state) => state) as MainState;
 
   const dispatch = useDispatch();
@@ -20,10 +19,6 @@ function Navbar({ showSearch }: NavbarProps) {
     logoutAction();
     navigate('/');
   };
-
-  // const showSidebar = () => {
-  //   setSidebar(false);
-  // }
 
   return (
     <StyledNavbar>

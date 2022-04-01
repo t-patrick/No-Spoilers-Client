@@ -5,7 +5,8 @@ import SelectSearch, {
   SelectedOption,
   OptionSnapshot,
 } from 'react-select-search';
-import { emptyOptions, getOptions, WithPhoto } from './quick-search-helpers';
+import { WithPhoto } from '../../proptypes';
+import { emptyOptions, getOptions } from './quick-search-helpers';
 import StyledQuickSearch from './quicksearch.styled';
 import useAddShows from './useAddShows';
 
@@ -24,12 +25,7 @@ function QuickSearch() {
 
   //////////////////////// RENDER
 
-  const renderShowSnippet = (
-    domProps: DomProps,
-    option: SelectedOption,
-    snapshot: OptionSnapshot,
-    className: string
-  ) => {
+  const renderShowSnippet = (_: DomProps, option: SelectedOption) => {
     const ops = option as WithPhoto;
 
     if (ops.value === '1')
