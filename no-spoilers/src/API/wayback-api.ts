@@ -2,7 +2,6 @@ import { get, post } from './api-client';
 
 export const getWaybackUrls = async (userId: number, TMDB_show_Id: number) => {
   const waybacks = await get(`/wayback/${TMDB_show_Id}`);
-
   return waybacks.data as ExternalIds;
 };
 

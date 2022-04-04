@@ -88,18 +88,18 @@ function Backintime({ show, currentEpisode }: BackintimeProps) {
     );
   };
 
-  const renderUrl = (id: string) => {
-    {
-      waybackUrls[id] && (
-        <a
-          href={waybackUrls[id] as string}
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          Facebook (
-          {extractDate(waybackUrls[id] as string).toLocaleDateString()})
-        </a>
-      );
+  const renderUrl = (id: string, name: string) => {
+    if (waybackUrls[id]) {
+      return (
+            <a
+            href={waybackUrls[id] as string}
+            target="_blank"
+            rel="noreferrer noopener"
+          > {name + ' '}
+           (
+            {extractDate(waybackUrls[id] as string).toLocaleDateString()})
+            </a>
+            );
     }
   };
 
@@ -154,11 +154,11 @@ function Backintime({ show, currentEpisode }: BackintimeProps) {
         {renderClockLoader()}
         {!isLoading && (
           <div className="dropdown-content">
-            {renderUrl('facebook_id')}
-            {renderUrl('instagram_id')}
-            {renderUrl('twitter_id')}
-            {renderUrl('imdb_id')}
-            {renderUrl('wikipedia_id')}
+            {renderUrl('facebook_id', 'Facebook')}
+            {renderUrl('instagram_id', 'Instagram')}
+            {renderUrl('twitter_id', 'Twitter')}
+            {renderUrl('imdb_id', 'IMDb')}
+            {renderUrl('wikipedia_id', 'Wikipedia')}
             {userWaybackUrls &&
               userWaybackUrls.length > 0 &&
               userWaybackUrls.map((wayback) => renderUserWayback(wayback))}
