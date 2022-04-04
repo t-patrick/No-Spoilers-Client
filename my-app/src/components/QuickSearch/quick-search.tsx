@@ -1,10 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import SelectSearch, {
-  DomProps,
-  SelectedOption,
-  OptionSnapshot,
-} from 'react-select-search';
+import SelectSearch, { DomProps, SelectedOption } from 'react-select-search';
 import { WithPhoto } from '../../proptypes';
 import { emptyOptions, getOptions } from './quick-search-helpers';
 import StyledQuickSearch from './quicksearch.styled';
